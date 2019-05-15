@@ -48,9 +48,9 @@
     <Compile Include="Game\Color.cs" />
     <Compile Include="Game\IGameMode.cs" />
     <Compile Include="Game\GameState.cs" />
-    <Compile Include="Game\IKeyCombinations.cs" />
-    <Compile Include="Game\OrderedKeyCombination.cs" />
-    <Compile Include="Game\RandKeyCombinations.cs" />
+    <Compile Include="Game\IMapChange.cs" />
+    <Compile Include="Game\OrderedMapChange.cs" />
+    <Compile Include="Game\RandKeyMapChange.cs" />
     <Compile Include="IInputControl.cs" />
     <Compile Include="IMelodyLoader.cs" />
     <Compile Include="KeyboardInputControl.cs" />

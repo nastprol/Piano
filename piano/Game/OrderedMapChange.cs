@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Piano
 {
-    class OrderedKeyCombination : IKeyCombinations
+    class OrderedMapChange : IMapChange
     {
         private int index = 0;
         private int[] combination =

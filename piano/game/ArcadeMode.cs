@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Piano
 {
@@ -14,44 +10,33 @@ namespace Piano
 
         public ArcadeMode()
         {
-            var timer = Stopwatch.StartNew();
-            var time = timer.ElapsedMilliseconds;
-            timer.Stop();
-            var ti = timer.ElapsedMilliseconds;
+            points = 0;
+            timer = new Stopwatch();
         }
+
+
         public void Update(bool isGameEnd)
         {
-            throw new NotImplementedException();
+            if (isGameEnd)
+                timer.Stop();
+            else
+                points = (int)timer.ElapsedMilliseconds / 100;
         }
 
         public void ChangeMap(Map map)
         {
-            throw new NotImplementedException();
         }
 
-        public int GetPoints()
-        {
-            throw new NotImplementedException();
-        }
+        public int GetPoints() => points;
 
-        public DateTime GetTime()
-        {
-            throw new NotImplementedException();
-        }
+        public long GetTime() => timer.ElapsedMilliseconds;
 
-        public bool IsGameEnd()
-        {
-            throw new NotImplementedException();
-        }
+        public bool IsGameEnd() => false;
 
         public void PrimaryPreparation()
         {
-            throw new NotImplementedException();
+            timer.Start();
         }
 
-        long IGameMode.GetTime()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

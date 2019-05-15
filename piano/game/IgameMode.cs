@@ -6,7 +6,6 @@ namespace Piano
         bool IsGameEnd();
         int GetPoints();
         long GetTime();
-        void ChangeMap(Map map);
         void Update(bool isGameEnd);
         void PrimaryPreparation();
     }

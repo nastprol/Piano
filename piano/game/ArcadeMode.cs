@@ -22,11 +22,7 @@ namespace Piano
             else
                 points = (int)timer.ElapsedMilliseconds / 100;
         }
-
-        public void ChangeMap(Map map)
-        {
-        }
-
+        
         public int GetPoints() => points;
 
         public long GetTime() => timer.ElapsedMilliseconds;

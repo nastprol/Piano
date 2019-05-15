@@ -15,11 +15,6 @@ namespace Piano
             points = 0;
         }
 
-        public void ChangeMap(Map map)
-        {
-            throw new NotImplementedException();
-        }
-
         public int GetPoints() => points;
 
         public long GetTime() => timer.ElapsedMilliseconds;

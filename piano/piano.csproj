@@ -43,13 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="game\Color.cs" />
+    <Compile Include="game\IGameMode.cs" />
+    <Compile Include="game\GameState.cs" />
     <Compile Include="IInputControl.cs" />
     <Compile Include="IMelodyLoader.cs" />
     <Compile Include="KeyboardInputControl.cs" />
+    <Compile Include="game\Map.cs" />
     <Compile Include="Melody.cs" />
     <Compile Include="MelodyFileLoader.cs" />
     <Compile Include="MouseInputControl.cs" />
     <Compile Include="Note.cs" />
+    <Compile Include="game\PianoKey.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StandardMelodyLoader.cs" />

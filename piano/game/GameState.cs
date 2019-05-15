@@ -11,6 +11,7 @@ namespace Piano
         private IGameMode gameMode;
         private readonly Map map;
         private bool isGameEnd;
+        private bool isFirstMove = true;
 
         public GameState(IGameMode mode, int width, int high)
         {
@@ -20,17 +21,19 @@ namespace Piano
 
         public void MakeMove(int keyNumber)
         {
+            if (isFirstMove) gameMode.PrimaryPreparation();
             var firstLine = map.GetFirstLine();
             var pianoKey = firstLine[keyNumber];
             isGameEnd = !pianoKey.isNote && gameMode.IsGameEnd();
+            gameMode.Update(isGameEnd);
             gameMode.ChangeMap(map);
-            gameMode.AddPoints(isGameEnd);
+            
 
         }
 
         public int GetPoints => gameMode.GetPoints();
 
-        public DateTime GetTime => gameMode.GetTime();
+        public long GetTime => gameMode.GetTime();
 
         public bool IsGameEnd => isGameEnd;
     }

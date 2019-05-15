@@ -10,8 +10,9 @@ namespace Piano
     {
         bool IsGameEnd();
         int GetPoints();
-        DateTime GetTime();
+        long GetTime();
         void ChangeMap(Map map);
-        void AddPoints(bool isGameEnd);
+        void Update(bool isGameEnd);
+        void PrimaryPreparation();
     }
 }

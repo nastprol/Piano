@@ -45,32 +45,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller.cs" />
-    <Compile Include="Game\ArcadeMode.cs" />
-    <Compile Include="Game\ClassicMode.cs" />
-    <Compile Include="Game\IGameMode.cs" />
-    <Compile Include="Game\GameState.cs" />
-    <Compile Include="Game\IMapChange.cs" />
-    <Compile Include="Game\OrderedMapChange.cs" />
-    <Compile Include="Game\RandKeyMapChange.cs" />
+    <Compile Include="Control\Controller.cs" />
+    <Compile Include="Game\Mode\ArcadeMode.cs" />
+    <Compile Include="Game\Mode\ClassicMode.cs" />
+    <Compile Include="Game\Mode\IGameMode.cs" />
+    <Compile Include="Game\State\GameState.cs" />
+    <Compile Include="Game\Change\IMapChange.cs" />
+    <Compile Include="Game\Change\OrderedMapChange.cs" />
+    <Compile Include="Game\Change\RandKeyMapChange.cs" />
+    <Compile Include="Game\State\IGame.cs" />
     <Compile Include="GUI\GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IInputControl.cs" />
-    <Compile Include="IMelodyLoader.cs" />
-    <Compile Include="KeyboardInputControl.cs" />
+    <Compile Include="Control\IInputControl.cs" />
+    <Compile Include="Loader\IMelodyLoader.cs" />
+    <Compile Include="Control\KeyboardInputControl.cs" />
     <Compile Include="Game\Map.cs" />
-    <Compile Include="Melody.cs" />
-    <Compile Include="MelodyFileLoader.cs" />
-    <Compile Include="MouseInputControl.cs" />
-    <Compile Include="Note.cs" />
+    <Compile Include="Game\Melody.cs" />
+    <Compile Include="Loader\MelodyFileLoader.cs" />
+    <Compile Include="Control\MouseInputControl.cs" />
+    <Compile Include="Game\Note.cs" />
     <Compile Include="Game\PianoKey.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StandardMelodyLoader.cs" />
+    <Compile Include="Loader\StandardMelodyLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

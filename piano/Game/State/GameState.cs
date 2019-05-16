@@ -1,8 +1,9 @@
 ﻿using System.Linq;
+using Piano.Game.State;
 
 namespace Piano
 {
-    public class GameState
+    public class GameState : IGame
     {
         private IGameMode gameMode;
         private IMapChange mapChange;

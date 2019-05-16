@@ -2,19 +2,18 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Piano;
+using Piano.Game.State;
 
 namespace piano.GUI
 {
     public class GameForm : Form
     {
         private const int ElementSize = 50;
-        private readonly GameState state;
-        private readonly IInputControl control;
+        private readonly IGame state;
 
-        public GameForm(GameState state, IInputControl control)
+        public GameForm(IGame state)
         {
             this.state = state;
-            this.control = control;
             ClientSize = new Size(state.GetMap.GetLength(0) * ElementSize, state.GetMap.GetLength(1) * ElementSize);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             var timer = new Timer();

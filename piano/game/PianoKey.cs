@@ -6,18 +6,18 @@ namespace Piano
     {
         public bool isNote { get; }
         public Note Note { get; }
-        public System.Drawing.Color Color { get; }
+        public Color Color { get; }
 
         public PianoKey(Note note)
         {
             Note = note;
-            Color = System.Drawing.Color.Black;
+            Color = Color.Black;
             isNote = true;
         }
 
         public PianoKey()
         {
-            Color = System.Drawing.Color.White;
+            Color = Color.White;
             isNote = false;
         }
     }

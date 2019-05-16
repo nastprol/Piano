@@ -10,10 +10,10 @@ namespace Piano
 {
     public class KeyBoardInputControl : IInputControl
     {
-        private Dictionary<int, int> controlKeys;
+        private Dictionary<Keys, int> controlKeys;
         public int InputValue { private set; get; }
 
-        public KeyBoardInputControl(Dictionary<int, int> controlKeys)
+        public KeyBoardInputControl(Dictionary<Keys, int> controlKeys)
         {
             this.controlKeys = controlKeys;
         }
@@ -25,7 +25,7 @@ namespace Piano
 
         public bool MakeInput(EventArgs e)
         {
-            var key = ((KeyEventArgs)e).KeyValue;
+            var key = ((KeyEventArgs)e).KeyData;
             var contains = controlKeys.ContainsKey(key);
             if (contains)
                 InputValue = controlKeys[key];

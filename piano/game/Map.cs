@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Piano
 {
@@ -8,9 +9,9 @@ namespace Piano
         public int NumberInHigh { get; }
         public PianoKey[,] Keys { get; }
 
-        public Map(int width, int high)
+        public Map(int width, int high, Melody melody,IMapChange mapChange)
         {
-            NumberInHigh = high;
+            NumberInHigh = high; 
             NumberInWidth = width;
             Keys = new PianoKey[high, width];
             for (var i = 0; i < NumberInHigh; i++)
@@ -18,7 +19,13 @@ namespace Piano
                 {
                     Keys[i, j] = new PianoKey();
                 }
-
+            var index = 0;
+            for (var i = 0; i < NumberInHigh; i++)
+            {
+                var note = melody.Notes.ElementAt(index);
+                index = index + 1 < melody.Notes.Count() ? index + 1 : 0;
+                SetNextKeyLine(mapChange.GetNextKeyLine(NumberInWidth, note));
+            }
         }
 
         public PianoKey this[int i, int j]

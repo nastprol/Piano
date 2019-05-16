@@ -11,13 +11,14 @@ namespace Piano
         private readonly Map map;
         private bool isGameEnd;
         private bool isFirstMove = true;
-        private int index = 0;
+        private int index;
         private int melodyLength;
         private Melody melody;
 
         public GameState(IGameMode mode, IMapChange mapChange, Melody melody, int width, int high)
         {
-            map = new Map(width, high);
+            map = new Map(width, high, melody,mapChange);
+            index = high;
             gameMode = mode;
             this.mapChange = mapChange;
             this.melody = melody;

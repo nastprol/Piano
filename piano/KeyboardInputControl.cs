@@ -13,18 +13,16 @@ namespace Piano
         private Dictionary<int, int> controlKeys;
         public int InputValue { private set; get; }
 
-        public KeyBoardInputControl(Dictionary<int, int> controlKeys, KeyEventHandler e)
+        public KeyBoardInputControl(Dictionary<int, int> controlKeys)
         {
             this.controlKeys = controlKeys;
-            e += PressKey;
         }
 
-        private void PressKey(object sender, KeyEventArgs e)
+        private void PressKey(object sender, EventArgs e)
         {
-            var key = e.KeyValue;
+            var key = ((KeyEventArgs)e).KeyValue;
             if (controlKeys.ContainsKey(key))
                 InputValue = controlKeys[key];
-            InputValue = e.KeyValue;
         }
     }
 }

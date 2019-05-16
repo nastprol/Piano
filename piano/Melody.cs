@@ -8,12 +8,11 @@ namespace Piano
 {
     public class Melody
     {
-        private List<Note> notes;
-        public IEnumerable<Note> Notes => notes;
+        public readonly IEnumerable<Note> Notes;
 
         public Melody(IEnumerable<Note> notes)
         {
-            this.notes = notes.ToList();
+            Notes = notes;
         }
     }
 }

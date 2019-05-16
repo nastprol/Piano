@@ -7,6 +7,6 @@ namespace Piano
     {
         int InputValue { get; }
         bool MakeInput(EventArgs e);
-        void Subscribe(Form form, Сontroller сontroller);
+        void Subscribe(Form form, Controller controller);
     }
 }

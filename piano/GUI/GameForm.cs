@@ -10,10 +10,10 @@ namespace Piano
         private const int ElementSizeHeight = 100;
         private const int ElementSizeWidth = 50;
         private readonly IGame state;
+        private Controller controller;
 
         public GameForm(IGame state)
         {
-
             this.state = state;
             var map = state.GetMap();
             ClientSize = new Size(map.NumberInWidth * ElementSizeWidth, map.NumberInHigh * ElementSizeHeight);
@@ -22,6 +22,18 @@ namespace Piano
             timer.Tick += TimerTick;
             timer.Interval = 60;
             timer.Start();
+        }
+
+        public void AddController(Controller controller)
+        {
+            this.controller = controller;
+            this.controller.gameOver += GameOver;
+        }
+
+        private void GameOver()
+        {
+            MessageBox.Show("Game over :(");
+            Close();
         }
 
         protected override void OnPaint(PaintEventArgs e)

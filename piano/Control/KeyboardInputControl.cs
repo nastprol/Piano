@@ -15,9 +15,9 @@ namespace Piano
 
         public int InputValue { private set; get; }
 
-        public void Subscribe(Form form, Сontroller сontroller)
+        public void Subscribe(Form form, Controller controller)
         {
-            form.KeyDown += сontroller.MakeStep;
+            form.KeyDown += controller.MakeStep;
         }
 
         public bool MakeInput(EventArgs e)

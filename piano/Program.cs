@@ -19,7 +19,8 @@ namespace Piano
 
             var keys = new Dictionary<Keys, int> { { Keys.Q, 0 }, { Keys.W, 1 }, { Keys.E, 2 }, { Keys.R, 3 }};
             IInputControl control = new KeyBoardInputControl(keys);        
-            var controlerl = new Сontroller(control, game, form);
+            var controller = new Controller(control, game, form);
+            form.AddController(controller);
 
             Application.Run(form);
         }

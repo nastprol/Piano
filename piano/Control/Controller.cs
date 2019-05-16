@@ -5,13 +5,15 @@ using Piano.Game.State;
 
 namespace Piano
 {
-    public class Сontroller
+    public class Controller
     {
         private readonly IInputControl controlType;
         private readonly Form form;
         private readonly IGame game;
 
-        public Сontroller(IInputControl controlType, IGame game, Form form)
+        public event Action gameOver;
+
+        public Controller(IInputControl controlType, IGame game, Form form)
         {
             this.controlType = controlType;
             this.form = form;
@@ -23,17 +25,11 @@ namespace Piano
 
         public void MakeStep(object sender, EventArgs e)
         {
-            if (controlType.MakeInput(e))
-            {
-                try
-                {
-                    Note = game.MakeMove(controlType.InputValue);
-                }
-                catch
-                {
-                    form.Close();
-                }
-            }
+            if (!controlType.MakeInput(e))
+                return;
+            Note = game.MakeMove(controlType.InputValue);
+            if (game.IsGameEnd)
+                gameOver?.Invoke();
         }
     }
 }

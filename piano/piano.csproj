@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,12 +47,14 @@
   <ItemGroup>
     <Compile Include="Game\ArcadeMode.cs" />
     <Compile Include="Game\ClassicMode.cs" />
-    <Compile Include="Game\Color.cs" />
     <Compile Include="Game\IGameMode.cs" />
     <Compile Include="Game\GameState.cs" />
     <Compile Include="Game\IMapChange.cs" />
     <Compile Include="Game\OrderedMapChange.cs" />
     <Compile Include="Game\RandKeyMapChange.cs" />
+    <Compile Include="GUI\GameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="IInputControl.cs" />
     <Compile Include="IMelodyLoader.cs" />
     <Compile Include="KeyboardInputControl.cs" />

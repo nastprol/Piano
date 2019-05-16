@@ -25,7 +25,7 @@ namespace Piano
         public bool MakeInput(EventArgs e)
         {
             var ev = (MouseEventArgs)e;
-            if (ev.Button == MouseButtons.Left)
+            if (ev.Button == MouseButtons.Right)
                 return answerInput;
             var location = ev.Location;
             foreach (var coords in conntrolLocations.Keys)

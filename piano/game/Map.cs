@@ -13,6 +13,12 @@ namespace Piano
             NumberInHigh = high;
             NumberInWidth = width;
             Keys = new PianoKey[high, width];
+            for (var i = 0; i < NumberInHigh; i++)
+                for (var j = 0; j < NumberInWidth; j++)
+                {
+                    Keys[i, j] = new PianoKey();
+                }
+
         }
 
         public PianoKey this[int i, int j]

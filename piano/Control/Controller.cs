@@ -24,6 +24,7 @@ namespace Piano
         public void MakeStep(object sender, EventArgs e)
         {
             if (controlType.MakeInput(e))
+            {
                 try
                 {
                     Note = game.MakeMove(controlType.InputValue);
@@ -32,6 +33,7 @@ namespace Piano
                 {
                     form.Close();
                 }
+            }
         }
     }
 }

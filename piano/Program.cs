@@ -8,6 +8,8 @@ namespace Piano
     {
         private static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             IGameMode mode = new ClassicMode();
             IMapChange change = new RandKeyMapChange();
             IMelodyLoader loader = new StandardMelodyLoader();
@@ -17,11 +19,8 @@ namespace Piano
 
             var keys = new Dictionary<Keys, int> { { Keys.Q, 0 }, { Keys.W, 1 }, { Keys.E, 2 }, { Keys.R, 3 }};
             IInputControl control = new KeyBoardInputControl(keys);        
-            Сontroller controlerl = new Сontroller(control, game, form);
+            var controlerl = new Сontroller(control, game, form);
 
-
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(form);
         }
     }

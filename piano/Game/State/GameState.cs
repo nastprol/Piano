@@ -58,7 +58,7 @@ namespace Piano
 
         public Map GetMap()
         {
-            gameMode.MapUpdate(map, mapChange, melody, index);
+            gameMode.MapUpdate(map, mapChange, melody, index, isFirstMove);
             return map;
         }
     }

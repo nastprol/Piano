@@ -5,7 +5,7 @@ namespace Piano
     class GameState
     {
         private IGameMode gameMode;
-        private IKeyCombinations keyCombinations;
+        private IMapChange mapChange;
         private readonly Map map;
         private bool isGameEnd;
         private bool isFirstMove = true;
@@ -13,11 +13,11 @@ namespace Piano
         private int melodyLength;
         private Melody melody;
 
-        public GameState(IGameMode mode, IKeyCombinations keyCombinations, Melody melody, int width, int high)
+        public GameState(IGameMode mode, IMapChange mapChange, Melody melody, int width, int high)
         {
             map = new Map(width, high);
             gameMode = mode;
-            this.keyCombinations = keyCombinations;
+            this.mapChange = mapChange;
             this.melody = melody;
             melodyLength = melody.Notes.Count();
         }
@@ -31,7 +31,7 @@ namespace Piano
                 {
                     var note = melody.Notes.ElementAt(index);
                     index = index + 1 < melodyLength ? index + 1 : 0;
-                    map.SetNextKeyLine(keyCombinations.GetNextKeyLine(map.NumberInWidth,note));
+                    map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth,note));
                 }
                 isFirstMove = false;
             }
@@ -41,7 +41,7 @@ namespace Piano
             gameMode.Update(isGameEnd);
             var nextNote = melody.Notes.ElementAt(index);
             index = index + 1 < melodyLength ? index + 1 : 0;
-            map.SetNextKeyLine(keyCombinations.GetNextKeyLine(map.NumberInWidth, nextNote));
+            map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth, nextNote));
 
         }
 

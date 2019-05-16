@@ -34,9 +34,9 @@ namespace Piano
             var firstLine = map.GetFirstLine();
             var pianoKey = firstLine[keyNumber];
             IsGameEnd = !pianoKey.isNote || gameMode.IsGameEnd();
-            
-            gameMode.Update(IsGameEnd, map, mapChange,melody,index);         
             index = index + 1 < melodyLength ? index + 1 : 0;
+            gameMode.Update(IsGameEnd, map, mapChange,melody,index);         
+            
             
             return pianoKey.Note;
 

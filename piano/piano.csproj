@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Control\Controller.cs" />
     <Compile Include="Control\TestControl.cs" />
+    <Compile Include="Game\Change\TestMapChange.cs" />
     <Compile Include="Game\Mode\ArcadeMode.cs" />
     <Compile Include="Game\Mode\ClassicMode.cs" />
     <Compile Include="Game\Mode\IGameMode.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Game\Change\IMapChange.cs" />
     <Compile Include="Game\Change\OrderedMapChange.cs" />
     <Compile Include="Game\Change\RandKeyMapChange.cs" />
+    <Compile Include="Game\State\GameStateTest.cs" />
     <Compile Include="Game\State\IGame.cs" />
     <Compile Include="GUI\GameForm.cs">
       <SubType>Form</SubType>

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Piano
@@ -10,10 +6,8 @@ namespace Piano
     public class Сontroller
     {
         private readonly IInputControl controlType;
-        private readonly GameState game;
         private readonly Form form;
-
-        public Note Note { get; private set; }
+        private readonly GameState game;
 
         public Сontroller(IInputControl controlType, IGame game, Form form)
         {
@@ -22,10 +16,11 @@ namespace Piano
             controlType.Subscribe(form, this);
         }
 
+        public Note Note { get; private set; }
+
         public void MakeStep(object sender, EventArgs e)
         {
             if (controlType.MakeInput(e))
-            {
                 try
                 {
                     Note = game.MakeMove(controlType.InputValue);
@@ -34,7 +29,6 @@ namespace Piano
                 {
                     form.Close();
                 }
-            }            
         }
     }
 }

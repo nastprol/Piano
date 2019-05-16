@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Linq;
 
 namespace Piano
 {
-    class RandKeyMapChange : IMapChange
+    internal class RandKeyMapChange : IMapChange
     {
-        private Random rnd = new Random();
+        private readonly Random rnd = new Random();
 
         public PianoKey[] GetNextKeyLine(int numberInWidth, Note note)
         {

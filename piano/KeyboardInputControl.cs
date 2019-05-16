@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Piano
 {
     public class KeyBoardInputControl : IInputControl
     {
-        private Dictionary<int, int> controlKeys;
-        public int InputValue { private set; get; }
+        private readonly Dictionary<int, int> controlKeys;
 
         public KeyBoardInputControl(Dictionary<int, int> controlKeys)
         {
             this.controlKeys = controlKeys;
         }
+
+        public int InputValue { private set; get; }
 
         public void Subscribe(Form form, Сontroller сontroller)
         {
@@ -25,7 +22,7 @@ namespace Piano
 
         public bool MakeInput(EventArgs e)
         {
-            var key = ((KeyEventArgs)e).KeyValue;
+            var key = ((KeyEventArgs) e).KeyValue;
             var contains = controlKeys.ContainsKey(key);
             if (contains)
                 InputValue = controlKeys[key];

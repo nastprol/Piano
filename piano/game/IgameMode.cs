@@ -1,5 +1,4 @@
-﻿
-namespace Piano
+﻿namespace Piano
 {
     public interface IGameMode
     {

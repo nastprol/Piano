@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Piano
+﻿namespace Piano
 {
-    class OrderedMapChange : IMapChange
+    internal class OrderedMapChange : IMapChange
     {
-        private int index = 0;
-        private int[] combination =
-            new int[] { 0, 1, 1, 2, 3, 3, 4, 5, 6, 7, 8, 8, 5, 4, 6, 6, 7, 2, 3, 5, 3, 5, 3, 2, 2, 1, 0, 7 };
+        private readonly int[] combination =
+            {0, 1, 1, 2, 3, 3, 4, 5, 6, 7, 8, 8, 5, 4, 6, 6, 7, 2, 3, 5, 3, 5, 3, 2, 2, 1, 0, 7};
+
+        private int index;
 
         public PianoKey[] GetNextKeyLine(int numberInWidth, Note note)
         {

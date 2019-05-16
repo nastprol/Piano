@@ -1,12 +1,11 @@
-﻿
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Piano
 {
-    class ArcadeMode : IGameMode
+    internal class ArcadeMode : IGameMode
     {
         private int points;
-        private Stopwatch timer;
+        private readonly Stopwatch timer;
 
         public ArcadeMode()
         {
@@ -20,14 +19,23 @@ namespace Piano
             if (isGameEnd)
                 timer.Stop();
             else
-                points = (int)timer.ElapsedMilliseconds / 100;
+                points = (int) timer.ElapsedMilliseconds / 100;
         }
-        
-        public int GetPoints() => points;
 
-        public long GetTime() => timer.ElapsedMilliseconds;
+        public int GetPoints()
+        {
+            return points;
+        }
 
-        public bool IsGameEnd() => false;
+        public long GetTime()
+        {
+            return timer.ElapsedMilliseconds;
+        }
+
+        public bool IsGameEnd()
+        {
+            return false;
+        }
 
         public void PrimaryPreparation()
         {

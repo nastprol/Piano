@@ -1,13 +1,12 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Piano
 {
     public class ClassicMode : IGameMode
     {
+        private readonly int limit = 60000;
         private int points;
-        private Stopwatch timer;
-        private int limit = 60000;
+        private readonly Stopwatch timer;
 
         public ClassicMode()
         {
@@ -15,11 +14,20 @@ namespace Piano
             points = 0;
         }
 
-        public int GetPoints() => points;
+        public int GetPoints()
+        {
+            return points;
+        }
 
-        public long GetTime() => timer.ElapsedMilliseconds;
+        public long GetTime()
+        {
+            return timer.ElapsedMilliseconds;
+        }
 
-        public bool IsGameEnd() => timer.ElapsedMilliseconds >= limit;
+        public bool IsGameEnd()
+        {
+            return timer.ElapsedMilliseconds >= limit;
+        }
 
         public void PrimaryPreparation()
         {

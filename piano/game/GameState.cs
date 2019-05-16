@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Piano
 {
-    public class GameState
+    public class GameState:IGame
     {
         private IGameMode gameMode;
         private IMapChange mapChange;
@@ -57,7 +57,7 @@ namespace Piano
 
         public Map GetMap()
         {
-            gameMode.MapUpdate(map, mapChange, melody, index);
+            gameMode.MapUpdate(map, mapChange, melody, index, isFirstMove);
             return map;
         }
     }

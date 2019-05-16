@@ -39,8 +39,16 @@ namespace Piano
             }
         }
 
-        public void MapUpdate(Map map, IMapChange mapChange, Melody melody, int index)
+        public void MapUpdate(Map map, IMapChange mapChange, Melody melody, int index, bool isFirstMove)
         {
+            if (!isFirstMove)
+                return;
+                for (var i = 0; i < map.NumberInHigh; i++)
+            {
+                var note = melody.Notes.ElementAt(index);
+                index = index + 1 < melody.Notes.Count() ? index + 1 : 0;
+                map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth, note));
+            }
         }
 
     }

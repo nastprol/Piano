@@ -29,7 +29,7 @@ namespace Piano
             }
             set
             {
-                Keys[i,j] = value;
+                Keys[i, j] = value;
             }
         }
 
@@ -37,10 +37,10 @@ namespace Piano
         {
             if (keyLine.Length != NumberInWidth)
                 throw new Exception();
-            for(var i = 0; i< NumberInHigh-1; i++)
-                for(var j = 0; j< NumberInWidth; j++)
+            for (var i = 0; i < NumberInHigh - 1; i++)
+                for (var j = 0; j < NumberInWidth; j++)
                 {
-                    Keys[i, j] = Keys[i + 1,j];
+                    Keys[i, j] = Keys[i + 1, j];
                 }
             for (var j = 0; j < NumberInWidth; j++)
                 Keys[NumberInHigh - 1, j] = keyLine[j];

@@ -29,7 +29,7 @@ namespace Piano
             var map = state.GetMap();
             for (var i = 0; i < map.NumberInHigh; i++)
             for (var j = 0; j < map.NumberInWidth; j++)
-                e.Graphics.FillRectangle(new SolidBrush(map[map.NumberInHigh - i - 1, j].Color), i * ElementSizeWidth, j * ElementSizeHeight,
+                e.Graphics.FillRectangle(new SolidBrush(map[map.NumberInHigh - i - 1, j].Color), j * ElementSizeWidth, i * ElementSizeHeight,
                     ElementSizeWidth, ElementSizeHeight);
         }
 

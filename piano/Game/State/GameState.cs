@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Piano.Game.State;
 
 namespace Piano
@@ -23,7 +24,7 @@ namespace Piano
             melodyLength = melody.Notes.Count();
         }
 
-        public void MakeMove(int keyNumber)
+        public Note MakeMove(int keyNumber)
         {
             if (isFirstMove)
             {
@@ -39,10 +40,13 @@ namespace Piano
             var firstLine = map.GetFirstLine();
             var pianoKey = firstLine[keyNumber];
             isGameEnd = !pianoKey.isNote && gameMode.IsGameEnd();
-            gameMode.Update(isGameEnd);
-            var nextNote = melody.Notes.ElementAt(index);
+            if (isGameEnd)
+                throw new Exception();
+            
+            gameMode.Update(isGameEnd, map, mapChange,melody,index);         
             index = index + 1 < melodyLength ? index + 1 : 0;
-            map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth, nextNote));
+            
+            return pianoKey.Note;
 
         }
 
@@ -52,6 +56,10 @@ namespace Piano
 
         public bool IsGameEnd => isGameEnd;
 
-        public PianoKey[,] GetMap => map.Keys;
+        public Map GetMap()
+        {
+            gameMode.MapUpdate(map, mapChange, melody, index);
+            return map;
+        }
     }
 }

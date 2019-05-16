@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Piano
 {
@@ -26,12 +27,21 @@ namespace Piano
             timer.Start();
         }
 
-        public void Update(bool isGameEnd)
+        public void Update(bool isGameEnd, Map map, IMapChange mapChange, Melody melody, int index)
         {
             if (isGameEnd)
                 timer.Stop();
             else
+            {
                 points++;
+                var nextNote = melody.Notes.ElementAt(index);
+                map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth, nextNote));
+            }
         }
+
+        public void MapUpdate(Map map, IMapChange mapChange, Melody melody, int index)
+        {
+        }
+
     }
 }

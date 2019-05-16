@@ -15,6 +15,18 @@ namespace Piano
             Keys = new PianoKey[high, width];
         }
 
+        public PianoKey this[int i, int j]
+        {
+            get
+            {
+                return Keys[i, j];
+            }
+            set
+            {
+                Keys[i,j] = value;
+            }
+        }
+
         public void SetNextKeyLine(PianoKey[] keyLine)
         {
             if (keyLine.Length != NumberInWidth)

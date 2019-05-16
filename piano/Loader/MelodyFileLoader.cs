@@ -1,24 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
 namespace Piano
 {
     public class MelodyFileLoader : IMelodyLoader
     {
-        private static Dictionary<string, Note> notes = new Dictionary<string, Note>();
+        private static readonly Dictionary<string, Note> notes = new Dictionary<string, Note>();
 
         static MelodyFileLoader()
         {
-            ((Note[])Enum.GetValues(typeof(Note))).Select(n => notes[n.ToString()] = n);
-        }
-
-        public IEnumerable<Note> ParseTextToNotes(string text)
-        {
-            return text.Split().Select(n => notes[n]);
+            ((Note[]) Enum.GetValues(typeof(Note))).Select(n => notes[n.ToString()] = n);
         }
 
         public Melody Load(string loadPath)
@@ -26,7 +20,7 @@ namespace Piano
             var text = "";
             try
             {
-                using (StreamReader sr = new StreamReader(loadPath, System.Text.Encoding.Default))
+                using (var sr = new StreamReader(loadPath, Encoding.Default))
                 {
                     text = sr.ReadToEnd();
                 }
@@ -35,8 +29,14 @@ namespace Piano
             {
                 Console.WriteLine(e.Message);
             }
+
             var notes = ParseTextToNotes(text);
             return new Melody(notes);
+        }
+
+        public IEnumerable<Note> ParseTextToNotes(string text)
+        {
+            return text.Split().Select(n => notes[n]);
         }
     }
 }

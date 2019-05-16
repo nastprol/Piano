@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using piano.GUI;
 using Piano.Game;
 using Piano.Game.State;
 
 namespace Piano
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             IGameMode mode = new ClassicMode();
             IMapChange change = new RandKeyMapChange();

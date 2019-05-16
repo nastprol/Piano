@@ -1,5 +1,6 @@
 ﻿
 using System.Diagnostics;
+using System.Linq;
 
 namespace Piano
 {
@@ -13,15 +14,6 @@ namespace Piano
             points = 0;
             timer = new Stopwatch();
         }
-
-
-        public void Update(bool isGameEnd)
-        {
-            if (isGameEnd)
-                timer.Stop();
-            else
-                points = (int)timer.ElapsedMilliseconds / 100;
-        }
         
         public int GetPoints() => points;
 
@@ -32,6 +24,20 @@ namespace Piano
         public void PrimaryPreparation()
         {
             timer.Start();
+        }
+
+        public void Update(bool isGameEnd, Map map, IMapChange mapChange, Melody melody, int index)
+        {
+            if (isGameEnd)
+                timer.Stop();
+            else
+                points = (int)timer.ElapsedMilliseconds / 100;
+        }
+
+        public void MapUpdate(Map map, IMapChange mapChange, Melody melody, int index)
+        {
+            var nextNote = melody.Notes.ElementAt(index);
+            map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth, nextNote));
         }
     }
 }

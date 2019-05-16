@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Piano.Game
+namespace Piano
 {
-    public interface IGame
+    interface IGame
     {
-        void MakeMove(int keyNumber);
+        Note MakeMove(int keyNumber);
+        int GetPoints { get; }
+        long GetTime { get; }
+        bool IsGameEnd { get; }
+        Map GetMap();
     }
 }

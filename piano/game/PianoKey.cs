@@ -4,10 +4,6 @@ namespace Piano
 {
     public class PianoKey
     {
-        public bool isNote { get; }
-        public Note Note { get; }
-        public Color Color { get; }
-
         public PianoKey(Note note)
         {
             Note = note;
@@ -20,5 +16,9 @@ namespace Piano
             Color = Color.White;
             isNote = false;
         }
+
+        public bool isNote { get; }
+        public Note Note { get; }
+        public Color Color { get; }
     }
 }

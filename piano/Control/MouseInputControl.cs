@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,15 +7,15 @@ namespace Piano
 {
     public class MouseInputControl : IInputControl
     {
-        private Dictionary<Tuple<Point, Point>, int> conntrolLocations;
-        public int InputValue { get; private set; }
+        private readonly Dictionary<Tuple<Point, Point>, int> conntrolLocations;
 
 
         public MouseInputControl(Dictionary<Tuple<Point, Point>, int> conntrolLocations)
         {
             this.conntrolLocations = conntrolLocations;
-
         }
+
+        public int InputValue { get; private set; }
 
         public void Subscribe(Form form, Сontroller сontroller)
         {
@@ -27,7 +24,7 @@ namespace Piano
 
         public bool MakeInput(EventArgs e)
         {
-            var location = ((MouseEventArgs)e).Location;
+            var location = ((MouseEventArgs) e).Location;
             foreach (var coords in conntrolLocations.Keys)
             {
                 var x = location.X;
@@ -40,6 +37,7 @@ namespace Piano
                     return true;
                 }
             }
+
             return false;
         }
     }

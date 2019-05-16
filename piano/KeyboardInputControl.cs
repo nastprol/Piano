@@ -18,11 +18,18 @@ namespace Piano
             this.controlKeys = controlKeys;
         }
 
-        public void MakeInput(object sender, EventArgs e)
+        public void Subscribe(Form form, Сontroller сontroller)
+        {
+            form.Click += сontroller.MakeStep;
+        }
+
+        public bool MakeInput(EventArgs e)
         {
             var key = ((KeyEventArgs)e).KeyValue;
-            if (controlKeys.ContainsKey(key))
+            var contains = controlKeys.ContainsKey(key);
+            if (contains)
                 InputValue = controlKeys[key];
+            return contains;
         }
     }
 }

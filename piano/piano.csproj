@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FCEA55A9-6F0D-493F-934D-2BF77E5F2475}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Piano</RootNamespace>
-    <AssemblyName>Piano</AssemblyName>
+    <RootNamespace>piano</RootNamespace>
+    <AssemblyName>piano</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,9 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller.cs" />
     <Compile Include="Game\ArcadeMode.cs" />
     <Compile Include="Game\ClassicMode.cs" />
+    <Compile Include="Game\IGame.cs" />
     <Compile Include="Game\IGameMode.cs" />
     <Compile Include="Game\GameState.cs" />
     <Compile Include="Game\IMapChange.cs" />

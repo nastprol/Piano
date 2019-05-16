@@ -1,12 +1,14 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Piano
 {
     public class ClassicMode : IGameMode
     {
-        private readonly int limit = 60000;
         private int points;
-        private readonly Stopwatch timer;
+        private Stopwatch timer;
+        private int limit = 60000;
 
         public ClassicMode()
         {
@@ -14,32 +16,32 @@ namespace Piano
             points = 0;
         }
 
-        public int GetPoints()
-        {
-            return points;
-        }
+        public int GetPoints() => points;
 
-        public long GetTime()
-        {
-            return timer.ElapsedMilliseconds;
-        }
+        public long GetTime() => timer.ElapsedMilliseconds;
 
-        public bool IsGameEnd()
-        {
-            return timer.ElapsedMilliseconds >= limit;
-        }
+        public bool IsGameEnd() => timer.ElapsedMilliseconds >= limit;
 
         public void PrimaryPreparation()
         {
             timer.Start();
         }
 
-        public void Update(bool isGameEnd)
+        public void Update(bool isGameEnd, Map map, IMapChange mapChange, Melody melody, int index)
         {
             if (isGameEnd)
                 timer.Stop();
             else
+            {
                 points++;
+                var nextNote = melody.Notes.ElementAt(index);
+                map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth, nextNote));
+            }
         }
+
+        public void MapUpdate(Map map, IMapChange mapChange, Melody melody, int index)
+        {
+        }
+
     }
 }

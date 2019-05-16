@@ -1,45 +1,43 @@
-﻿using System.Diagnostics;
+﻿
+using System.Diagnostics;
+using System.Linq;
 
 namespace Piano
 {
-    internal class ArcadeMode : IGameMode
+    class ArcadeMode : IGameMode
     {
         private int points;
-        private readonly Stopwatch timer;
+        private Stopwatch timer;
 
         public ArcadeMode()
         {
             points = 0;
             timer = new Stopwatch();
         }
+        
+        public int GetPoints() => points;
 
+        public long GetTime() => timer.ElapsedMilliseconds;
 
-        public void Update(bool isGameEnd)
-        {
-            if (isGameEnd)
-                timer.Stop();
-            else
-                points = (int) timer.ElapsedMilliseconds / 100;
-        }
-
-        public int GetPoints()
-        {
-            return points;
-        }
-
-        public long GetTime()
-        {
-            return timer.ElapsedMilliseconds;
-        }
-
-        public bool IsGameEnd()
-        {
-            return false;
-        }
+        public bool IsGameEnd() => false;
 
         public void PrimaryPreparation()
         {
             timer.Start();
+        }
+
+        public void Update(bool isGameEnd, Map map, IMapChange mapChange, Melody melody, int index)
+        {
+            if (isGameEnd)
+                timer.Stop();
+            else
+                points = (int)timer.ElapsedMilliseconds / 100;
+        }
+
+        public void MapUpdate(Map map, IMapChange mapChange, Melody melody, int index)
+        {
+            var nextNote = melody.Notes.ElementAt(index);
+            map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth, nextNote));
         }
     }
 }

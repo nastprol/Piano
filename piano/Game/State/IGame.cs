@@ -8,10 +8,10 @@ namespace Piano.Game.State
 {
     public interface IGame
     {
-        void MakeMove(int keyNumber);
+        Note MakeMove(int keyNumber);
         int GetPoints { get; }
         long GetTime { get; }
         bool IsGameEnd { get; }
-        PianoKey[,] GetMap { get; }
+        Map GetMap();
     }
 }

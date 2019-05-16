@@ -9,12 +9,13 @@ namespace Piano
     {
         private readonly IInputControl controlType;
         private readonly Form form;
-        private readonly GameState game;
+        private readonly IGame game;
 
         public Сontroller(IInputControl controlType, IGame game, Form form)
         {
             this.controlType = controlType;
             this.form = form;
+            this.game = game;
             controlType.Subscribe(form, this);
         }
 

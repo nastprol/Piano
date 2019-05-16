@@ -1,6 +1,5 @@
-﻿using System.Windows.Forms;
-using piano.GUI;
-using Piano.Game;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using Piano.Game.State;
 
 namespace Piano

@@ -7,7 +7,6 @@ namespace Piano
     public class KeyBoardInputControl : IInputControl
     {
         private Dictionary<Keys, int> controlKeys;
-        public int InputValue { private set; get; }
 
         public KeyBoardInputControl(Dictionary<Keys, int> controlKeys)
         {

@@ -10,7 +10,7 @@ namespace Piano
         {
             var keyWithNote = rnd.Next(numberInWidth);
             var keyLine = new PianoKey[numberInWidth];
-            for (var i = 0; i > numberInWidth; i++)
+            for (var i = 0; i < numberInWidth; i++)
                 keyLine[i] = new PianoKey();
             keyLine[keyWithNote] = new PianoKey(note);
             return keyLine;

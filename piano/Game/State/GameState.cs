@@ -30,23 +30,18 @@ namespace Piano
             if (isFirstMove)
             {
                 gameMode.PrimaryPreparation();
-                for (var i = 0; i < map.NumberInHigh; i++)
-                {
-                    var note = melody.Notes.ElementAt(index);
-                    index = index + 1 < melodyLength ? index + 1 : 0;
-                    map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth,note));
-                }
+               
                 isFirstMove = false;
             }
             var firstLine = map.GetFirstLine();
             var pianoKey = firstLine[keyNumber];
-            isGameEnd = !pianoKey.isNote && gameMode.IsGameEnd();
+            isGameEnd = !pianoKey.isNote || gameMode.IsGameEnd();
             if (isGameEnd)
                 throw new Exception();
-            
-            gameMode.Update(isGameEnd, map, mapChange,melody,index);         
+
             index = index + 1 < melodyLength ? index + 1 : 0;
-            
+            gameMode.Update(isGameEnd, map, mapChange,melody,index);         
+                   
             return pianoKey.Note;
 
         }

@@ -10,7 +10,7 @@ namespace Piano
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            IGameMode mode = new ClassicMode();
+            IGameMode mode = new ArcadeMode();
             IMapChange change = new RandKeyMapChange();
             IMelodyLoader loader = new StandardMelodyLoader();
             var melody = loader.Load("1");

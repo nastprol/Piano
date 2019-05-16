@@ -9,20 +9,16 @@ namespace Piano
 {
     public class MelodyFileLoader : IMelodyLoader
     {
-        private Note GetNote(string noteName)
+        private static Dictionary<string, Note> notes = new Dictionary<string, Note>();
+
+        static MelodyFileLoader()
         {
-            foreach (var n in (Note[])Enum.GetValues(typeof(Note)))
-            {
-                if (n.ToString() == noteName)
-                    return n;
-            }
-            throw new ArgumentException();
+            ((Note[])Enum.GetValues(typeof(Note))).Select(n => notes[n.ToString()] = n);
         }
 
         public IEnumerable<Note> ParseTextToNotes(string text)
         {
-            Note.Do.ToString();
-            return text.Split().Select(n => GetNote(n));
+            return text.Split().Select(n => notes[n]);
         }
 
         public Melody Load(string loadPath)

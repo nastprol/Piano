@@ -2,7 +2,7 @@
 
 namespace Piano
 {
-    class GameState
+    public class GameState
     {
         private IGameMode gameMode;
         private IMapChange mapChange;

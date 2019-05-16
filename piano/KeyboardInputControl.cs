@@ -18,7 +18,7 @@ namespace Piano
             this.controlKeys = controlKeys;
         }
 
-        private void PressKey(object sender, EventArgs e)
+        public void MakeInput(object sender, EventArgs e)
         {
             var key = ((KeyEventArgs)e).KeyValue;
             if (controlKeys.ContainsKey(key))

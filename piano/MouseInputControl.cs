@@ -18,7 +18,7 @@ namespace Piano
             this.conntrolLocations = conntrolLocations;
         }
 
-        public void ClickMouse(object sender, EventArgs e)
+        public void MakeInput(object sender, EventArgs e)
         {
             var location = ((MouseEventArgs)e).Location;
             if (conntrolLocations.ContainsKey(location))

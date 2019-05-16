@@ -33,6 +33,5 @@ namespace Piano
         {
             timer.Start();
         }
-
     }
 }

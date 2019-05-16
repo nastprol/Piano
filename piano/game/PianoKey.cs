@@ -1,4 +1,5 @@
-﻿
+﻿using System.Drawing;
+
 namespace Piano
 {
     public class PianoKey
@@ -10,13 +11,13 @@ namespace Piano
         public PianoKey(Note note)
         {
             Note = note;
-            Color = Color.black;
+            Color = Color.Black;
             isNote = true;
         }
 
         public PianoKey()
         {
-            Color = Color.white;
+            Color = Color.White;
             isNote = false;
         }
     }

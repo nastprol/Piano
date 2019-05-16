@@ -5,7 +5,7 @@ using Piano.Game.State;
 
 namespace Piano
 {
-    public class GameForm : Form
+    public sealed class GameForm : Form
     {
         private const int ElementSizeHeight = 100;
         private const int ElementSizeWidth = 50;
@@ -14,6 +14,7 @@ namespace Piano
 
         public GameForm(IGame state)
         {
+            DoubleBuffered = true;
             this.state = state;
             var map = state.GetMap();
             ClientSize = new Size(map.NumberInWidth * ElementSizeWidth, map.NumberInHigh * ElementSizeHeight);
@@ -43,6 +44,9 @@ namespace Piano
             for (var j = 0; j < map.NumberInWidth; j++)
                 e.Graphics.FillRectangle(new SolidBrush(map[map.NumberInHigh - i - 1, j].Color), j * ElementSizeWidth, i * ElementSizeHeight,
                     ElementSizeWidth, ElementSizeHeight);
+
+            e.Graphics.DrawString(state.GetPoints.ToString(), new Font("Arial", 16), Brushes.Green, 0, 0);
+            e.Graphics.DrawString((state.GetTime / 1000).ToString(), new Font("Arial", 16), Brushes.Red, 0, 25);
         }
 
         private void TimerTick(object sender, EventArgs e)

@@ -8,7 +8,7 @@ namespace Piano
     public class MouseInputControl : IInputControl
     {
         private readonly Dictionary<Tuple<Point, Point>, int> conntrolLocations;
-
+        private bool answerInput;
 
         public MouseInputControl(Dictionary<Tuple<Point, Point>, int> conntrolLocations)
         {
@@ -24,7 +24,10 @@ namespace Piano
 
         public bool MakeInput(EventArgs e)
         {
-            var location = ((MouseEventArgs) e).Location;
+            var ev = (MouseEventArgs)e;
+            if (ev.Button == MouseButtons.Left)
+                return answerInput;
+            var location = ev.Location;
             foreach (var coords in conntrolLocations.Keys)
             {
                 var x = location.X;
@@ -34,11 +37,12 @@ namespace Piano
                 if (coord1.X < x && x < coord2.X && coord1.Y < y && y < coord2.Y)
                 {
                     InputValue = conntrolLocations[coords];
-                    return true;
+                    answerInput = true;
+                    return answerInput;
                 }
             }
-
-            return false;
+            answerInput = false;
+            return answerInput;
         }
     }
 }

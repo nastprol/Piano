@@ -22,7 +22,7 @@ namespace Piano
 
         public bool MakeInput(EventArgs e)
         {
-            var key = ((KeyEventArgs)e).KeyData;
+            var key = ((KeyEventArgs)e).KeyCode;
             var contains = controlKeys.ContainsKey(key);
             if (contains)
                 InputValue = controlKeys[key];

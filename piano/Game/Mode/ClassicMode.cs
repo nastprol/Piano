@@ -25,7 +25,7 @@ namespace Piano
 
         public int GetPoints() => points;
 
-        public long GetTime() => timer.ElapsedMilliseconds;
+        public long GetTime() => limit - timer.ElapsedMilliseconds;
 
         public bool IsGameEnd() => timer.ElapsedMilliseconds >= limit;
 

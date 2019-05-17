@@ -12,7 +12,7 @@ namespace Piano
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var container = new StandardKernel();
-            container.Bind<IGameMode>().To<ArcadeMode>().InSingletonScope();
+            container.Bind<IGameMode>().To<ClassicMode>().InSingletonScope();
             container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
             container.Bind<IMelodyLoader>().To<StandardMelodyLoader>().InSingletonScope();
             container.Bind<Melody>().ToMethod(context => context.Kernel.Get<IMelodyLoader>().Load("1")).InSingletonScope();

@@ -8,11 +8,11 @@ namespace Piano
 {
     public class MelodyFileLoader : IMelodyLoader
     {
-        private static readonly Dictionary<string, Note> notes = new Dictionary<string, Note>();
+        private static readonly Dictionary<string, Note> notes;
 
         static MelodyFileLoader()
         {
-            ((Note[]) Enum.GetValues(typeof(Note))).Select(n => notes[n.ToString()] = n);
+            notes = ((Note[])Enum.GetValues(typeof(Note))).ToDictionary(n => n.ToString());
         }
 
         public Melody Load(string loadPath)

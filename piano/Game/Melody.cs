@@ -10,5 +10,20 @@ namespace Piano
         {
             Notes = notes;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Melody))
+                return false;
+            var other = (Melody)obj;
+            if (GetHashCode() != other.GetHashCode())
+                return false;
+            return Notes.Equals(other.Notes);
+        }
+
+        public override int GetHashCode()
+        {
+            return Notes.GetHashCode();
+        }
     }
 }

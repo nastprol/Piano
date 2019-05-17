@@ -79,6 +79,7 @@
     <Compile Include="Control\KeyboardInputControl.cs" />
     <Compile Include="Game\Map.cs" />
     <Compile Include="Game\Melody.cs" />
+    <Compile Include="Loader\LoaderTest.cs" />
     <Compile Include="Loader\MelodyFileLoader.cs" />
     <Compile Include="Control\MouseInputControl.cs" />
     <Compile Include="Game\Note.cs" />

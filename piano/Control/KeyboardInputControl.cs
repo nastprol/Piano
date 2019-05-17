@@ -8,9 +8,9 @@ namespace Piano
     {
         private Dictionary<Keys, int> controlKeys;
 
-        public KeyBoardInputControl(Dictionary<Keys, int> controlKeys)
+        public KeyBoardInputControl(KeyBoardSettings settings)
         {
-            this.controlKeys = controlKeys;
+            controlKeys = settings.ControlKeys;
         }
 
         public int InputValue { private set; get; }

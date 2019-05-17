@@ -9,11 +9,11 @@ namespace Piano
         public int NumberInHigh { get; }
         public PianoKey[,] Keys { get; }
 
-        public Map(int width, int high, Melody melody,IMapChange mapChange)
+        public Map(MapSettings settings, Melody melody,IMapChange mapChange)
         {
-            NumberInHigh = high; 
-            NumberInWidth = width;
-            Keys = new PianoKey[high, width];
+            NumberInHigh = settings.Height; 
+            NumberInWidth = settings.Width;
+            Keys = new PianoKey[NumberInHigh, NumberInWidth];
             for (var i = 0; i < NumberInHigh; i++)
                 for (var j = 0; j < NumberInWidth; j++)
                 {

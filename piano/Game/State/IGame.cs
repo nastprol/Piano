@@ -13,5 +13,7 @@ namespace Piano.Game.State
         long GetTime { get; }
         bool IsGameEnd { get; }
         Map GetMap();
+
+        void UpdateMap();
     }
 }

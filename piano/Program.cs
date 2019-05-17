@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using Piano.Game.State;
+using Ninject;
 
 namespace Piano
 {
@@ -10,19 +11,20 @@ namespace Piano
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            IGameMode mode = new ClassicMode();
-            IMapChange change = new RandKeyMapChange();
-            IMelodyLoader loader = new StandardMelodyLoader();
-            var melody = loader.Load("1");
-            IGame game = new GameState(mode, change, melody, 4, 4);
-            var form = new GameForm(game);
+            var container = new StandardKernel();
+            container.Bind<IGameMode>().To<ArcadeMode>().InSingletonScope();
+            container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
+            container.Bind<IMelodyLoader>().To<StandardMelodyLoader>().InSingletonScope();
+            container.Bind<Melody>().ToMethod(context => context.Kernel.Get<IMelodyLoader>().Load("1")).InSingletonScope();
+            container.Bind<IGame>().To<GameState>().InSingletonScope();
+            container.Bind<IInputControl>().To<KeyBoardInputControl>().InSingletonScope();
+            container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
+            container.Bind<Controller>().ToSelf().InSingletonScope();
+            container.Bind<MapSettings>().ToSelf().InSingletonScope();
+            container.Bind<Map>().ToSelf().InSingletonScope();
+            container.Bind<Form>().To<GameForm>().InSingletonScope();
 
-            var keys = new Dictionary<Keys, int> { { Keys.Q, 0 }, { Keys.W, 1 }, { Keys.E, 2 }, { Keys.R, 3 }};
-            IInputControl control = new KeyBoardInputControl(keys);        
-            var controller = new Controller(control, game, form);
-            form.AddController(controller);
-
-            Application.Run(form);
+            Application.Run(container.Get<GameForm>());
         }
     }
 }

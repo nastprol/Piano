@@ -13,7 +13,10 @@ namespace Prime.UnitTests.Services
         [Test]
         public void MakeFirstMove()
         {
-            var game = new GameState(new ClassicMode(), new TestMapChange(), new Melody(new Note[] { Note.Do, Note.La }), 3, 4);
+            var melody = new Melody(new Note[] {Note.Do, Note.La});
+            var mapCh = new TestMapChange();
+            var map = new Map(new MapSettings(), melody, mapCh);
+            var game = new GameState(new ClassicMode(map, mapCh, melody), melody, map);
             game.MakeMove(0);
             Assert.IsFalse(game.IsGameEnd);
             Assert.AreEqual(game.GetPoints, 1);
@@ -24,7 +27,10 @@ namespace Prime.UnitTests.Services
         [Test]
         public void MakeMoreMove()
         {
-            var game = new GameState(new ClassicMode(), new TestMapChange(), new Melody(new Note[] { Note.Do, Note.La }), 3, 4);
+            var melody = new Melody(new Note[] { Note.Do, Note.La });
+            var mapCh = new TestMapChange();
+            var map = new Map(new MapSettings(), melody, mapCh);
+            var game = new GameState(new ClassicMode(map, mapCh, melody), melody, map);
             game.MakeMove(0);
             game.MakeMove(0);
             game.MakeMove(0);
@@ -37,7 +43,10 @@ namespace Prime.UnitTests.Services
         [Test]
         public void MakeEndMove()
         {
-            var game = new GameState(new ClassicMode(), new TestMapChange(), new Melody(new Note[] { Note.Do, Note.La }), 3, 4);
+            var melody = new Melody(new Note[] { Note.Do, Note.La });
+            var mapCh = new TestMapChange();
+            var map = new Map(new MapSettings(), melody, mapCh);
+            var game = new GameState(new ClassicMode(map, mapCh, melody), melody, map);
             game.MakeMove(0);
             game.MakeMove(0);
             Assert.Catch<Exception>(() => game.MakeMove(2));

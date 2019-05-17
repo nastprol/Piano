@@ -8,16 +8,17 @@ namespace Piano
     public class Controller
     {
         private readonly IInputControl controlType;
-        private readonly Form form;
         private readonly IGame game;
 
-        public event Action gameOver;
-
-        public Controller(IInputControl controlType, IGame game, Form form)
+        public event Action GameOver;
+        public Controller(IInputControl controlType, IGame game)
         {
             this.controlType = controlType;
-            this.form = form;
             this.game = game;
+        }
+
+        public void Subscribe(Form form)
+        {
             controlType.Subscribe(form, this);
         }
 
@@ -29,7 +30,7 @@ namespace Piano
                 return;
             Note = game.MakeMove(controlType.InputValue);
             if (game.IsGameEnd)
-                gameOver?.Invoke();
+                GameOver?.Invoke();
         }
     }
 }

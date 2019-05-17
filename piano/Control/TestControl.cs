@@ -13,8 +13,7 @@ namespace Prime.UnitTests.Services
         [Test]
         public void PressWrongKey()
         {
-            var keys = new Dictionary<Keys, int> { { Keys.Q, 0 }, { Keys.W, 1 }, { Keys.E, 2 }, { Keys.R, 3 } };
-            IInputControl control = new KeyBoardInputControl(keys);            
+            IInputControl control = new KeyBoardInputControl(new KeyBoardSettings());
             var args = new KeyEventArgs(Keys.A);
             Assert.IsFalse(control.MakeInput(args));
         }
@@ -22,8 +21,7 @@ namespace Prime.UnitTests.Services
         [Test]
         public void PressRightKey()
         {
-            var keys = new Dictionary<Keys, int> { { Keys.Q, 0 }, { Keys.W, 1 }, { Keys.E, 2 }, { Keys.R, 3 } };
-            IInputControl control = new KeyBoardInputControl(keys);
+            IInputControl control = new KeyBoardInputControl(new KeyBoardSettings());
             var args = new KeyEventArgs(Keys.Q);
             Assert.IsTrue(control.MakeInput(args));
             Assert.AreEqual(control.InputValue, 0);

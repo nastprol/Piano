@@ -58,7 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control\Controller.cs" />
+    <Compile Include="Control\ISettings.cs" />
     <Compile Include="Control\KeyBoardSettings.cs" />
+    <Compile Include="Control\MouseSettings.cs" />
     <Compile Include="Control\TestControl.cs" />
     <Compile Include="Game\Change\TestMapChange.cs" />
     <Compile Include="Game\MapSettings.cs" />

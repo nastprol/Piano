@@ -7,12 +7,12 @@ namespace Piano
 {
     public class MouseInputControl : IInputControl
     {
-        private readonly Dictionary<Tuple<Point, Point>, int> conntrolLocations;
+        private readonly IReadOnlyDictionary<Tuple<Point, Point>, int> conntrolLocations;
         private bool answerInput;
 
-        public MouseInputControl(Dictionary<Tuple<Point, Point>, int> conntrolLocations)
+        public MouseInputControl(MouseSettings settings)
         {
-            this.conntrolLocations = conntrolLocations;
+            conntrolLocations = settings.ControlTools;
         }
 
         public int InputValue { get; private set; }

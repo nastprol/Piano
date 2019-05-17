@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Piano.Control;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -6,11 +7,11 @@ namespace Piano
 {
     public class KeyBoardInputControl : IInputControl
     {
-        private Dictionary<Keys, int> controlKeys;
+        private IReadOnlyDictionary<Keys, int> controlKeys;
 
-        public KeyBoardInputControl(KeyBoardSettings settings)
+        public KeyBoardInputControl(ISettings<Keys> settings)
         {
-            controlKeys = settings.ControlKeys;
+            controlKeys = settings.ControlTools;
         }
 
         public int InputValue { private set; get; }

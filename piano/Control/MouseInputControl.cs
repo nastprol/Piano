@@ -10,7 +10,7 @@ namespace Piano
         private readonly IReadOnlyDictionary<Tuple<Point, Point>, int> conntrolLocations;
         private bool answerInput;
 
-        public MouseInputControl(MouseSettings settings)
+        public MouseInputControl(VisualizationSettings settings)
         {
             conntrolLocations = settings.ControlTools;
         }

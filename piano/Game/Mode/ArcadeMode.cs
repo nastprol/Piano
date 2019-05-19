@@ -13,8 +13,8 @@ namespace Piano
         private readonly Melody melody;
         private IGame state;
         private int points;
-        private readonly Stopwatch sw;
-        private readonly Timer timer;
+        private readonly Stopwatch sw;  //
+        private readonly Timer timer; //Mode update
 
         public ArcadeMode(Map map, IMapChange mapChange, Melody melody)
         {

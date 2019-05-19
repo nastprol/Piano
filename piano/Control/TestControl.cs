@@ -30,7 +30,7 @@ namespace Prime.UnitTests.Services
         [Test]
         public void ClickWrongLocation()
         {
-            IInputControl control = new MouseInputControl(new MouseSettings());
+            IInputControl control = new MouseInputControl(new VisualizationSettings());
             var args = new MouseEventArgs(MouseButtons.Left, 1, 5, 5, 0);
             Assert.IsFalse(control.MakeInput(args));
         }
@@ -38,7 +38,7 @@ namespace Prime.UnitTests.Services
         [Test]
         public void ClickRightLocation()
         {
-            IInputControl control = new MouseInputControl(new MouseSettings());
+            IInputControl control = new MouseInputControl(new VisualizationSettings());
             var args = new MouseEventArgs(MouseButtons.Left, 1, 40, 40, 0);
             Assert.AreEqual(control.InputValue, 0);
         }

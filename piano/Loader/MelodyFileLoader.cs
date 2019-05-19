@@ -15,12 +15,12 @@ namespace Piano
             notes = ((Note[])Enum.GetValues(typeof(Note))).ToDictionary(n => n.ToString());
         }
 
-        public Melody Load(string loadPath)
+        public Melody Load(IMelodyLocator locator)
         {
             var text = "";
             try
             {
-                using (var sr = new StreamReader(loadPath, Encoding.Default))
+                using (var sr = new StreamReader(locator.GetLocation(), Encoding.Default))
                 {
                     text = sr.ReadToEnd();
                 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Piano
 {
-    public class MouseSettings : ISettings<Tuple<Point, Point>>
+    public class VisualizationSettings : ISettings<Tuple<Point, Point>>
     {
         private Dictionary<Tuple<Point, Point>, int> conntrolLocations = new Dictionary<Tuple<Point, Point>, int> {
             { new Tuple<Point, Point>(new Point(0, 300), new Point(50, 400)), 0 },

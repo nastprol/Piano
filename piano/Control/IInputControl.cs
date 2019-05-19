@@ -5,8 +5,8 @@ namespace Piano
 {
     public interface IInputControl
     {
-        int InputValue { get; }
-        bool MakeInput(EventArgs e);
-        void Subscribe(Form form, Controller controller);
+        int InputValue { get; } //Producer передать делегат в консируктор
+        bool MakeInput(EventArgs e); //передать делегат в консируктор
+        void Subscribe(Form form, Controller controller); //убрать Form 
     }
 }

@@ -13,9 +13,9 @@ namespace Piano
             standardMelodies.Add("1", melodie);
         }
 
-        public Melody Load(string name)
+        public Melody Load(IMelodyLocator locator)
         {
-            return standardMelodies[name];
+            return standardMelodies[locator.GetLocation()];
         }
     }
 }

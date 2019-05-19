@@ -11,6 +11,7 @@ namespace Piano
         private readonly IGame game;
 
         public event Action GameOver;
+
         public Controller(IInputControl controlType, IGame game)
         {
             this.controlType = controlType;
@@ -24,7 +25,7 @@ namespace Piano
 
         public Note Note { get; private set; }
 
-        public void MakeStep(object sender, EventArgs e)
+        public void MakeStep(object sender, EventArgs e) 
         {
             if (!controlType.MakeInput(e))
                 return;

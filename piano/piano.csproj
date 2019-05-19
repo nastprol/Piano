@@ -60,7 +60,7 @@
     <Compile Include="Control\Controller.cs" />
     <Compile Include="Control\ISettings.cs" />
     <Compile Include="Control\KeyBoardSettings.cs" />
-    <Compile Include="Control\MouseSettings.cs" />
+    <Compile Include="Control\VisualizationSettings.cs" />
     <Compile Include="Control\TestControl.cs" />
     <Compile Include="Game\Change\TestMapChange.cs" />
     <Compile Include="Game\MapSettings.cs" />
@@ -77,15 +77,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\IInputControl.cs" />
+    <Compile Include="Loader\FileLocator.cs" />
     <Compile Include="Loader\IMelodyLoader.cs" />
     <Compile Include="Control\KeyboardInputControl.cs" />
     <Compile Include="Game\Map.cs" />
     <Compile Include="Game\Melody.cs" />
+    <Compile Include="Loader\IMelodyLocator.cs" />
     <Compile Include="Loader\LoaderTest.cs" />
     <Compile Include="Loader\MelodyFileLoader.cs" />
     <Compile Include="Control\MouseInputControl.cs" />
     <Compile Include="Game\Note.cs" />
     <Compile Include="Game\PianoKey.cs" />
+    <Compile Include="Loader\StandardMelodyLocator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Loader\StandardMelodyLoader.cs" />

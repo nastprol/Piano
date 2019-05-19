@@ -1,7 +1,18 @@
-﻿namespace Piano
+﻿using System;
+
+namespace Piano
 {
+
+    class DescriptionAttribute : Attribute
+    {
+        public DescriptionAttribute(string description )
+        {
+
+        }
+    }
     public enum Note
     {
+        [Description("asdaad")]
         Do,
         Re,
         Mi,

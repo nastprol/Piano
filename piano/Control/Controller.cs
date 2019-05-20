@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Piano.Game;
 using Piano.Game.State;
 
 namespace Piano
@@ -10,22 +9,22 @@ namespace Piano
         private readonly IInputControl controlType;
         private readonly IGame game;
 
-        public event Action GameOver;
-
         public Controller(IInputControl controlType, IGame game)
         {
             this.controlType = controlType;
             this.game = game;
         }
 
+        public Note Note { get; private set; }
+
+        public event Action GameOver;
+
         public void Subscribe(Form form)
         {
             controlType.Subscribe(form, this);
         }
 
-        public Note Note { get; private set; }
-
-        public void MakeStep(object sender, EventArgs e) 
+        public void MakeStep(object sender, EventArgs e)
         {
             if (!controlType.MakeInput(e))
                 return;

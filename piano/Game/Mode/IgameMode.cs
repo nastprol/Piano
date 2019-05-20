@@ -1,7 +1,4 @@
-﻿
-using Piano.Game.State;
-
-namespace Piano
+﻿namespace Piano
 {
     public interface IGameMode
     {
@@ -9,9 +6,6 @@ namespace Piano
         int GetPoints();
         long GetTime();
         void Update(bool isGameEnd);
-        void MapUpdate();
         void PrimaryPreparation();
-
-        void AddGame(IGame game);
     }
 }

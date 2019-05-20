@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FCEA55A9-6F0D-493F-934D-2BF77E5F2475}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>piano</RootNamespace>
-    <AssemblyName>piano</AssemblyName>
+    <RootNamespace>Piano</RootNamespace>
+    <AssemblyName>Piano</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,6 +48,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -61,8 +64,8 @@
     <Compile Include="Control\ISettings.cs" />
     <Compile Include="Control\KeyBoardSettings.cs" />
     <Compile Include="Control\VisualizationSettings.cs" />
-    <Compile Include="Control\TestControl.cs" />
-    <Compile Include="Game\Change\TestMapChange.cs" />
+    <Compile Include="Tests\TestControl.cs" />
+    <Compile Include="Tests\TestMapChange.cs" />
     <Compile Include="Game\MapSettings.cs" />
     <Compile Include="Game\Mode\ArcadeMode.cs" />
     <Compile Include="Game\Mode\ClassicMode.cs" />
@@ -71,7 +74,7 @@
     <Compile Include="Game\Change\IMapChange.cs" />
     <Compile Include="Game\Change\OrderedMapChange.cs" />
     <Compile Include="Game\Change\RandKeyMapChange.cs" />
-    <Compile Include="Game\State\GameStateTest.cs" />
+    <Compile Include="Tests\GameStateTest.cs" />
     <Compile Include="Game\State\IGame.cs" />
     <Compile Include="GUI\GameForm.cs">
       <SubType>Form</SubType>
@@ -83,7 +86,7 @@
     <Compile Include="Game\Map.cs" />
     <Compile Include="Game\Melody.cs" />
     <Compile Include="Loader\IMelodyLocator.cs" />
-    <Compile Include="Loader\LoaderTest.cs" />
+    <Compile Include="Tests\LoaderTest.cs" />
     <Compile Include="Loader\MelodyFileLoader.cs" />
     <Compile Include="Control\MouseInputControl.cs" />
     <Compile Include="Game\Note.cs" />

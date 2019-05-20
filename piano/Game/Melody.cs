@@ -4,21 +4,19 @@ namespace Piano
 {
     public class Melody
     {
-        public readonly IEnumerable<Note> Notes;
-
         public Melody(IEnumerable<Note> notes)
         {
             Notes = notes;
         }
 
+        public IEnumerable<Note> Notes { get; }
+
         public override bool Equals(object obj)
         {
             if (!(obj is Melody))
                 return false;
-            var other = (Melody)obj;
-            if (GetHashCode() != other.GetHashCode())
-                return false;
-            return Notes.Equals(other.Notes);
+            var other = (Melody) obj;
+            return GetHashCode() == other.GetHashCode() && Notes.Equals(other.Notes);
         }
 
         public override int GetHashCode()

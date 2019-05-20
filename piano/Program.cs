@@ -22,7 +22,7 @@ namespace Piano
 
         public static void ContainerBinding(StandardKernel container, bool stdLoader, IMelodyLocator locator, bool keyboardInput)
         {
-            container.Bind<IGameMode>().To<ArcadeMode>().InSingletonScope();
+            container.Bind<IGameMode>().To<ClassicMode>().InSingletonScope();
             container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
 
             if (stdLoader)

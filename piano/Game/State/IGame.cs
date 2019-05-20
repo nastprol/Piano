@@ -12,7 +12,7 @@ namespace Piano.Game.State
         int GetPoints { get; }
         long GetTime { get; }
         bool IsGameEnd { get; }
-        Map GetMap();
+        Map Map { get; }
 
         void UpdateMap();
     }

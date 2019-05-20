@@ -19,7 +19,7 @@ namespace Piano
             this.controller = controller;
             this.controller.Subscribe(this);
             this.controller.GameOver += GameOver;
-            var map = state.GetMap();
+            var map = state.Map;
             ClientSize = new Size(map.NumberInWidth * ElementSizeWidth, map.NumberInHigh * ElementSizeHeight);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             var timer = new Timer();
@@ -36,7 +36,7 @@ namespace Piano
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            var map = state.GetMap();
+            var map = state.Map;
             for (var i = 0; i < map.NumberInHigh; i++)
             for (var j = 0; j < map.NumberInWidth; j++)
                 e.Graphics.FillRectangle(new SolidBrush(map[map.NumberInHigh - i - 1, j].Color), j * ElementSizeWidth, i * ElementSizeHeight,

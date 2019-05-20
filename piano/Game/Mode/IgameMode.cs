@@ -8,8 +8,8 @@ namespace Piano
         bool IsGameEnd();
         int GetPoints();
         long GetTime();
-        void Update(bool isGameEnd, int index);
-        void MapUpdate(int index);
+        void Update(bool isGameEnd);
+        void MapUpdate();
         void PrimaryPreparation();
 
         void AddGame(IGame game);

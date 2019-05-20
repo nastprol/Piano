@@ -9,7 +9,6 @@ namespace Piano
     {
         private readonly Map map;
         private readonly IMapChange mapChange;
-        private readonly Melody melody;
         private int points;
         private Stopwatch timer;
         private int limit = 60000;
@@ -18,7 +17,6 @@ namespace Piano
         {
             this.map = map;
             this.mapChange = mapChange;
-            this.melody = melody;
             timer = new Stopwatch();
             points = 0;
         }
@@ -39,19 +37,18 @@ namespace Piano
             return;
         }
 
-        public void Update(bool isGameEnd, int index)
+        public void Update(bool isGameEnd)
         {
             if (isGameEnd)
                 timer.Stop();
             else
             {
                 points++;
-                var nextNote = melody.Notes.ElementAt(index);
-                map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth, nextNote));
+                map.MapUpdate();
             }
         }
 
-        public void MapUpdate(int index)
+        public void MapUpdate()
         {
             
         }

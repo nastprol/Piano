@@ -8,16 +8,16 @@ namespace Piano
         {
             Note = note;
             Color = Color.Black;
-            isNote = true;
+            IsNote = true;
         }
 
         public PianoKey()
         {
             Color = Color.White;
-            isNote = false;
+            IsNote = false;
         }
 
-        public bool isNote { get; }
+        public bool IsNote { get; }
         public Note Note { get; }
         public Color Color { get; }
     }

@@ -8,16 +8,12 @@ namespace Piano
     {
         private readonly IGameMode gameMode;
         private bool isFirstMove = true;
-        private int index;
-        private readonly int melodyLength;
+        public Map Map { get; }
 
-        public GameState(IGameMode mode, Melody melody, Map map)
+        public GameState(IGameMode mode, Map map)
         {
-            //map = new Map(width, high, melody, mapChange);
-            index = map.NumberInHigh;
             gameMode = mode;
-            Map = map;
-            melodyLength = melody.Notes.Count();
+            this.Map = map;
             mode.AddGame(this);
         }
 
@@ -30,16 +26,15 @@ namespace Piano
             }
             var firstLine = Map.GetFirstLine();
             var pianoKey = firstLine[keyNumber];
-            IsGameEnd = !pianoKey.isNote || gameMode.IsGameEnd();
-            index = index + 1 < melodyLength ? index + 1 : 0;
-            gameMode.Update(IsGameEnd, index);
+            IsGameEnd = !pianoKey.IsNote || gameMode.IsGameEnd();          
+            gameMode.Update(IsGameEnd);
 
             return pianoKey.Note;
         }
 
         public void UpdateMap()
         {
-            gameMode.MapUpdate(index);
+            gameMode.MapUpdate();
         }
 
         public int GetPoints => gameMode.GetPoints();
@@ -47,7 +42,6 @@ namespace Piano
         public long GetTime => gameMode.GetTime();
 
         public bool IsGameEnd { get; private set; }
-
         public Map Map { get; }
     }
 }

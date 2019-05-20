@@ -17,7 +17,7 @@ namespace Prime.UnitTests.Services
             var melody = new Melody(new Note[] {Note.Do, Note.La});
             var mapCh = new TestMapChange();
             var map = new Map(new MapSettings(), melody, mapCh);
-            var game = new GameState(new ClassicMode(map, mapCh, melody), melody, map);
+            var game = new GameState(new ClassicMode(map, mapCh, melody), map);
             game.MakeMove(0);
             Assert.IsFalse(game.IsGameEnd);
             Assert.AreEqual(game.GetPoints, 1);
@@ -31,7 +31,7 @@ namespace Prime.UnitTests.Services
             var melody = new Melody(new Note[] { Note.Do, Note.La });
             var mapCh = new TestMapChange();
             var map = new Map(new MapSettings(), melody, mapCh);
-            var game = new GameState(new ClassicMode(map, mapCh, melody), melody, map);
+            var game = new GameState(new ClassicMode(map, mapCh, melody), map);
             game.MakeMove(0);
             game.MakeMove(0);
             game.MakeMove(0);

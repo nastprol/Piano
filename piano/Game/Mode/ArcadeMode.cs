@@ -8,19 +8,15 @@ namespace Piano
 {
     class ArcadeMode : IGameMode
     {
-        private readonly Map map;
-        private readonly IMapChange mapChange;
-        private readonly Melody melody;
         private IGame state;
+        private Map map;
         private int points;
         private readonly Stopwatch sw;  //
         private readonly Timer timer; //Mode update
 
-        public ArcadeMode(Map map, IMapChange mapChange, Melody melody)
+        public ArcadeMode(Map map)
         {
             this.map = map;
-            this.mapChange = mapChange;
-            this.melody = melody;
             points = 0;
             sw = new Stopwatch();
             timer = new Timer { Interval = 1000 };
@@ -34,7 +30,7 @@ namespace Piano
 
         private void TimerTick(object sender, EventArgs e)
         {
-            state.UpdateMap();
+            map.MapUpdate();
         }
 
         public int GetPoints() => points;
@@ -49,7 +45,7 @@ namespace Piano
             sw.Start();
         }
 
-        public void Update(bool isGameEnd, int index)
+        public void Update(bool isGameEnd)
         {
             if (isGameEnd)
                 sw.Stop();
@@ -57,10 +53,8 @@ namespace Piano
                 points = (int)sw.ElapsedMilliseconds / 100;
         }
 
-        public void MapUpdate(int index)
+        public void MapUpdate()
         {
-            var nextNote = melody.Notes.ElementAt(index);
-            map.SetNextKeyLine(mapChange.GetNextKeyLine(map.NumberInWidth, nextNote));
         }
     }
 }

@@ -1,13 +1,13 @@
-﻿using Piano.Control;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Piano.Control;
 
 namespace Piano
 {
     public class KeyBoardInputControl : IInputControl
     {
-        private IReadOnlyDictionary<Keys, int> controlKeys;
+        private readonly IReadOnlyDictionary<Keys, int> controlKeys;
 
         public KeyBoardInputControl(ISettings<Keys> settings)
         {
@@ -23,7 +23,7 @@ namespace Piano
 
         public bool MakeInput(EventArgs e)
         {
-            var key = ((KeyEventArgs)e).KeyCode;
+            var key = ((KeyEventArgs) e).KeyCode;
             var contains = controlKeys.ContainsKey(key);
             if (contains)
                 InputValue = controlKeys[key];

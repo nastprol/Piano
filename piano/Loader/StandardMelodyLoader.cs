@@ -4,18 +4,18 @@ namespace Piano
 {
     public class StandardMelodyLoader : IMelodyLoader
     {
-        private static readonly Dictionary<string, Melody> standardMelodies;
+        private static readonly Dictionary<string, Melody> StandardMelodies;
 
         static StandardMelodyLoader()
         {
-            standardMelodies = new Dictionary<string, Melody>();
-            var melodie = new Melody(new List<Note> {Note.Do, Note.Re, Note.Mi, Note.Fa, Note.Si});
-            standardMelodies.Add("1", melodie);
+            StandardMelodies = new Dictionary<string, Melody>();
+            var melody = new Melody(new List<Note> {Note.Do, Note.Re, Note.Mi, Note.Fa, Note.Si});
+            StandardMelodies.Add("1", melody);
         }
 
         public Melody Load(IMelodyLocator locator)
         {
-            return standardMelodies[locator.GetLocation()];
+            return StandardMelodies[locator.GetLocation()];
         }
     }
 }

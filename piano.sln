@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piano", "piano\Piano.csproj", "{FCEA55A9-6F0D-493F-934D-2BF77E5F2475}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piano", "Piano\Piano.csproj", "{FCEA55A9-6F0D-493F-934D-2BF77E5F2475}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Piano.Game.State;
+﻿using Piano.Game.State;
 
 namespace Piano
 {
@@ -8,14 +6,14 @@ namespace Piano
     {
         private readonly IGameMode gameMode;
         private bool isFirstMove = true;
-        public Map Map { get; }
 
         public GameState(IGameMode mode, Map map)
         {
             gameMode = mode;
-            this.Map = map;
-            mode.AddGame(this);
+            Map = map;
         }
+
+        public Map Map { get; }
 
         public Note MakeMove(int keyNumber)
         {
@@ -24,17 +22,13 @@ namespace Piano
                 gameMode.PrimaryPreparation();
                 isFirstMove = false;
             }
+
             var firstLine = Map.GetFirstLine();
             var pianoKey = firstLine[keyNumber];
-            IsGameEnd = !pianoKey.IsNote || gameMode.IsGameEnd();          
+            IsGameEnd = !pianoKey.IsNote || gameMode.IsGameEnd();
             gameMode.Update(IsGameEnd);
 
             return pianoKey.Note;
-        }
-
-        public void UpdateMap()
-        {
-            gameMode.MapUpdate();
         }
 
         public int GetPoints => gameMode.GetPoints();

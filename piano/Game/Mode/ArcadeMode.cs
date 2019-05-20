@@ -1,43 +1,39 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows.Forms;
-using Piano.Game.State;
 
 namespace Piano
 {
-    class ArcadeMode : IGameMode
+    internal class ArcadeMode : IGameMode
     {
-        private IGame state;
-        private Map map;
-        private int points;
-        private readonly Stopwatch sw;  //
+        private readonly Map map;
+        private readonly Stopwatch sw; //
         private readonly Timer timer; //Mode update
+        private int points;
 
         public ArcadeMode(Map map)
         {
             this.map = map;
             points = 0;
             sw = new Stopwatch();
-            timer = new Timer { Interval = 1000 };
+            timer = new Timer {Interval = 1000};
             timer.Tick += TimerTick;
         }
 
-        public void AddGame(IGame game)
+        public int GetPoints()
         {
-            state = game;
+            return points;
         }
 
-        private void TimerTick(object sender, EventArgs e)
+        public long GetTime()
         {
-            map.MapUpdate();
+            return sw.ElapsedMilliseconds;
         }
 
-        public int GetPoints() => points;
-
-        public long GetTime() => sw.ElapsedMilliseconds;
-
-        public bool IsGameEnd() => false;
+        public bool IsGameEnd()
+        {
+            return false;
+        }
 
         public void PrimaryPreparation()
         {
@@ -50,11 +46,12 @@ namespace Piano
             if (isGameEnd)
                 sw.Stop();
             else
-                points = (int)sw.ElapsedMilliseconds / 100;
+                points = (int) sw.ElapsedMilliseconds / 100;
         }
 
-        public void MapUpdate()
+        private void TimerTick(object sender, EventArgs e)
         {
+            map.MapUpdate();
         }
     }
 }

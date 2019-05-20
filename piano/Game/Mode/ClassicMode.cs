@@ -1,57 +1,52 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using Piano.Game.State;
+﻿using System.Diagnostics;
 
 namespace Piano
 {
     public class ClassicMode : IGameMode
     {
+        private const int Limit = 60000;
         private readonly Map map;
-        private readonly IMapChange mapChange;
+        private readonly Stopwatch timer;
         private int points;
-        private Stopwatch timer;
-        private int limit = 60000;
 
-        public ClassicMode(Map map, IMapChange mapChange, Melody melody)
+        public ClassicMode(Map map)
         {
             this.map = map;
-            this.mapChange = mapChange;
             timer = new Stopwatch();
             points = 0;
         }
 
-        public int GetPoints() => points;
+        public int GetPoints()
+        {
+            return points;
+        }
 
-        public long GetTime() => limit - timer.ElapsedMilliseconds;
+        public long GetTime()
+        {
+            return Limit - timer.ElapsedMilliseconds;
+        }
 
-        public bool IsGameEnd() => timer.ElapsedMilliseconds >= limit;
+        public bool IsGameEnd()
+        {
+            return timer.ElapsedMilliseconds >= Limit;
+        }
 
         public void PrimaryPreparation()
         {
             timer.Start();
         }
 
-        public void AddGame(IGame game)
-        {
-            return;
-        }
-
         public void Update(bool isGameEnd)
         {
             if (isGameEnd)
+            {
                 timer.Stop();
+            }
             else
             {
                 points++;
                 map.MapUpdate();
             }
         }
-
-        public void MapUpdate()
-        {
-            
-        }
-
     }
 }

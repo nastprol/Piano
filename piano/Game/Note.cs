@@ -2,18 +2,16 @@
 
 namespace Piano
 {
-
-    class DescriptionAttribute : Attribute
+    internal class DescriptionAttribute : Attribute
     {
-        public DescriptionAttribute(string description )
+        public DescriptionAttribute(string description)
         {
-
         }
     }
+
     public enum Note
     {
-        [Description("asdaad")]
-        Do,
+        [Description("asdaad")] Do,
         Re,
         Mi,
         Fa,

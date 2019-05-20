@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Piano
+﻿namespace Piano
 {
-    class TestMapChange : IMapChange
+    internal class TestMapChange : IMapChange
     {
         public PianoKey[] GetNextKeyLine(int numberInWidth, Note note)
         {

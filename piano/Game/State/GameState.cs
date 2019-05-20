@@ -42,6 +42,5 @@ namespace Piano
         public long GetTime => gameMode.GetTime();
 
         public bool IsGameEnd { get; private set; }
-        public Map Map { get; }
     }
 }

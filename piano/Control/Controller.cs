@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using Piano.Game.State;
 
 namespace Piano
@@ -13,24 +12,16 @@ namespace Piano
         {
             this.controlType = controlType;
             this.game = game;
+            controlType.Subscribe(this);
         }
 
         public Note Note { get; private set; }
-
-        public event Action GameOver;
-
-        public void Subscribe(Form form)
-        {
-            controlType.Subscribe(form, this);
-        }
 
         public void MakeStep(object sender, EventArgs e)
         {
             if (!controlType.MakeInput(e))
                 return;
             Note = game.MakeMove(controlType.InputValue);
-            if (game.IsGameEnd)
-                GameOver?.Invoke();
         }
     }
 }

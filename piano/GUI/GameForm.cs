@@ -1,33 +1,39 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Piano.Control;
 using Piano.Game.State;
 
 namespace Piano
 {
-    public sealed class GameForm : Form
+    public sealed class GameForm : Form, IKeyInput, IMouseInput
     {
         private const int ElementSizeHeight = 100;
         private const int ElementSizeWidth = 50;
         private readonly IGame state;
+        private readonly Timer timer;
 
-        public GameForm(IGame state, Controller controller)
+        public GameForm(IGame state)
         {
             DoubleBuffered = true;
             this.state = state;
-            controller.Subscribe(this);
-            controller.GameOver += GameOver;
             var map = state.Map;
             ClientSize = new Size(map.Width * ElementSizeWidth, map.Height * ElementSizeHeight);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            var timer = new Timer();
+            timer = new Timer();
             timer.Tick += TimerTick;
             timer.Interval = 60;
+            
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
             timer.Start();
         }
 
         private void GameOver()
         {
+            timer.Stop();
             MessageBox.Show("Game over :(");
             Close();
         }
@@ -47,6 +53,8 @@ namespace Piano
 
         private void TimerTick(object sender, EventArgs e)
         {
+            if (state.IsGameEnd)
+                GameOver();
             Invalidate();
         }
     }

@@ -15,7 +15,9 @@ namespace Piano
             var container = new StandardKernel();
             ContainerBinding(container, false, false);
 
-            Application.Run(container.Get<GameForm>());
+            var constructor = container.Get<GameConstructor>();
+
+            Application.Run(constructor.Form);
         }
 
         public static void ContainerBinding(StandardKernel container, bool stdLoader,
@@ -38,22 +40,20 @@ namespace Piano
             container.Bind<IGame>().To<GameState>().InSingletonScope();
 
             if (keyboardInput)
-            {
                 container.Bind<IInputControl>().To<KeyBoardInputControl>().InSingletonScope();
-                container.Bind<ISettings<Keys>>().To<KeyBoardSettings>().InSingletonScope();
-                container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
-            }
             else
-            {
                 container.Bind<IInputControl>().To<MouseInputControl>().InSingletonScope();
-                container.Bind<ISettings<(Point, Point)>>().To<VisualizationSettings>().InSingletonScope();
-                container.Bind<VisualizationSettings>().ToSelf().InSingletonScope();
-            }
 
+            //container.Bind<ISettings<Keys>>().To<KeyBoardSettings>().InSingletonScope();
+            container.Bind<ISettings<(Point, Point)>>().To<VisualizationSettings>().InSingletonScope();
+            container.Bind<IKeyInput>().ToMethod(context => context.Kernel.Get<GameForm>());
+            container.Bind<IMouseInput>().ToMethod(context => context.Kernel.Get<GameForm>());
+            container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
+            container.Bind<VisualizationSettings>().ToSelf().InSingletonScope();
             container.Bind<Controller>().ToSelf().InSingletonScope();
             container.Bind<MapSettings>().ToSelf().InSingletonScope();
             container.Bind<Map>().ToSelf().InSingletonScope();
-            container.Bind<Form>().To<GameForm>().InSingletonScope();
+            container.Bind<GameForm>().ToSelf().InSingletonScope();
         }
     }
 }

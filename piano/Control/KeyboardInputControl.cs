@@ -7,18 +7,20 @@ namespace Piano
 {
     public class KeyBoardInputControl : IInputControl
     {
+        private readonly IKeyInput input;
         private readonly IReadOnlyDictionary<Keys, int> controlKeys;
 
-        public KeyBoardInputControl(ISettings<Keys> settings)
+        public KeyBoardInputControl(ISettings<Keys> settings, IKeyInput input)
         {
+            this.input = input;
             controlKeys = settings.ControlTools;
         }
 
         public int InputValue { private set; get; }
 
-        public void Subscribe(Form form, Controller controller)
+        public void Subscribe(Controller controller)
         {
-            form.KeyDown += controller.MakeStep;
+            input.KeyDown += controller.MakeStep;
         }
 
         public bool MakeInput(EventArgs e)

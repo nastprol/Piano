@@ -7,5 +7,7 @@
         bool IsGameEnd { get; }
         Map Map { get; }
         Note MakeMove(int keyNumber);
+
+        void Update();
     }
 }

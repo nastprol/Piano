@@ -1,4 +1,5 @@
 ﻿using Piano.Game.State;
+using System;
 
 namespace Piano
 {
@@ -29,6 +30,11 @@ namespace Piano
             gameMode.Update(IsGameEnd);
 
             return pianoKey.Note;
+        }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
         }
 
         public int GetPoints => gameMode.GetPoints();

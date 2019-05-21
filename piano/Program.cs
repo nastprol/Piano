@@ -13,14 +13,15 @@ namespace Piano
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var container = new StandardKernel();
-            ContainerBinding(container, false, new FileLocator("C:\\Users\\Настя\\Desktop\\piano\\1.txt"), false);
+            ContainerBinding(container, false, false);
 
             Application.Run(container.Get<GameForm>());
         }
 
-        public static void ContainerBinding(StandardKernel container, bool stdLoader, IMelodyLocator locator,
+        public static void ContainerBinding(StandardKernel container, bool stdLoader,
             bool keyboardInput)
         {
+            container.Bind<IMelodyLocator>().To<FileLocator>().InSingletonScope().WithConstructorArgument("1.txt");
             container.Bind<IGameMode>().To<ClassicMode>().InSingletonScope();
             container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
 
@@ -28,7 +29,11 @@ namespace Piano
                 container.Bind<IMelodyLoader>().To<StandardMelodyLoader>().InSingletonScope();
             else
                 container.Bind<IMelodyLoader>().To<MelodyFileLoader>().InSingletonScope();
-            container.Bind<Melody>().ToMethod(context => context.Kernel.Get<IMelodyLoader>().Load(locator))
+            container.Bind<Melody>().ToMethod(context =>
+                {
+                    var locator = context.Kernel.Get<IMelodyLocator>();
+                    return context.Kernel.Get<IMelodyLoader>().Load(locator);
+                })
                 .InSingletonScope();
             container.Bind<IGame>().To<GameState>().InSingletonScope();
 

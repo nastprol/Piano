@@ -6,13 +6,13 @@ namespace Piano
     {
         private const int Limit = 60000;
         private readonly Map map;
-        private readonly Stopwatch timer;
+        private readonly Stopwatch sw;
         private int points;
 
         public ClassicMode(Map map)
         {
             this.map = map;
-            timer = new Stopwatch();
+            sw = new Stopwatch();
             points = 0;
         }
 
@@ -23,24 +23,24 @@ namespace Piano
 
         public long GetTime()
         {
-            return Limit - timer.ElapsedMilliseconds;
+            return Limit - sw.ElapsedMilliseconds;
         }
 
         public bool IsGameEnd()
         {
-            return timer.ElapsedMilliseconds >= Limit;
+            return sw.ElapsedMilliseconds >= Limit;
         }
 
         public void PrimaryPreparation()
         {
-            timer.Start();
+            sw.Start();
         }
 
         public void Update(bool isGameEnd)
         {
             if (isGameEnd)
             {
-                timer.Stop();
+                sw.Stop();
             }
             else
             {

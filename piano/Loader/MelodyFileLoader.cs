@@ -12,23 +12,14 @@ namespace Piano
 
         static MelodyFileLoader()
         {
-            Notes = ((Note[]) Enum.GetValues(typeof(Note))).ToDictionary(n => n.ToString());
+            Notes = ((Note[])Enum.GetValues(typeof(Note))).ToDictionary(n => n.ToString());
         }
 
         public Melody Load(IMelodyLocator locator)
         {
-            var text = "";
-            try
-            {
-                using (var sr = new StreamReader(locator.GetLocation(), Encoding.Default))
-                {
-                    text = sr.ReadToEnd();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            string text;
+            using (var sr = new StreamReader(locator.GetLocation(), Encoding.Default))
+                text = sr.ReadToEnd();
 
             var notes = ParseTextToNotes(text);
             return new Melody(notes);

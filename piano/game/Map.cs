@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Piano
@@ -8,42 +9,35 @@ namespace Piano
         private readonly IMapChange mapChange;
         private readonly int melodyLength;
         private int index;
-        private int mapShiftFromBottom;
+        
+        public Melody Melody { get; }
+        private List<Note> notes;
 
         public Map(MapSettings settings, Melody melody, IMapChange mapChange)
         {
             Height = settings.Height;
             Width = settings.Width;
-            index = Height;
+            index = -1;
             this.mapChange = mapChange;
-            melodyLength = melody.Notes.Count(); // Count - долгая операция, как исправить написал в Melody
+            melodyLength = melody.Count;
+            notes = melody.ToList();
 
-            Keys = new PianoKey[Height, Width];
-            Melody = melody;
-
-            //-------------------------------------------------------------------------------------//
-            for (var i = 0; i < Height; i++)
-            for (var j = 0; j < Width; j++)
-                Keys[i, j] = new PianoKey();
-            var elementIndex = 0;
+            keys = new PianoKey[Height, Width];
+            Melody = melody;           
             for (var i = 0; i < Height; i++)
             {
-                var note = Melody.Notes.ElementAt(elementIndex);
-                elementIndex = elementIndex + 1 < Melody.Notes.Count() ? elementIndex + 1 : 0;
-                SetNextKeyLine(mapChange.GetNextKeyLine(Width, note));
+                MapUpdate();
             }
-            //------------------------------------------------------------------------------------// этот код очень похож на код в методе SetNextKeyLine, наверное стоит попытаться вынести в метод)
         }
 
         public int Width { get; }
         public int Height { get; }
-        public PianoKey[,] Keys { get; }  // нарушена инкапсуляция!!!
-        public Melody Melody { get; }
-
+        private PianoKey[,] keys; 
+       
         public PianoKey this[int i, int j]
         {
-            get => Keys[i, j];
-            set => Keys[i, j] = value;
+            get => keys[i, j];
+            set => keys[i, j] = value;
         }
 
         public void SetNextKeyLine(PianoKey[] keyLine)
@@ -52,23 +46,31 @@ namespace Piano
                 throw new Exception();   //не используй чистый Exception пиши более конкретный(можешь свой создать) и пиши в нём сообщение об ошибке
             for (var i = 0; i < Height - 1; i++)
             for (var j = 0; j < Width; j++)
-                Keys[i, j] = Keys[i + 1, j];
+                keys[i, j] = keys[i + 1, j];
             for (var j = 0; j < Width; j++)
-                Keys[Height - 1, j] = keyLine[j];
+                keys[Height - 1, j] = keyLine[j];
         }
 
         public PianoKey[] GetFirstLine()
         {
             var lastLine = new PianoKey[Width];
             for (var j = 0; j < Width; j++)
-                lastLine[j] = Keys[0, j];
+                lastLine[j] = keys[0, j];
             return lastLine;
+        }
+
+        public bool IsFirstLineWithoutNote()
+        {
+            for (var j = 0; j < Width; j++)
+                if (keys[0, j].IsNote)
+                    return false;
+            return true;
         }
 
         public void MapUpdate()
         {
             index = index + 1 < melodyLength ? index + 1 : 0;
-            var nextNote = Melody.Notes.ElementAt(index); // ElementAt - долгая операция, как исправить написал в Melody
+            var nextNote = notes[index]; 
             SetNextKeyLine(mapChange.GetNextKeyLine(Width, nextNote));
         }
     }

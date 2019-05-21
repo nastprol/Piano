@@ -2,10 +2,11 @@
 {
     public interface IGameMode
     {
-        bool IsGameEnd();
-        int GetPoints();
-        long GetTime();
-        void Update(bool isGameEnd);
-        void PrimaryPreparation();
+        bool UpdateIsGameEnd(bool isPressNote, long time);
+        void Update();
+        void UpdateTimerTick();
+        int UpdatePoints(long time, int point);
+        long GetTime(long time);
+        int MapShiftFromBottom { get; }
     }
 }

@@ -67,6 +67,8 @@
     <Compile Include="Control\ISettings.cs" />
     <Compile Include="Control\KeyBoardSettings.cs" />
     <Compile Include="Control\VisualizationSettings.cs" />
+    <Compile Include="Game\Mode\IModeControl.cs" />
+    <Compile Include="Game\Mode\ModeControl.cs" />
     <Compile Include="Tests\TestControl.cs" />
     <Compile Include="Tests\TestMapChange.cs" />
     <Compile Include="Game\MapSettings.cs" />

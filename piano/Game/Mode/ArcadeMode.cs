@@ -7,51 +7,33 @@ namespace Piano
     internal class ArcadeMode : IGameMode
     {
         private readonly Map map;
-        private readonly Stopwatch sw; //
-        private readonly Timer timer; //Mode update
-        private int points;
+
+        public int MapShiftFromBottom { get; private set; }
 
         public ArcadeMode(Map map)
         {
             this.map = map;
-            points = 0;
-            sw = new Stopwatch();
-            timer = new Timer {Interval = 1000};
-            timer.Tick += TimerTick;
+            MapShiftFromBottom = 0;
         }
+        
+        public long GetTime(long time) => time;
 
-        public int GetPoints()
+        public bool UpdateIsGameEnd(bool isPressNote, long time)
         {
-            return points;
+            return !isPressNote || !map.IsFirstLineWithoutNote();
         }
 
-        public long GetTime()
-        {
-            return sw.ElapsedMilliseconds;
-        }
-
-        public bool IsGameEnd()
-        {
-            return false;
-        }
-
-        public void PrimaryPreparation()
-        {
-            timer.Start();
-            sw.Start();
-        }
-
-        public void Update(bool isGameEnd)
-        {
-            if (isGameEnd)
-                sw.Stop();
-            else
-                points = (int) sw.ElapsedMilliseconds / 100;
-        }
-
-        private void TimerTick(object sender, EventArgs e)
+        public void Update()
         {
             map.MapUpdate();
+            MapShiftFromBottom++;
+        }
+        
+        public int UpdatePoints(long time, int point) => (int)time/1000;
+
+        public void UpdateTimerTick()
+        {
+            MapShiftFromBottom--;
         }
     }
 }

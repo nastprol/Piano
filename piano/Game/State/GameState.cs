@@ -5,12 +5,12 @@ namespace Piano
 {
     public class GameState : IGame
     {
-        private readonly IGameMode gameMode;
+        private readonly IModeControl modeControl;
         private bool isFirstMove = true;
 
-        public GameState(IGameMode mode, Map map)
+        public GameState(IModeControl modeControl, Map map)
         {
-            gameMode = mode;
+            this.modeControl = modeControl;
             Map = map;
         }
 
@@ -20,27 +20,27 @@ namespace Piano
         {
             if (isFirstMove)
             {
-                gameMode.PrimaryPreparation();
+                modeControl.PrimaryPreparation();
                 isFirstMove = false;
             }
 
             var firstLine = Map.GetFirstLine();
             var pianoKey = firstLine[keyNumber];
-            IsGameEnd = !pianoKey.IsNote || gameMode.IsGameEnd();
-            gameMode.Update(IsGameEnd);
-
+            var isPressNote = pianoKey.IsNote;
+            pianoKey.Press();
+            modeControl.Update(isPressNote);
             return pianoKey.Note;
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            
         }
 
-        public int GetPoints => gameMode.GetPoints();
+        public int GetPoints => modeControl.Points;
 
-        public long GetTime => gameMode.GetTime();
+        public long GetTime => modeControl.GetTime();
 
-        public bool IsGameEnd { get; private set; }
+        public bool IsGameEnd => modeControl.IsGameEnd;
     }
 }

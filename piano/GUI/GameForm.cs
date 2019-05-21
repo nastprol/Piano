@@ -53,6 +53,7 @@ namespace Piano
 
         private void TimerTick(object sender, EventArgs e)
         {
+            state.Update();
             if (state.IsGameEnd)
                 GameOver();
             Invalidate();

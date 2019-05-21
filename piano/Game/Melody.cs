@@ -9,7 +9,7 @@ namespace Piano
             Notes = notes;
         }
 
-        public IEnumerable<Note> Notes { get; }
+        public IEnumerable<Note> Notes { get; } // неверное стоит сделать приватным и сделать этот класс более богатым
 
         public override bool Equals(object obj)
         {

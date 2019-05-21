@@ -19,6 +19,6 @@ namespace Piano
 
         public bool IsNote { get; }
         public Note Note { get; }
-        public Color Color { get; }
+        public Color Color { get; }  // наверное стоит color вообще отсюда удалить тк сейчас он дублирует isNote
     }
 }

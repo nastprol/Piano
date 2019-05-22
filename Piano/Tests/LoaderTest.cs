@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
 using Piano;
+using System;
 
 namespace Prime.UnitTests.Services
 {
@@ -11,8 +12,8 @@ namespace Prime.UnitTests.Services
         public void GetMelodyFromFile()
         {
             var loader = new MelodyFileLoader();
-            var melody = loader.Load(new FileLocator("C:\\Users\\Настя\\Desktop\\piano\\1.txt"));
-            var expected = new Melody(new List<Note> {Note.Do, Note.Re, Note.Mi, Note.Fa, Note.La, Note.Si, Note.Sol});
+            var melody = loader.Load(new FileLocator(Environment.CurrentDirectory + @"\1.txt"));
+            var expected = new Melody(new List<Note> { Note.Do, Note.Re, Note.Mi, Note.Fa, Note.La, Note.Si, Note.Sol });
             Assert.AreEqual(expected, melody);
         }
     }

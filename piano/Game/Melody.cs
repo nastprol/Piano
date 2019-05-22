@@ -19,14 +19,20 @@ namespace Piano
             if (!(obj is Melody))
                 return false;
             var other = (Melody) obj;
-            return GetHashCode() == other.GetHashCode() && notes.Equals(other.notes);
+            return GetHashCode() == other.GetHashCode() && notes.SequenceEqual(other.notes);
         }
 
         public List<Note> ToList() => notes.ToList();
 
         public override int GetHashCode()
         {
-            return notes.GetHashCode();
+            var hash = 0;
+            var prime = 2017;
+            foreach (var n in notes)
+            {
+                hash += (hash * (int)n) ^ prime;
+            }
+            return hash;
         }
     }
 }

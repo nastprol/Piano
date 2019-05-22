@@ -5,14 +5,16 @@ namespace Piano
 {
     public class Melody
     {
-        public Melody(IEnumerable<Note> notes)
+        public Melody(Note[] notes)
         {
             this.notes = notes;
-            Count = notes.Count();
+            Count = notes.Length;
         }
 
-        private IEnumerable<Note> notes;
-        public int Count { get; private set; } 
+        private readonly Note[] notes;
+        public int Count { get; }
+
+        public Note this[int index] => notes[index];
 
         public override bool Equals(object obj)
         {
@@ -21,8 +23,6 @@ namespace Piano
             var other = (Melody) obj;
             return GetHashCode() == other.GetHashCode() && notes.Equals(other.notes);
         }
-
-        public List<Note> ToList() => notes.ToList();
 
         public override int GetHashCode()
         {

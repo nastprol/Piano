@@ -9,7 +9,7 @@ namespace Piano
         static StandardMelodyLoader()
         {
             StandardMelodies = new Dictionary<string, Melody>();
-            var melody = new Melody(new List<Note> {Note.Do, Note.Re, Note.Mi, Note.Fa, Note.Si});
+            var melody = new Melody(new []{Note.Do, Note.Re, Note.Mi, Note.Fa, Note.Si});
             StandardMelodies.Add("1", melody);
         }
 

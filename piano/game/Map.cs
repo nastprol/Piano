@@ -11,7 +11,6 @@ namespace Piano
         private int index;
         
         public Melody Melody { get; }
-        private List<Note> notes;
 
         public Map(MapSettings settings, Melody melody, IMapChange mapChange)
         {
@@ -20,19 +19,16 @@ namespace Piano
             index = -1;
             this.mapChange = mapChange;
             melodyLength = melody.Count;
-            notes = melody.ToList();
 
             keys = new PianoKey[Height, Width];
             Melody = melody;           
             for (var i = 0; i < Height; i++)
-            {
                 MapUpdate();
-            }
         }
 
         public int Width { get; }
         public int Height { get; }
-        private PianoKey[,] keys; 
+        private readonly PianoKey[,] keys; 
        
         public PianoKey this[int i, int j]
         {
@@ -70,7 +66,7 @@ namespace Piano
         public void MapUpdate()
         {
             index = index + 1 < melodyLength ? index + 1 : 0;
-            var nextNote = notes[index]; 
+            var nextNote = Melody[index]; 
             SetNextKeyLine(mapChange.GetNextKeyLine(Width, nextNote));
         }
     }

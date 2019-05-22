@@ -17,7 +17,7 @@ namespace Piano
             using (var sr = new StreamReader(locator.GetLocation(), Encoding.Default))
                 text = sr.ReadToEnd();
 
-            var notes = ParseTextToNotes(text);
+            var notes = ParseTextToNotes(text).ToArray();
             return new Melody(notes);
         }
 

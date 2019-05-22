@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows.Forms;
-
-namespace Piano
+﻿namespace Piano
 {
     internal class ArcadeMode : IGameMode
     {
@@ -15,7 +11,7 @@ namespace Piano
             this.map = map;
             MapShiftFromBottom = 0;
         }
-        
+
         public long GetTime(long time) => time;
 
         public bool UpdateIsGameEnd(bool isPressNote, long time)
@@ -28,8 +24,8 @@ namespace Piano
             map.MapUpdate();
             MapShiftFromBottom++;
         }
-        
-        public int UpdatePoints(long time, int point) => (int)time/1000;
+
+        public int UpdatePoints(long time, int point) => (int)time / 1000;
 
         public void UpdateTimerTick()
         {

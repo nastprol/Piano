@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 using Piano.Control;
 using Piano.Game.State;
@@ -12,6 +13,7 @@ namespace Piano
         private const int ElementSizeWidth = 50;
         private readonly IGame state;
         private readonly Timer timer;
+        private SoundPlayer player;
 
         public GameForm(IGame state)
         {
@@ -23,7 +25,7 @@ namespace Piano
             timer = new Timer();
             timer.Tick += TimerTick;
             timer.Interval = 60;
-            
+            player = new SoundPlayer();
         }
 
         protected override void OnLoad(EventArgs e)

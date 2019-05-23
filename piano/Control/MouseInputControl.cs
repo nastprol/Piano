@@ -6,11 +6,11 @@ using Piano.Control;
 
 namespace Piano
 {
+    [Description("Управление мышкой")]
     public class MouseInputControl : IInputControl
     {
         private readonly IMouseInput input;
         private readonly IReadOnlyDictionary<(Point topLeft, Point bottomRight), int> controlLocations;
-        private bool answerInput;
 
         public MouseInputControl(VisualizationSettings settings, IMouseInput input)
         {
@@ -18,18 +18,16 @@ namespace Piano
             controlLocations = settings.ControlTools;
         }
 
-        public int InputValue { get; private set; }
-
         public void Subscribe(Controller controller)
         {
             input.Click += controller.MakeStep;
         }
 
-        public bool MakeInput(EventArgs e)
+        public int? MakeInput(EventArgs e)
         {
             var ev = (MouseEventArgs) e;
             if (ev.Button == MouseButtons.Right)
-                return answerInput;
+                return null;
             var location = ev.Location;
             foreach (var coords in controlLocations)
             {
@@ -38,13 +36,9 @@ namespace Piano
                 var (topLeft, bottomRight) = coords.Key;
                 if (topLeft.X >= clickX || clickX >= bottomRight.X || topLeft.Y >= clickY || clickY >= bottomRight.Y)
                     continue;
-                InputValue = coords.Value;
-                answerInput = true;
-                return answerInput;
+                return coords.Value;
             }
-
-            answerInput = false;
-            return answerInput;
+            return null;
         }
     }
 }

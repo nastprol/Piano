@@ -2,6 +2,7 @@
 
 namespace Piano
 {
+    [Description("Классика")]
     public class ClassicMode : IGameMode
     {
         private const int Limit = 60000;
@@ -13,13 +14,12 @@ namespace Piano
         {
             this.map = map;
         }        
-
-        public long GetTime(long time) =>Limit - time;
         
 
-        public bool UpdateIsGameEnd(bool isPressNote, long time)
+        public bool UpdateIsGameEnd(bool isPressNote, bool isFirstMove)
         {
-            return !isPressNote || time >= Limit;
+            if (isFirstMove) return false;
+            return !isPressNote;
         }
         
 
@@ -28,9 +28,9 @@ namespace Piano
            map.MapUpdate();
         }
 
-        public int UpdatePoints(long time, int point) => point + 1;
+        public int UpdatePoints(int point) => point + 1;
 
-        public void UpdateTimerTick()
+        public void UpdateTimerTick(bool isFirstMove)
         {
            
         }

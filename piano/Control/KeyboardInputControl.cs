@@ -5,6 +5,7 @@ using Piano.Control;
 
 namespace Piano
 {
+    [Description("Управление клавиатурой")]
     public class KeyBoardInputControl : IInputControl
     {
         private readonly IKeyInput input;
@@ -16,20 +17,17 @@ namespace Piano
             controlKeys = settings.ControlTools;
         }
 
-        public int InputValue { private set; get; }
-
         public void Subscribe(Controller controller)
         {
             input.KeyDown += controller.MakeStep;
         }
 
-        public bool MakeInput(EventArgs e)
+        public int? MakeInput(EventArgs e)
         {
             var key = ((KeyEventArgs) e).KeyCode;
-            var contains = controlKeys.ContainsKey(key);
-            if (contains)
-                InputValue = controlKeys[key];
-            return contains;
+            if (controlKeys.ContainsKey(key))
+                return controlKeys[key];
+            return null;
         }
     }
 }

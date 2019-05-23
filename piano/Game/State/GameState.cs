@@ -1,16 +1,23 @@
 ﻿using Piano.Game.State;
 using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Piano
 {
     public class GameState : IGame
     {
-        private readonly IModeControl modeControl;
         private bool isFirstMove = true;
+        private readonly IGameMode mode;
+        public int GetPoints { get; private set; }
+        public bool IsGameEnd { get; private set; }
+        public int MapShiftFromBottom => mode.MapShiftFromBottom;
 
-        public GameState(IModeControl modeControl, Map map)
+        public GameState(IGameMode mode, Map map)
         {
-            this.modeControl = modeControl;
+            IsGameEnd = false;
+            GetPoints = 0;
+            this.mode = mode;
             Map = map;
         }
 
@@ -20,7 +27,6 @@ namespace Piano
         {
             if (isFirstMove)
             {
-                modeControl.PrimaryPreparation();
                 isFirstMove = false;
             }
 
@@ -28,19 +34,24 @@ namespace Piano
             var pianoKey = firstLine[keyNumber];
             var isPressNote = pianoKey.IsNote;
             pianoKey.Press();
-            modeControl.Update(isPressNote);
+            Update(isPressNote);
             return pianoKey.Note;
         }
 
         public void Update()
         {
-            
+            IsGameEnd = mode.UpdateIsGameEnd(true, isFirstMove);
+            mode.UpdateTimerTick(isFirstMove);
         }
-
-        public int GetPoints => modeControl.Points;
-
-        public long GetTime => modeControl.GetTime();
-
-        public bool IsGameEnd => modeControl.IsGameEnd;
+        
+        private void Update(bool isPressNote)
+        {
+            IsGameEnd = mode.UpdateIsGameEnd(isPressNote, isFirstMove);
+            if (!IsGameEnd)
+            {
+                GetPoints = mode.UpdatePoints(GetPoints);
+                mode.Update();
+            }
+        }
     }
 }

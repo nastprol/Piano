@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
@@ -13,6 +14,7 @@ namespace Piano
         private const int ElementSizeWidth = 50;
         private readonly IGame state;
         private readonly Timer timer;
+        private readonly Stopwatch sw;
         private SoundPlayer player;
 
         public GameForm(IGame state)
@@ -24,18 +26,21 @@ namespace Piano
             FormBorderStyle = FormBorderStyle.FixedDialog;
             timer = new Timer();
             timer.Tick += TimerTick;
-            timer.Interval = 60;
+            timer.Interval = 6000;
+            sw = new Stopwatch();
             player = new SoundPlayer();
         }
 
         protected override void OnLoad(EventArgs e)
         {
             timer.Start();
+            sw.Start();
         }
 
         private void GameOver()
         {
             timer.Stop();
+            sw.Stop();
             MessageBox.Show("Game over :(");
             Close();
         }
@@ -50,7 +55,7 @@ namespace Piano
                     ElementSizeWidth, ElementSizeHeight);
 
             e.Graphics.DrawString(state.GetPoints.ToString(), new Font("Arial", 16), Brushes.Green, 0, 0);
-            e.Graphics.DrawString((state.GetTime / 1000).ToString(), new Font("Arial", 16), Brushes.Red, 0, 25);
+            e.Graphics.DrawString((sw.ElapsedMilliseconds / 1000).ToString(), new Font("Arial", 16), Brushes.Red, 0, 25);
         }
 
         private void TimerTick(object sender, EventArgs e)

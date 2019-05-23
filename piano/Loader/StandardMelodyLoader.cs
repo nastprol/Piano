@@ -2,6 +2,7 @@
 
 namespace Piano
 {
+    [Description("Загрузить мелодию")]
     public class StandardMelodyLoader : IMelodyLoader
     {
         private static readonly Dictionary<string, Melody> StandardMelodies;

@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Piano
 {
+    [Description("Загрузить мелодию из файла")]
     public class MelodyFileLoader : IMelodyLoader
     {
         private static readonly Dictionary<string, Note> Notes = NoteSettings.Notes;

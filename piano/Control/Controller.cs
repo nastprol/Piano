@@ -19,9 +19,9 @@ namespace Piano
 
         public void MakeStep(object sender, EventArgs e)
         {
-            if (!controlType.MakeInput(e))
-                return;
-            Note = game.MakeMove(controlType.InputValue);
+            var inputKey = controlType.MakeInput(e);
+            if (inputKey != null)
+                Note = game.MakeMove(inputKey.Value);
         }
     }
 }

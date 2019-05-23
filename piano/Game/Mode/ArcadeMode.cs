@@ -1,6 +1,7 @@
 ﻿namespace Piano
 {
-    internal class ArcadeMode : IGameMode
+    [Description("Аркада")]
+    public class ArcadeMode : IGameMode
     {
         private int shift = 30;
         private readonly Map map;

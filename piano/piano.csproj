@@ -80,6 +80,7 @@
     <Compile Include="Control\ISettings.cs" />
     <Compile Include="Control\KeyBoardSettings.cs" />
     <Compile Include="Control\VisualizationSettings.cs" />
+
     <Compile Include="GameSettings.cs" />
     <Compile Include="Game\Mode\IModeControl.cs" />
     <Compile Include="Game\Mode\ModeControl.cs" />
@@ -90,6 +91,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoadConfig.cs" />
+
     <Compile Include="Loader\NoteSettings.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

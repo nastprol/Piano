@@ -18,8 +18,9 @@ namespace Piano
         public long GetTime(long time) =>Limit - time;
         
 
-        public bool UpdateIsGameEnd(bool isPressNote, long time)
+        public bool UpdateIsGameEnd(bool isPressNote, long time, bool isFirstMove)
         {
+            if (isFirstMove) return false;
             return !isPressNote || time >= Limit;
         }
         
@@ -31,7 +32,7 @@ namespace Piano
 
         public int UpdatePoints(long time, int point) => point + 1;
 
-        public void UpdateTimerTick()
+        public void UpdateTimerTick(bool isFirstMove)
         {
            
         }

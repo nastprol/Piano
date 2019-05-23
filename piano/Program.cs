@@ -50,7 +50,6 @@ namespace Piano
 
 
             container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
-            container.Bind<IModeControl>().To<ModeControl>().InSingletonScope();
 
             //if (stdLoader)
             //    container.Bind<IMelodyLoader>().To<StandardMelodyLoader>().InSingletonScope();

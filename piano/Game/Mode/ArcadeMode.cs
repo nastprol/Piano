@@ -2,6 +2,7 @@
 {
     internal class ArcadeMode : IGameMode
     {
+        private int shift = 30;
         private readonly Map map;
 
         public int MapShiftFromBottom { get; private set; }
@@ -14,22 +15,24 @@
 
         public long GetTime(long time) => time;
 
-        public bool UpdateIsGameEnd(bool isPressNote, long time)
+        public bool UpdateIsGameEnd(bool isPressNote, long time, bool isFirstMove)
         {
-            return !isPressNote || !map.IsFirstLineWithoutNote();
+            if (isFirstMove) return false;
+            return !isPressNote || MapShiftFromBottom < 0;
         }
 
         public void Update()
         {
             map.MapUpdate();
-            MapShiftFromBottom++;
+            MapShiftFromBottom+=shift;
         }
 
         public int UpdatePoints(long time, int point) => (int)time / 1000;
 
-        public void UpdateTimerTick()
+        public void UpdateTimerTick(bool isFirstMove)
         {
-            MapShiftFromBottom--;
+            if (isFirstMove) return;
+            MapShiftFromBottom-=shift;
         }
     }
 }

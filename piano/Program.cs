@@ -26,7 +26,6 @@ namespace Piano
             container.Bind<IMelodyLocator>().To<FileLocator>().InSingletonScope().WithConstructorArgument("1.txt");
             container.Bind<IGameMode>().To<ArcadeMode>().InSingletonScope();
             container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
-            container.Bind<IModeControl>().To<ModeControl>().InSingletonScope();
 
             if (stdLoader)
                 container.Bind<IMelodyLoader>().To<StandardMelodyLoader>().InSingletonScope();

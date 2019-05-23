@@ -24,7 +24,7 @@ namespace Piano
             FormBorderStyle = FormBorderStyle.FixedDialog;
             timer = new Timer();
             timer.Tick += TimerTick;
-            timer.Interval = 60;
+            timer.Interval = 600;
             player = new SoundPlayer();
         }
 

@@ -1,17 +1,27 @@
 ﻿using Piano.Game.State;
 using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Piano
 {
     public class GameState : IGame
     {
-        private readonly IModeControl modeControl;
         private bool isFirstMove = true;
+        private readonly Stopwatch sw; 
+        private readonly IGameMode mode;
+        public int GetPoints { get; private set; }
+        public bool IsGameEnd { get; private set; }
+        public int MapShiftFromBottom => mode.MapShiftFromBottom;
 
-        public GameState(IModeControl modeControl, Map map)
+        public GameState(IGameMode mode, Map map)
         {
-            this.modeControl = modeControl;
+            IsGameEnd = false;
+            GetPoints = 0;
+            this.mode = mode;
             Map = map;
+
+            sw = new Stopwatch();
         }
 
         public Map Map { get; }
@@ -20,7 +30,7 @@ namespace Piano
         {
             if (isFirstMove)
             {
-                modeControl.PrimaryPreparation();
+                PrimaryPreparation();
                 isFirstMove = false;
             }
 
@@ -28,19 +38,34 @@ namespace Piano
             var pianoKey = firstLine[keyNumber];
             var isPressNote = pianoKey.IsNote;
             pianoKey.Press();
-            modeControl.Update(isPressNote);
+            Update(isPressNote);
             return pianoKey.Note;
         }
 
         public void Update()
         {
-            
+            IsGameEnd = mode.UpdateIsGameEnd(true, sw.ElapsedMilliseconds, isFirstMove);
+            mode.UpdateTimerTick(isFirstMove);
         }
 
-        public int GetPoints => modeControl.Points;
+        private void PrimaryPreparation()
+        {
+            sw.Start();
+        }
 
-        public long GetTime => modeControl.GetTime();
-
-        public bool IsGameEnd => modeControl.IsGameEnd;
+        public long GetTime => mode.GetTime(sw.ElapsedMilliseconds);
+        private void Update(bool isPressNote)
+        {
+            IsGameEnd = mode.UpdateIsGameEnd(isPressNote, sw.ElapsedMilliseconds, isFirstMove);
+            if (IsGameEnd)
+            {
+                sw.Stop();
+            }
+            else
+            {
+                GetPoints = mode.UpdatePoints(sw.ElapsedMilliseconds, GetPoints);
+                mode.Update();
+            }
+        }
     }
 }

@@ -14,11 +14,11 @@ namespace Piano
         public bool IsGameEnd { get; private set; }
         public int MapShiftFromBottom => mode.MapShiftFromBottom;
 
-        public GameState(IGameMode mode, Map map)
+        public GameState(Map map, GameSettings settings)
         {
             IsGameEnd = false;
             GetPoints = 0;
-            this.mode = mode;
+            this.mode = settings.GetMode();
             Map = map;
 
             sw = new Stopwatch();

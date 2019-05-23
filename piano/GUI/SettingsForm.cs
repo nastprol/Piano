@@ -11,11 +11,14 @@ namespace Piano
         private readonly ComboBox loadBox = new ComboBox();
         private readonly ComboBox inputControlBox = new ComboBox();
         private readonly Button okButton = new Button();
+        private readonly TextBox pathBox = new TextBox();
+
         private readonly GameSettings settings;
 
         private readonly Dictionary<string, Type> modes;
         private readonly Dictionary<string, Type> loaders;
         private readonly Dictionary<string, Type> inputControls;
+        private readonly Dictionary<string, Type> locators;
 
         public SettingsForm(GameSettings settings, LoadConfig config)
         {
@@ -23,13 +26,17 @@ namespace Piano
             modes = config.Modes;
             loaders = config.Loaders;
             inputControls = config.InputControls;
+            locators = config.Locators;
 
             InitializeComponent(modes.Keys.ToArray(), loaders.Keys.ToArray(), inputControls.Keys.ToArray());
         }
 
         private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((modeBox.SelectedIndex > -1) && (loadBox.SelectedIndex > -1))
+            if ((modeBox.SelectedIndex > -1) 
+                && (loadBox.SelectedIndex > -1) 
+                && (inputControlBox.SelectedIndex > -1) 
+                && (pathBox.Text.Length > 0))
                 okButton.Enabled = true;
         }
 
@@ -41,11 +48,17 @@ namespace Piano
         private void LoadBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             settings.LoaderTypeName = loaders[loadBox.SelectedItem.ToString()].Name;
+            settings.MelodyLocator = locators[loadBox.SelectedItem.ToString()].Name;
         }
 
         private void InputControlBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             settings.InputTypeName = inputControls[inputControlBox.SelectedItem.ToString()].Name;
+        }
+
+        private void Path_TextChanged(object sender, EventArgs e)
+        {
+            settings.MelodyLocation = pathBox.Text;
         }
 
         private void OkClick(object sender, EventArgs e)
@@ -59,7 +72,7 @@ namespace Piano
 
             modeBox.Items.AddRange(modes);
             loadBox.Items.AddRange(loaders);
-            inputControlBox.Items.AddRange(controls);
+            inputControlBox.Items.AddRange(controls);  
 
 
             modeBox.Location = new System.Drawing.Point(10, 10);
@@ -70,6 +83,9 @@ namespace Piano
 
             inputControlBox.Location = new System.Drawing.Point(10, 40);
             inputControlBox.Size = new System.Drawing.Size(200, 60);
+
+            pathBox.Location = new System.Drawing.Point(10, 100);
+            pathBox.Size = new System.Drawing.Size(200, 60);
 
             okButton.Location = new System.Drawing.Point(300, 50);
             okButton.Size = new System.Drawing.Size(60, 30);
@@ -83,8 +99,9 @@ namespace Piano
             inputControlBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
             inputControlBox.SelectedIndexChanged += InputControlBox_SelectedIndexChanged;
             okButton.Click += OkClick;
+            pathBox.TextChanged += pathBox_TextChanged;
+            inputControlBox.TextChanged += ComboBox_SelectedIndexChanged;
 
-            //var melodyBox;
 
             Controls.Add(loadBox);
             Controls.Add(modeBox);
@@ -95,6 +112,11 @@ namespace Piano
             ClientSize = new System.Drawing.Size(1000, 500);
             Name = "Game settings";
             ResumeLayout(false);
+        }
+
+        private void pathBox_TextChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -2,10 +2,11 @@
 
 namespace Piano
 {
-    [Description("Загрузить мелодию")]
+    [Description("Загрузить стандартную мелодию")]
     public class StandardMelodyLoader : IMelodyLoader
     {
         private static readonly Dictionary<string, Melody> StandardMelodies;
+        private readonly GameSettings settings;
 
         static StandardMelodyLoader()
         {
@@ -14,8 +15,14 @@ namespace Piano
             StandardMelodies.Add("1", melody);
         }
 
-        public Melody Load(IMelodyLocator locator)
+        public StandardMelodyLoader(GameSettings settings)
         {
+            this.settings = settings;
+        }
+
+        public Melody Load()
+        {
+            var locator = settings.GetLocator();
             return StandardMelodies[locator.GetLocation()];
         }
     }

@@ -12,8 +12,9 @@ namespace Piano
         
         public Melody Melody { get; }
 
-        public Map(MapSettings settings, Melody melody, IMapChange mapChange)
+        public Map(MapSettings settings, GameSettings gameSettings, IMapChange mapChange)
         {
+            var melody = gameSettings.GetLoader().Load();
             Height = settings.Height;
             Width = settings.Width;
             index = -1;

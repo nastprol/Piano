@@ -2,6 +2,6 @@
 {
     public interface IMelodyLoader
     {
-        Melody Load(IMelodyLocator loadPath);
+        Melody Load();
     }
 }

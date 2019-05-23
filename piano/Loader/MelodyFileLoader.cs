@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Piano.Loader;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,12 +9,7 @@ namespace Piano
 {
     public class MelodyFileLoader : IMelodyLoader
     {
-        private static readonly Dictionary<string, Note> Notes;
-
-        static MelodyFileLoader()
-        {
-            Notes = ((Note[])Enum.GetValues(typeof(Note))).ToDictionary(n => n.ToString());
-        }
+        private static readonly Dictionary<string, Note> Notes = NoteSettings.Notes;
 
         public Melody Load(IMelodyLocator locator)
         {

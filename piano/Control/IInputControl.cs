@@ -5,8 +5,7 @@ namespace Piano
 {
     public interface IInputControl
     {
-        int InputValue { get; } //Producer передать делегат в консируктор
-        bool MakeInput(EventArgs e); //передать делегат в консируктор
+        int? MakeInput(EventArgs e); 
         void Subscribe(Controller controller); 
     }
 }

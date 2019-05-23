@@ -2,6 +2,7 @@
 
 namespace Piano
 {
+    [Description("Классика")]
     public class ClassicMode : IGameMode
     {
         private const int Limit = 60000;

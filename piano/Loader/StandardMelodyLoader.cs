@@ -6,7 +6,7 @@ namespace Piano
     public class StandardMelodyLoader : IMelodyLoader
     {
         private static readonly Dictionary<string, Melody> StandardMelodies;
-        private readonly GameSettings settings;
+        private readonly LocatorSettings settings;
 
         static StandardMelodyLoader()
         {
@@ -15,7 +15,7 @@ namespace Piano
             StandardMelodies.Add("1", melody);
         }
 
-        public StandardMelodyLoader(GameSettings settings)
+        public StandardMelodyLoader(LocatorSettings settings)
         {
             this.settings = settings;
         }

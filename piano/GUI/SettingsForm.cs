@@ -33,10 +33,10 @@ namespace Piano
 
         private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((modeBox.SelectedIndex > -1) 
-                && (loadBox.SelectedIndex > -1) 
-                && (inputControlBox.SelectedIndex > -1) 
-                && (pathBox.Text.Length > 0))
+            if ((modeBox.SelectedIndex > -1)
+                && (loadBox.SelectedIndex > -1)
+                && (inputControlBox.SelectedIndex > -1)
+               && (pathBox.Text.Length > 0))
                 okButton.Enabled = true;
         }
 
@@ -56,11 +56,6 @@ namespace Piano
             settings.InputTypeName = inputControls[inputControlBox.SelectedItem.ToString()].Name;
         }
 
-        private void Path_TextChanged(object sender, EventArgs e)
-        {
-            settings.MelodyLocation = pathBox.Text;
-        }
-
         private void OkClick(object sender, EventArgs e)
         {
             Close();
@@ -72,7 +67,7 @@ namespace Piano
 
             modeBox.Items.AddRange(modes);
             loadBox.Items.AddRange(loaders);
-            inputControlBox.Items.AddRange(controls);  
+            inputControlBox.Items.AddRange(controls);
 
 
             modeBox.Location = new System.Drawing.Point(10, 10);
@@ -84,7 +79,7 @@ namespace Piano
             inputControlBox.Location = new System.Drawing.Point(10, 40);
             inputControlBox.Size = new System.Drawing.Size(200, 60);
 
-            pathBox.Location = new System.Drawing.Point(10, 100);
+            pathBox.Location = new System.Drawing.Point(220, 70);
             pathBox.Size = new System.Drawing.Size(200, 60);
 
             okButton.Location = new System.Drawing.Point(300, 50);
@@ -100,6 +95,7 @@ namespace Piano
             inputControlBox.SelectedIndexChanged += InputControlBox_SelectedIndexChanged;
             okButton.Click += OkClick;
             pathBox.TextChanged += pathBox_TextChanged;
+            pathBox.TextChanged += ComboBox_SelectedIndexChanged;
             inputControlBox.TextChanged += ComboBox_SelectedIndexChanged;
 
 
@@ -107,6 +103,7 @@ namespace Piano
             Controls.Add(modeBox);
             Controls.Add(okButton);
             Controls.Add(inputControlBox);
+            Controls.Add(pathBox);
 
             Location = new System.Drawing.Point(0, 0);
             ClientSize = new System.Drawing.Size(1000, 500);
@@ -116,7 +113,7 @@ namespace Piano
 
         private void pathBox_TextChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            settings.MelodyLocation = pathBox.Text;
         }
     }
 }

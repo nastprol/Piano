@@ -11,9 +11,9 @@ namespace Piano
     public class MelodyFileLoader : IMelodyLoader
     {
         private static readonly Dictionary<string, Note> Notes = NoteSettings.Notes;
-        private readonly GameSettings settings;
+        private readonly LocatorSettings settings;
 
-        public MelodyFileLoader(GameSettings settings)
+        public MelodyFileLoader(LocatorSettings settings)
         {
             this.settings = settings;
         }

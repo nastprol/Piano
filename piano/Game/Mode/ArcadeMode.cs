@@ -22,7 +22,7 @@
         public void Update(int shift)
         {
             map.MapUpdate();
-            MapShiftFromBottom += Shift;
+            MapShiftFromBottom += shift;
         }
 
         public int AddPoints(int point) => point+1;

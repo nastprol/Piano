@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Piano.Control;
-using Piano.Game.State;
 
 namespace Piano
 {
@@ -50,7 +49,7 @@ namespace Piano
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("modes", container.GetAll<IGameMode>().ToArray());
-            container.Bind<IGame>().To<GameState>().InSingletonScope();
+            //container.Bind<IGame>().To<GameState>().InSingletonScope();
             container.Bind<VisualizationSettings>().ToSelf().InSingletonScope();
             container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
             container.Bind<SettingsForm>().ToSelf().InSingletonScope();

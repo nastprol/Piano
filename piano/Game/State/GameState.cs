@@ -1,6 +1,4 @@
-﻿using Piano.Game.State;
-
-namespace Piano
+﻿namespace Piano
 {
     public class GameState 
     {

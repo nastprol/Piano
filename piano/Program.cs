@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Piano.Control;
-using Piano.Game.State;
 using Piano.Loader;
 
 namespace Piano
@@ -50,7 +49,7 @@ namespace Piano
             container.Bind<GameSettings>().ToSelf().InSingletonScope();
             //354
 
-            container.Bind<IGame>().To<GameState>().InSingletonScope();
+            container.Bind<GameState>().To<GameState>().InSingletonScope();
             container.Bind<LoadConfig>().ToSelf().InSingletonScope();
 
             container.Bind<Controller>().ToSelf().InSingletonScope();

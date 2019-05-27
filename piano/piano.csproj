@@ -108,7 +108,6 @@
     <Compile Include="Game\Change\OrderedMapChange.cs" />
     <Compile Include="Game\Change\RandKeyMapChange.cs" />
     <Compile Include="Tests\GameStateTest.cs" />
-    <Compile Include="Game\State\IGame.cs" />
     <Compile Include="GUI\GameForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,14 +1,13 @@
 ﻿using System;
-using Piano.Game.State;
 
 namespace Piano
 {
     public class Controller
     {
         private readonly IInputControl controlType;
-        private readonly IGame game;
+        private readonly GameState game;
 
-        public Controller(IGame game, InputControlSettings settings)
+        public Controller(GameState game, InputControlSettings settings)
         {
             this.controlType = settings.GetInputControlClass();
             this.game = game;

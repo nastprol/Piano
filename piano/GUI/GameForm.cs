@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 using Piano.Control;
-using Piano.Game.State;
 
 namespace Piano
 {
@@ -12,12 +11,12 @@ namespace Piano
     {
         private const int ElementSizeHeight = 100;
         private const int ElementSizeWidth = 50;
-        private readonly IGame state;
+        private readonly GameState state;
         private readonly Timer timer;
         private readonly Stopwatch sw;
         private SoundPlayer player;
 
-        public GameForm(IGame state)
+        public GameForm(GameState state)
         {
             DoubleBuffered = true;
             this.state = state;
@@ -49,10 +48,13 @@ namespace Piano
         {
             var map = state.Map;
             for (var i = 0; i < map.Height; i++)
-            for (var j = 0; j < map.Width; j++)
-                e.Graphics.FillRectangle(new SolidBrush(map[map.Height - i - 1, j].Color), j * ElementSizeWidth,
+                for (var j = 0; j < map.Width; j++)
+                {
+                    Color color = map[map.Height - i - 1, j].IsNote ? Color.Black : Color.White;
+                    e.Graphics.FillRectangle(new SolidBrush(color), j * ElementSizeWidth,
                     i * ElementSizeHeight,
                     ElementSizeWidth, ElementSizeHeight);
+                }
 
             e.Graphics.DrawString(state.GetPoints.ToString(), new Font("Arial", 16), Brushes.Green, 0, 0);
             e.Graphics.DrawString((sw.ElapsedMilliseconds / 1000).ToString(), new Font("Arial", 16), Brushes.Red, 0, 25);

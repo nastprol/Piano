@@ -1,12 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows.Forms;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Piano.Control;
 using Piano.Game.State;
-using Piano.Loader;
 
 namespace Piano
 {
@@ -69,7 +66,6 @@ namespace Piano
                .InSingletonScope()
                .WithConstructorArgument("controls", container.GetAll<IInputControl>().ToArray());
             container.Bind<Controller>().ToSelf().InSingletonScope();
-            container.Bind<GameConstructor>().ToSelf().InSingletonScope();
             container.Bind<InitialForm>().ToSelf().InSingletonScope();
         }
     }

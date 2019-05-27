@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Piano
 {
@@ -17,8 +13,8 @@ namespace Piano
         {
             this.settings = settings;
 
-            foreach (var l in controls)
-                this.controls[l.GetType().Name] = l;
+            foreach (var control in controls)
+                this.controls[control.GetType().Name] = control;
         }
     }
 }

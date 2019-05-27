@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Piano
 {
@@ -16,7 +12,7 @@ namespace Piano
         public ModeSettings(IGameMode[] modes, GameSettings settings)
         {
             this.settings = settings;
-
+            
             foreach (var l in modes)
                 this.modes[l.GetType().Name] = l;
         }

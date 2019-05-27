@@ -1,7 +1,4 @@
 ﻿using Piano.Game.State;
-using System;
-using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace Piano
 {
@@ -17,7 +14,7 @@ namespace Piano
         {
             IsGameEnd = false;
             GetPoints = 0;
-            this.mode = settings.GetMode();
+            mode = settings.GetMode();
             Map = map;
         }
 
@@ -47,11 +44,9 @@ namespace Piano
         private void Update(bool isPressNote)
         {
             IsGameEnd = mode.UpdateIsGameEnd(isPressNote, isFirstMove);
-            if (!IsGameEnd)
-            {
-                GetPoints = mode.UpdatePoints(GetPoints);
-                mode.Update();
-            }
+            if (IsGameEnd) return;
+            GetPoints = mode.UpdatePoints(GetPoints);
+            mode.Update();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Piano
                .ToDictionary(t => ((DescriptionAttribute)Attribute.GetCustomAttribute(t, typeof(DescriptionAttribute))).Name);
             Locators = assembleyTypes
               .Where(t => t.GetInterfaces().Contains(typeof(IMelodyLocator)))
-               .ToDictionary(t => ((DescriptionAttribute)Attribute.GetCustomAttribute(t, typeof(DescriptionAttribute))).Name);            
+               .ToDictionary(t => ((DescriptionAttribute)Attribute.GetCustomAttribute(t, typeof(DescriptionAttribute))).Name);
         }
     }
 }

@@ -7,10 +7,10 @@ namespace Piano
 {
     public class LoadConfig
     {
-        public readonly Dictionary<string, Type> Modes;
-        public readonly Dictionary<string, Type> Loaders;
-        public readonly Dictionary<string, Type> InputControls;
-        public readonly Dictionary<string, Type> Locators;
+        public readonly IReadOnlyDictionary<string, Type> Modes;
+        public readonly IReadOnlyDictionary<string, Type> Loaders;
+        public readonly IReadOnlyDictionary<string, Type> InputControls;
+        public readonly IReadOnlyDictionary<string, Type> Locators;
 
 
         public LoadConfig()

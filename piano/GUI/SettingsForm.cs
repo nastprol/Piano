@@ -79,7 +79,7 @@ namespace Piano
             inputControlBox.Location = new System.Drawing.Point(10, 40);
             inputControlBox.Size = new System.Drawing.Size(200, 60);
 
-            pathBox.Location = new System.Drawing.Point(220, 70);
+            pathBox.Location = new System.Drawing.Point(10, 100);
             pathBox.Size = new System.Drawing.Size(200, 60);
 
             okButton.Location = new System.Drawing.Point(300, 50);

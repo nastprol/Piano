@@ -79,10 +79,10 @@
     <Compile Include="Config\DescriptionAttribute.cs" />
     <Compile Include="Control\IKeyInput.cs" />
     <Compile Include="Control\IMouseInput.cs" />
-    <Compile Include="Control\ISettings.cs" />
     <Compile Include="Control\KeyBoardSettings.cs" />
     <Compile Include="Control\VisualizationSettings.cs" />
     <Compile Include="Config\GameSettings.cs" />
+    <Compile Include="GameConstructor.cs" />
     <Compile Include="GUI\InitialForm.cs">
       <SubType>Form</SubType>
     </Compile>

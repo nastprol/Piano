@@ -11,11 +11,11 @@ namespace Piano
         private readonly GameSettings settings;
         private readonly LoadConfig config;
 
-        public InitialForm(GameForm gameForm, GameSettings settings, LoadConfig config)
+        public InitialForm(GameConstructor constructor, GameSettings settings, LoadConfig config)
         {
             this.config = config;
             this.settings = settings;
-            this.gameForm = gameForm;
+            this.gameForm = constructor.Form;
             InitializeComponent();
         }
 

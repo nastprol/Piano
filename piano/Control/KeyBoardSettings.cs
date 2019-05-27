@@ -4,7 +4,7 @@ using Piano.Control;
 
 namespace Piano
 {
-    public class KeyBoardSettings : ISettings<Keys>
+    public class KeyBoardSettings 
     {
         private readonly Dictionary<Keys, int> controlKeys = new Dictionary<Keys, int>
         {

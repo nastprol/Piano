@@ -8,13 +8,11 @@ namespace Piano
         private readonly Button startButton = new Button();
         private readonly Button settingsButton = new Button();
         private readonly GameForm gameForm;
-        private readonly GameSettings settings;
-        private readonly LoadConfig config;
+        private readonly SettingsForm settingsForm;
 
-        public InitialForm(GameConstructor constructor, GameSettings settings, LoadConfig config)
+        public InitialForm(GameConstructor constructor, SettingsForm settingsForm)
         {
-            this.config = config;
-            this.settings = settings;
+            this.settingsForm = settingsForm;
             this.gameForm = constructor.Form;
             InitializeComponent();
         }
@@ -29,8 +27,7 @@ namespace Piano
         private void ClickSettings(object sender, EventArgs e)
         {
             Hide();
-            var form = new SettingsForm(settings, config);
-            form.ShowDialog();
+            settingsForm.ShowDialog();
             Show();
         }
 

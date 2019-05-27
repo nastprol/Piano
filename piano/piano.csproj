@@ -74,7 +74,7 @@
   <ItemGroup>
     <Compile Include="Config\InputControlSettings.cs" />
     <Compile Include="Config\LocatorSettings.cs" />
-    <Compile Include="Config\ModeConfig.cs" />
+    <Compile Include="Config\ModeSettings.cs" />
     <Compile Include="Control\Controller.cs" />
     <Compile Include="Config\DescriptionAttribute.cs" />
     <Compile Include="Control\IKeyInput.cs" />

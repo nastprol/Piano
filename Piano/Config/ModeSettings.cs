@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Piano
 {
-    public class ModeConfig
+    public class ModeSettings
     {
         private readonly Dictionary<string, IGameMode> modes = new Dictionary<string, IGameMode>();
         public IGameMode GetMode() => modes[settings.ModeTypeName];
 
         private readonly GameSettings settings;
 
-        public ModeConfig(IGameMode[] modes, GameSettings settings)
+        public ModeSettings(IGameMode[] modes, GameSettings settings)
         {
             this.settings = settings;
 

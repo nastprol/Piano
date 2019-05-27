@@ -10,7 +10,7 @@ namespace Piano
 
         public Controller(IGame game, InputControlSettings settings)
         {
-            this.controlType = settings.GetInputControlClass();
+            controlType = settings.GetInputControlClass();
             this.game = game;
             controlType.Subscribe(this);
         }

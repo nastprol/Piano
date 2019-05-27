@@ -82,7 +82,6 @@
     <Compile Include="Control\KeyBoardSettings.cs" />
     <Compile Include="Control\VisualizationSettings.cs" />
     <Compile Include="Config\GameSettings.cs" />
-    <Compile Include="GameConstructor.cs" />
     <Compile Include="GUI\InitialForm.cs">
       <SubType>Form</SubType>
     </Compile>

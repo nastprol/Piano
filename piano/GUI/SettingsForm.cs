@@ -33,10 +33,10 @@ namespace Piano
 
         private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((modeBox.SelectedIndex > -1)
-                && (loadBox.SelectedIndex > -1)
-                && (inputControlBox.SelectedIndex > -1)
-               && (pathBox.Text.Length > 0))
+            if (modeBox.SelectedIndex > -1
+                && loadBox.SelectedIndex > -1
+                && inputControlBox.SelectedIndex > -1
+               && pathBox.Text.Length > 0)
                 okButton.Enabled = true;
         }
 
@@ -63,7 +63,7 @@ namespace Piano
 
         private void InitializeComponent(object[] modes, object[] loaders, object[] controls)
         {
-            this.SuspendLayout();
+            SuspendLayout();
 
             modeBox.Items.AddRange(modes);
             loadBox.Items.AddRange(loaders);

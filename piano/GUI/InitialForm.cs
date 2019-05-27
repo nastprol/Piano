@@ -8,12 +8,14 @@ namespace Piano
         private readonly Button startButton = new Button();
         private readonly Button settingsButton = new Button();
         private readonly GameForm gameForm;
+        private readonly Controller controller;
         private readonly SettingsForm settingsForm;
 
-        public InitialForm(GameConstructor constructor, SettingsForm settingsForm)
+        public InitialForm(GameForm form, Controller controller, SettingsForm settingsForm)
         {
             this.settingsForm = settingsForm;
-            this.gameForm = constructor.Form;
+            gameForm = form;
+            this.controller = controller;
             InitializeComponent();
         }
 
@@ -34,7 +36,7 @@ namespace Piano
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
 
             startButton.Location = new System.Drawing.Point(300, 50);
             startButton.Size = new System.Drawing.Size(80, 30);

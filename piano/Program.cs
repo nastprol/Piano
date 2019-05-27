@@ -65,7 +65,6 @@ namespace Piano
                .InSingletonScope()
                .WithConstructorArgument("controls", container.GetAll<IInputControl>().ToArray());
             container.Bind<Controller>().ToSelf().InSingletonScope();
-            container.Bind<GameConstructor>().ToSelf().InSingletonScope();
             container.Bind<InitialForm>().ToSelf().InSingletonScope();
         }
     }

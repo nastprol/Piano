@@ -1,4 +1,6 @@
-﻿namespace Piano
+﻿using System.Linq;
+
+namespace Piano
 {
     public class Melody
     {

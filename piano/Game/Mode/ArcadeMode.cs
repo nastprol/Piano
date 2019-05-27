@@ -3,7 +3,7 @@
     [Description("Аркада")]
     public class ArcadeMode : IGameMode
     {
-        private int shift = 30;
+        private const int Shift = 30;
         private readonly Map map;
 
         public int MapShiftFromBottom { get; private set; }
@@ -23,15 +23,15 @@
         public void Update()
         {
             map.MapUpdate();
-            MapShiftFromBottom+=shift;
+            MapShiftFromBottom += Shift;
         }
 
-        public int UpdatePoints(int point) => point+1;
+        public int UpdatePoints(int point) => point + 1;
 
         public void UpdateTimerTick(bool isFirstMove)
         {
             if (isFirstMove) return;
-            MapShiftFromBottom-=shift;
+            MapShiftFromBottom -= Shift;
         }
     }
 }

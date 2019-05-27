@@ -26,7 +26,7 @@ namespace Piano
             FormBorderStyle = FormBorderStyle.FixedDialog;
             timer = new Timer();
             timer.Tick += TimerTick;
-            timer.Interval = 6000;
+            timer.Interval = 60;
             sw = new Stopwatch();
             player = new SoundPlayer();
         }
@@ -47,6 +47,7 @@ namespace Piano
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            e.Graphics.TranslateTransform(0, state.MapShiftFromBottom);
             var map = state.Map;
             for (var i = 0; i < map.Height; i++)
             for (var j = 0; j < map.Width; j++)
@@ -54,6 +55,7 @@ namespace Piano
                     i * ElementSizeHeight,
                     ElementSizeWidth, ElementSizeHeight);
 
+            e.Graphics.ResetTransform();
             e.Graphics.DrawString(state.GetPoints.ToString(), new Font("Arial", 16), Brushes.Green, 0, 0);
             e.Graphics.DrawString((sw.ElapsedMilliseconds / 1000).ToString(), new Font("Arial", 16), Brushes.Red, 0, 25);
         }

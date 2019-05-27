@@ -7,6 +7,8 @@
         Map Map { get; }
         Note MakeMove(int keyNumber);
 
+        int MapShiftFromBottom { get; }
+
         void Update();
     }
 }

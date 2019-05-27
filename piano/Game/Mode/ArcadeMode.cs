@@ -23,15 +23,15 @@
         public void Update()
         {
             map.MapUpdate();
-            MapShiftFromBottom+=shift;
+            MapShiftFromBottom += shift;
         }
 
-        public int UpdatePoints(int point) => point+1;
+        public int UpdatePoints(int point) => point + 1;
 
         public void UpdateTimerTick(bool isFirstMove)
         {
             if (isFirstMove) return;
-            MapShiftFromBottom-=shift;
+            MapShiftFromBottom -= shift;
         }
     }
 }

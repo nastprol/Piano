@@ -8,9 +8,9 @@ namespace Piano
         private readonly Dictionary<string, IGameMode> modes = new Dictionary<string, IGameMode>();
         private readonly Dictionary<string, IMelodyLoader> loaders = new Dictionary<string, IMelodyLoader>();
 
-        public string InputTypeName { private get; set; }
-        public string ModeTypeName { private get; set; }
-        public string LoaderTypeName { private get; set; }
+        public string InputTypeName { get; set; }
+        public string ModeTypeName { get; set; }
+        public string LoaderTypeName { get; set; }
 
         public GameSettings(IInputControl[] inputControls, IGameMode[] modes, IMelodyLoader[] loaders)
         {

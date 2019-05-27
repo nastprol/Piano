@@ -26,6 +26,7 @@ namespace Piano
             container.Bind<Melody>().ToSelf().InSingletonScope();
             container.Bind<PianoKey>().ToSelf().InSingletonScope();
             container.Bind<MapSettings>().ToSelf().InSingletonScope();
+            container.Bind<KeySettings>().ToSelf().InSingletonScope();
             container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
             container.Bind<FileLocator>().ToSelf().InSingletonScope();
             container.Bind<StandardMelodyLocator>().ToSelf().InSingletonScope();

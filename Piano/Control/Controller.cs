@@ -14,8 +14,6 @@ namespace Piano
             controlType.Subscribe(this);
         }
 
-        public Note Note { get; private set; }
-
         public void MakeStep(object sender, EventArgs e)
         {
             var inputKey = controlType.MakeInput(e);

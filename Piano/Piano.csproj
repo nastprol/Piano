@@ -91,6 +91,8 @@
     </Compile>
     <Compile Include="Config\LoadConfig.cs" />
     <Compile Include="Config\LoaderSettings.cs" />
+    <Compile Include="IGameFactory.cs" />
+    <Compile Include="KeySettings.cs" />
     <Compile Include="Loader\NoteSettings.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

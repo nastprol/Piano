@@ -9,7 +9,7 @@
 //        [Test]
 //        public void MakeFirstMove()
 //        {
-//            var melody = new Melody(new[] {Note.Do, Note.La});
+//            var melody = new Melody(new[] {Note.C, Note.A});
 //            var mapCh = new TestMapChange();
 //            var map = new Map(new MapSettings(), melody, mapCh);
 //            var game = new GameState( map, new GameSettings());
@@ -22,7 +22,7 @@
 //        [Test]
 //        public void MakeMoreMoveClassicMode()
 //        {
-//            var melody = new Melody(new[] {Note.Do, Note.La});
+//            var melody = new Melody(new[] {Note.C, Note.A});
 //            var mapCh = new TestMapChange();
 //            var map = new Map(new MapSettings(), melody, mapCh);
 //            var game = new GameState(new ClassicMode(map), map);
@@ -36,7 +36,7 @@
 //        //[Test]
 //        //public void MakeEndMove()
 //        //{
-//        //    var melody = new Melody(new Note[] { Note.Do, Note.La });
+//        //    var melody = new Melody(new Note[] { Note.C, Note.A });
 //        //    var mapCh = new TestMapChange();
 //        //    var map = new Map(new MapSettings(), melody, mapCh);
 //        //    var game = new GameState(new ClassicMode(map, mapCh, melody), melody, map);
@@ -52,7 +52,7 @@
 //        //public void LimitEndClassicMode()
 //        //{
 //        //    TimeSpan interval = new TimeSpan(0,1,0);
-//        //    var game = new GameState(new ClassicMode(), new TestMapChange(), new Melody(new Note[] { Note.Do, Note.La }), 3, 4);
+//        //    var game = new GameState(new ClassicMode(), new TestMapChange(), new Melody(new Note[] { Note.C, Note.A }), 3, 4);
 //        //    game.MakeMove(0);
 //        //    Thread.Sleep(interval);
 //        //    Assert.Catch<Exception>(() => game.MakeMove(0));

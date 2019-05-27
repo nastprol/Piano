@@ -49,7 +49,7 @@ namespace Piano
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("modes", container.GetAll<IGameMode>().ToArray());
-            //container.Bind<IGame>().To<GameState>().InSingletonScope();
+            container.Bind<GameState>().ToSelf().InSingletonScope();
             container.Bind<VisualizationSettings>().ToSelf().InSingletonScope();
             container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
             container.Bind<SettingsForm>().ToSelf().InSingletonScope();

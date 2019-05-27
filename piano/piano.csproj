@@ -96,6 +96,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SoundsBase.cs" />
     <Compile Include="Tests\TestControl.cs" />
     <Compile Include="Tests\TestMapChange.cs" />
     <Compile Include="Game\MapSettings.cs" />
@@ -135,17 +136,17 @@
     <Content Include="1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\A#.wav" />
+    <Content Include="Resources\ASharp.wav" />
     <Content Include="Resources\A.wav" />
     <Content Include="Resources\B.wav" />
-    <Content Include="Resources\C#.wav" />
+    <Content Include="Resources\CSharp.wav" />
     <Content Include="Resources\C.wav" />
-    <Content Include="Resources\D#.wav" />
+    <Content Include="Resources\DSharp.wav" />
     <Content Include="Resources\D.wav" />
     <Content Include="Resources\E.wav" />
-    <Content Include="Resources\F#.wav" />
+    <Content Include="Resources\FSharp.wav" />
     <Content Include="Resources\F.wav" />
-    <Content Include="Resources\G#.wav" />
+    <Content Include="Resources\GSharp.wav" />
     <Content Include="Resources\G.wav" />
   </ItemGroup>
   <ItemGroup>

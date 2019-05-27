@@ -13,7 +13,7 @@
 //        {
 //            var loader = new MelodyFileLoader();
 //            var melody = loader.Load(new FileLocator("C:\\Users\\Настя\\Desktop\\piano\\1.txt"));
-//            var expected = new Melody(new[]{Note.Do, Note.Re, Note.Mi, Note.Fa, Note.La, Note.Si, Note.Sol});
+//            var expected = new Melody(new[]{Note.C, Note.D, Note.E, Note.F, Note.A, Note.B, Note.G});
 //            Assert.AreEqual(expected, melody);
 //        }
 //    }

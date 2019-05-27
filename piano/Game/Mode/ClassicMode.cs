@@ -27,7 +27,7 @@ namespace Piano
         public void UpdateTimerTick(bool isFirstMove)
         {
             if (isFirstMove) return;
-            MapShiftFromBottom -= 1;
+            MapShiftFromBottom = MapShiftFromBottom > 0 ? MapShiftFromBottom - 15 : MapShiftFromBottom;
         }
 
         public void Update(int shift)

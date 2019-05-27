@@ -2,17 +2,17 @@
 {
     public enum Note
     {
-        Do,
-        Re,
-        Mi,
-        Fa,
-        Sol,
-        La,
-        Si,
-        Do_Sharp,
-        Re_Sharp,
-        Fa_Sharp,
-        Sol_Sharp,
-        La_Sharp
+        C,
+        D,
+        E,
+        F,
+        G,
+        A,
+        B,
+        CSharp,
+        DSharp,
+        FSharp,
+        GSharp,
+        ASharp
     }
 }

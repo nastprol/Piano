@@ -15,10 +15,10 @@ namespace Piano
 
         private readonly GameSettings settings;
 
-        private readonly Dictionary<string, Type> modes;
-        private readonly Dictionary<string, Type> loaders;
-        private readonly Dictionary<string, Type> inputControls;
-        private readonly Dictionary<string, Type> locators;
+        private readonly IReadOnlyDictionary<string, Type> modes;
+        private readonly IReadOnlyDictionary<string, Type> loaders;
+        private readonly IReadOnlyDictionary<string, Type> inputControls;
+        private readonly IReadOnlyDictionary<string, Type> locators;
 
         public SettingsForm(GameSettings settings, LoadConfig config)
         {

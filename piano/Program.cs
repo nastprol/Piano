@@ -1,12 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows.Forms;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Piano.Control;
 using Piano.Game.State;
-using Piano.Loader;
 
 namespace Piano
 {
@@ -24,7 +21,6 @@ namespace Piano
 
         public static void ContainerBinding(StandardKernel container)
         {
-           // container.Bind<DescriptionAttribute>().ToSelf().InSingletonScope();
             container.Bind<GameSettings>().ToSelf().InSingletonScope();
             container.Bind<LoadConfig>().ToSelf().InSingletonScope();
             container.Bind<Note>().ToSelf().InSingletonScope();
@@ -59,8 +55,8 @@ namespace Piano
             container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
             container.Bind<SettingsForm>().ToSelf().InSingletonScope();
             container.Bind<GameForm>().ToSelf().InSingletonScope();
-            container.Bind<IMouseInput>().To<GameForm>().InSingletonScope();
-            container.Bind<IKeyInput>().To<GameForm>().InSingletonScope();
+            container.Bind<IMouseInput>().ToMethod(c => c.Kernel.Get<GameForm>()).InSingletonScope();
+            container.Bind<IKeyInput>().ToMethod(c => c.Kernel.Get<GameForm>()).InSingletonScope();
             container.Bind<KeyBoardInputControl>().ToSelf().InSingletonScope();
             container.Bind<MouseInputControl>().ToSelf().InSingletonScope();
             container.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom<IInputControl>().BindAllInterfaces());

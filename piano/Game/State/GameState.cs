@@ -25,7 +25,7 @@ namespace Piano
         public event Action<Note> NoteClick;
         public event Action Start;
 
-        public Note MakeMove(int keyNumber)
+        public void MakeMove(int keyNumber)
         {
             if (isFirstMove)
             {
@@ -39,7 +39,6 @@ namespace Piano
             pianoKey.Press();
             Update(isPressNote);
             NoteClick?.Invoke(pianoKey.Note);
-            return pianoKey.Note;
         }
 
         public void Update()

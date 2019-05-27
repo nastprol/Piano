@@ -20,7 +20,7 @@ namespace Piano
         {
             var inputKey = controlType.MakeInput(e);
             if (inputKey != null)
-                Note = game.MakeMove(inputKey.Value);
+                game.MakeMove(inputKey.Value);
         }
     }
 }

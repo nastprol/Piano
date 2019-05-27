@@ -7,11 +7,12 @@ namespace Piano
     {
         private readonly Map map;
 
-        public int MapShiftFromBottom => 0;
+        public int MapShiftFromBottom { get; private set; }
 
         public ClassicMode(Map map)
         {
             this.map = map;
+            MapShiftFromBottom = 0;
         }        
         
 
@@ -25,12 +26,14 @@ namespace Piano
 
         public void UpdateTimerTick(bool isFirstMove)
         {
-           
+            if (isFirstMove) return;
+            MapShiftFromBottom -= 1;
         }
 
         public void Update(int shift)
         {
             map.MapUpdate();
+            MapShiftFromBottom += shift;
         }
     }
 }

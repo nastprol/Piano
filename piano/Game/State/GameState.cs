@@ -12,6 +12,7 @@ namespace Piano
         public int MapShiftFromBottom => mode.MapShiftFromBottom;
 
         public event Action<Note> NoteClick;
+        public event Action Start;
 
         public GameState(Map map, ModeSettings settings)
         {
@@ -27,6 +28,7 @@ namespace Piano
         {
             if (isFirstMove)
             {
+                Start?.Invoke();
                 isFirstMove = false;
             }
 

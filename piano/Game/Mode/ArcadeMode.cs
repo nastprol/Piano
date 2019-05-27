@@ -16,7 +16,7 @@
         public bool CheckIsGameEnd(bool isPressNote, bool isFirstMove)
         {
             if (isFirstMove) return false;
-            return !isPressNote || MapShiftFromBottom < 0;
+            return !isPressNote || MapShiftFromBottom < -100;
         }
 
         public void Update(int shift)
@@ -30,7 +30,7 @@
         public void UpdateTimerTick(bool isFirstMove)
         {
             if (isFirstMove) return;
-            MapShiftFromBottom-=1;
+            MapShiftFromBottom-=5;
         }
     }
 }

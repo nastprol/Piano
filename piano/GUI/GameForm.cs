@@ -29,6 +29,13 @@ namespace Piano
             timer.Interval = 17;
             sw = new Stopwatch();
             state.NoteClick += PlayNote;
+            state.Start += Start;
+        }
+
+        private void Start()
+        {
+            timer.Start();
+            sw.Start();
         }
 
         private void PlayNote(Note note)
@@ -38,14 +45,14 @@ namespace Piano
 
         protected override void OnLoad(EventArgs e)
         {
-            timer.Start();
-            sw.Start();
+            
         }
 
         private void GameOver()
         {
             timer.Stop();
             sw.Stop();
+            sw.Reset();
             MessageBox.Show(@"Game over :(");
             Close();
         }

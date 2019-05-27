@@ -2,8 +2,10 @@
 
 namespace Piano
 {
-    public class GameState : IGame
+    public class GameState 
     {
+
+        private int shift = 30;
         private bool isFirstMove = true;
         private readonly IGameMode mode;
         public int GetPoints { get; private set; }
@@ -37,16 +39,18 @@ namespace Piano
 
         public void Update()
         {
-            IsGameEnd = mode.UpdateIsGameEnd(true, isFirstMove);
+            IsGameEnd = mode.CheckIsGameEnd(true, isFirstMove);
             mode.UpdateTimerTick(isFirstMove);
         }
         
         private void Update(bool isPressNote)
         {
-            IsGameEnd = mode.UpdateIsGameEnd(isPressNote, isFirstMove);
-            if (IsGameEnd) return;
-            GetPoints = mode.UpdatePoints(GetPoints);
-            mode.Update();
+            IsGameEnd = mode.CheckIsGameEnd(isPressNote, isFirstMove);
+            if (!IsGameEnd)
+            {
+                GetPoints = mode.AddPoints(GetPoints);
+                mode.Update(shift);
+            }
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Piano.Control;
-using Piano.Game.State;
+using Piano.Loader;
 
 namespace Piano
 {
@@ -21,52 +22,60 @@ namespace Piano
 
         public static void ContainerBinding(StandardKernel container)
         {
-           // container.Bind<DescriptionAttribute>().ToSelf().InSingletonScope();
-            container.Bind<GameSettings>().ToSelf().InSingletonScope();
-            container.Bind<LoadConfig>().ToSelf().InSingletonScope();
-            container.Bind<Note>().ToSelf().InSingletonScope();
+            container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
+
+            container.Bind<DescriptionAttribute>().ToSelf().InSingletonScope();
+            container.Bind<VisualizationSettings>().ToSelf().InSingletonScope();
+            container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
+
+            container.Bind<Map>().ToSelf().InSingletonScope();
+            container.Bind<MapSettings>().ToSelf().InSingletonScope();
             container.Bind<Melody>().ToSelf().InSingletonScope();
             container.Bind<PianoKey>().ToSelf().InSingletonScope();
-            container.Bind<MapSettings>().ToSelf().InSingletonScope();
-            container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
-            container.Bind<FileLocator>().ToSelf().InSingletonScope();
-            container.Bind<StandardMelodyLocator>().ToSelf().InSingletonScope();
-            container.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom<IMelodyLocator>().BindAllInterfaces());
-            container.Bind<LocatorSettings>()
-               .ToSelf()
-               .InSingletonScope()
-               .WithConstructorArgument("locators", container.GetAll<IMelodyLocator>().ToArray());
-            container.Bind<MelodyFileLoader>().ToSelf().InSingletonScope();
-            container.Bind<StandardMelodyLoader>().ToSelf().InSingletonScope();
-            container.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom<IMelodyLoader>().BindAllInterfaces());
-            container.Bind<LoaderSettings>()
-               .ToSelf()
-               .InSingletonScope()
-               .WithConstructorArgument("loaders", container.GetAll<IMelodyLoader>().ToArray());
-            container.Bind<Map>().ToSelf().InSingletonScope();
-            container.Bind<ClassicMode>().ToSelf().InSingletonScope();
-            container.Bind<ArcadeMode>().ToSelf().InSingletonScope();
+            container.Bind<Note>().ToSelf().InSingletonScope();
+            container.Bind<InitialForm>().ToSelf().InSingletonScope();
+            container.Bind<SettingsForm>().ToSelf().InSingletonScope();
+
             container.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom<IGameMode>().BindAllInterfaces());
-            container.Bind<ModeSettings>()
+            container.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom<IMelodyLoader>().BindAllInterfaces());
+            container.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom<IInputControl>().BindAllInterfaces());
+            container.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom<IMelodyLocator>().BindAllInterfaces());
+
+            container.Bind<IKeyInput>().To<GameForm>().InSingletonScope();
+            container.Bind<IMouseInput>().To<GameForm>().InSingletonScope();
+            container.Bind<KeyBoardInputControl>().ToSelf().InSingletonScope();
+            container.Bind<MouseInputControl>().ToSelf().InSingletonScope();
+
+            container.Bind<GameSettings>().ToSelf().InSingletonScope();
+            //354
+
+            container.Bind<GameState>().To<GameState>().InSingletonScope();
+            container.Bind<LoadConfig>().ToSelf().InSingletonScope();
+
+            container.Bind<Controller>().ToSelf().InSingletonScope();
+
+            container.Bind<GameConstructor>().ToSelf().InSingletonScope();
+            container.Bind<GameForm>().ToSelf().InSingletonScope();
+
+            container.Bind<LoaderSettings>()
+                .ToSelf()
+                .InSingletonScope()
+                .WithConstructorArgument("loaders", container.GetAll<IMelodyLoader>().ToArray());
+
+            container.Bind<LocatorSettings>()
+                .ToSelf()
+                .InSingletonScope()
+                .WithConstructorArgument("locators", container.GetAll<IMelodyLocator>().ToArray());
+
+            container.Bind<InputControlSettings>()
+                .ToSelf()
+                .InSingletonScope()
+                .WithConstructorArgument("controls", container.GetAll<IInputControl>().ToArray());
+
+            container.Bind<ModeConfig>()
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("modes", container.GetAll<IGameMode>().ToArray());
-            container.Bind<IGame>().To<GameState>().InSingletonScope();
-            container.Bind<VisualizationSettings>().ToSelf().InSingletonScope();
-            container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
-            container.Bind<SettingsForm>().ToSelf().InSingletonScope();
-            container.Bind<GameForm>().ToSelf().InSingletonScope();
-            container.Bind<IMouseInput>().To<GameForm>().InSingletonScope();
-            container.Bind<IKeyInput>().To<GameForm>().InSingletonScope();
-            container.Bind<KeyBoardInputControl>().ToSelf().InSingletonScope();
-            container.Bind<MouseInputControl>().ToSelf().InSingletonScope();
-            container.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom<IInputControl>().BindAllInterfaces());
-            container.Bind<InputControlSettings>()
-               .ToSelf()
-               .InSingletonScope()
-               .WithConstructorArgument("controls", container.GetAll<IInputControl>().ToArray());
-            container.Bind<Controller>().ToSelf().InSingletonScope();
-            container.Bind<InitialForm>().ToSelf().InSingletonScope();
         }
     }
 }

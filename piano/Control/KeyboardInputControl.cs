@@ -11,7 +11,7 @@ namespace Piano
         private readonly IKeyInput input;
         private readonly IReadOnlyDictionary<Keys, int> controlKeys;
 
-        public KeyBoardInputControl(ISettings<Keys> settings, IKeyInput input)
+        public KeyBoardInputControl(KeyBoardSettings settings, IKeyInput input)
         {
             this.input = input;
             controlKeys = settings.ControlTools;

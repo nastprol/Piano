@@ -11,10 +11,17 @@ namespace Piano
     public class MelodyFileLoader : IMelodyLoader
     {
         private static readonly Dictionary<string, Note> Notes = NoteSettings.Notes;
+        private readonly LocatorSettings settings;
 
-        public Melody Load(IMelodyLocator locator)
+        public MelodyFileLoader(LocatorSettings settings)
+        {
+            this.settings = settings;
+        }
+
+        public Melody Load()
         {
             string text;
+            var locator = settings.GetLocator();
             using (var sr = new StreamReader(locator.GetLocation(), Encoding.Default))
                 text = sr.ReadToEnd();
 

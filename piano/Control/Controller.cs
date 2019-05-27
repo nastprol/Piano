@@ -8,9 +8,9 @@ namespace Piano
         private readonly IInputControl controlType;
         private readonly IGame game;
 
-        public Controller(IInputControl controlType, IGame game)
+        public Controller(IGame game, InputControlSettings settings)
         {
-            this.controlType = controlType;
+            this.controlType = settings.GetInputControlClass();
             this.game = game;
             controlType.Subscribe(this);
         }

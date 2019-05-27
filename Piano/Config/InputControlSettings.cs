@@ -5,7 +5,6 @@ namespace Piano
     public class InputControlSettings
     {
         private readonly Dictionary<string, IInputControl> controls = new Dictionary<string, IInputControl>();
-        public IInputControl GetInputControlClass() => controls[settings.InputTypeName];
 
         private readonly GameSettings settings;
 
@@ -15,6 +14,11 @@ namespace Piano
 
             foreach (var control in controls)
                 this.controls[control.GetType().Name] = control;
+        }
+
+        public IInputControl GetInputControlClass()
+        {
+            return controls[settings.InputTypeName];
         }
     }
 }

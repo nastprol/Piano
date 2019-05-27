@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Media;
-using System.Resources;
 using System.Threading;
-using System.Threading.Tasks;
 using Piano.Properties;
 
 namespace Piano
@@ -17,7 +14,7 @@ namespace Piano
 
         public SoundsBase()
         {
-            foreach (var note in (Note[])Enum.GetValues(typeof(Note)))
+            foreach (var note in (Note[]) Enum.GetValues(typeof(Note)))
             {
                 var stream = (Stream) Resources.ResourceManager.GetObject(note.ToString());
                 var player = new SoundPlayer(stream);

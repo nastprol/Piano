@@ -1,16 +1,15 @@
-﻿using System.Linq;
-
-namespace Piano
+﻿namespace Piano
 {
     public class Melody
     {
+        private readonly Note[] notes;
+
         public Melody(Note[] notes)
         {
             this.notes = notes;
             Count = notes.Length;
         }
 
-        private readonly Note[] notes;
         public int Count { get; }
 
         public Note this[int index] => notes[index];
@@ -27,10 +26,7 @@ namespace Piano
         {
             var hash = 0;
             var prime = 2017;
-            foreach (var n in notes)
-            {
-                hash += (hash * (int)n) ^ prime;
-            }
+            foreach (var n in notes) hash += (hash * (int) n) ^ prime;
             return hash;
         }
     }

@@ -7,7 +7,7 @@
 
         public FileLocator(GameSettings settings)
         {
-            this.path = settings.MelodyLocation;
+            path = settings.MelodyLocation;
         }
 
         public string GetLocation()

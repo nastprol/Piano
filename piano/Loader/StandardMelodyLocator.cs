@@ -7,7 +7,7 @@
 
         public StandardMelodyLocator(GameSettings settings)
         {
-            this.index = settings.MelodyLocation;
+            index = settings.MelodyLocation;
         }
 
         public string GetLocation()

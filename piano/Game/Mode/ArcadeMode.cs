@@ -5,13 +5,13 @@
     {
         private readonly Map map;
 
-        public int MapShiftFromBottom { get; private set; }
-
         public ArcadeMode(Map map)
         {
             this.map = map;
             MapShiftFromBottom = 0;
         }
+
+        public int MapShiftFromBottom { get; private set; }
 
         public bool CheckIsGameEnd(bool isPressNote, bool isFirstMove)
         {
@@ -25,12 +25,15 @@
             MapShiftFromBottom += shift;
         }
 
-        public int AddPoints(int point) => point+1;
+        public int AddPoints(int point)
+        {
+            return point + 1;
+        }
 
         public void UpdateTimerTick(bool isFirstMove)
         {
             if (isFirstMove) return;
-            MapShiftFromBottom-=5;
+            MapShiftFromBottom -= 5;
         }
     }
 }

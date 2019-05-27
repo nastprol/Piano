@@ -1,9 +1,8 @@
-﻿using Piano.Loader;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Piano.Loader;
 
 namespace Piano
 {
@@ -23,7 +22,9 @@ namespace Piano
             string text;
             var locator = settings.GetLocator();
             using (var sr = new StreamReader(locator.GetLocation(), Encoding.Default))
+            {
                 text = sr.ReadToEnd();
+            }
 
             var notes = ParseTextToNotes(text).ToArray();
             return new Melody(notes);

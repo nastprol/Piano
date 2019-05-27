@@ -4,15 +4,9 @@ namespace Piano
 {
     public class GameState
     {
-        private int shift = 100;
-        private bool isFirstMove = true;
         private readonly IGameMode mode;
-        public int GetPoints { get; private set; }
-        public bool IsGameEnd { get; private set; }
-        public int MapShiftFromBottom => mode.MapShiftFromBottom;
-
-        public event Action<Note> NoteClick;
-        public event Action Start;
+        private bool isFirstMove = true;
+        private readonly int shift = 100;
 
         public GameState(Map map, ModeSettings settings)
         {
@@ -22,7 +16,14 @@ namespace Piano
             Map = map;
         }
 
+        public int GetPoints { get; private set; }
+        public bool IsGameEnd { get; private set; }
+        public int MapShiftFromBottom => mode.MapShiftFromBottom;
+
         public Map Map { get; }
+
+        public event Action<Note> NoteClick;
+        public event Action Start;
 
         public Note MakeMove(int keyNumber)
         {
@@ -46,7 +47,7 @@ namespace Piano
             IsGameEnd = mode.CheckIsGameEnd(true, isFirstMove);
             mode.UpdateTimerTick(isFirstMove);
         }
-        
+
         private void Update(bool isPressNote)
         {
             IsGameEnd = mode.CheckIsGameEnd(isPressNote, isFirstMove);

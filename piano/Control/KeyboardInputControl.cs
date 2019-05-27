@@ -8,8 +8,8 @@ namespace Piano
     [Description("Управление клавиатурой")]
     public class KeyBoardInputControl : IInputControl
     {
-        private readonly IKeyInput input;
         private readonly IReadOnlyDictionary<Keys, int> controlKeys;
+        private readonly IKeyInput input;
 
         public KeyBoardInputControl(KeyBoardSettings settings, IKeyInput input)
         {

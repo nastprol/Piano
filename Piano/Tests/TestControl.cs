@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-using NUnit.Framework;
-using Piano;
+﻿using NUnit.Framework;
 
 namespace Prime.UnitTests.Services
 {

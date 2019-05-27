@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -7,18 +8,18 @@ namespace Piano
 {
     public class SettingsForm : Form
     {
-        private readonly ComboBox modeBox = new ComboBox();
-        private readonly ComboBox loadBox = new ComboBox();
         private readonly ComboBox inputControlBox = new ComboBox();
+        private readonly IReadOnlyDictionary<string, Type> inputControls;
+        private readonly ComboBox loadBox = new ComboBox();
+        private readonly IReadOnlyDictionary<string, Type> loaders;
+        private readonly IReadOnlyDictionary<string, Type> locators;
+        private readonly ComboBox modeBox = new ComboBox();
+
+        private readonly IReadOnlyDictionary<string, Type> modes;
         private readonly Button okButton = new Button();
         private readonly TextBox pathBox = new TextBox();
 
         private readonly GameSettings settings;
-
-        private readonly IReadOnlyDictionary<string, Type> modes;
-        private readonly IReadOnlyDictionary<string, Type> loaders;
-        private readonly IReadOnlyDictionary<string, Type> inputControls;
-        private readonly IReadOnlyDictionary<string, Type> locators;
 
         public SettingsForm(GameSettings settings, LoadConfig config)
         {
@@ -36,7 +37,7 @@ namespace Piano
             if (modeBox.SelectedIndex > -1
                 && loadBox.SelectedIndex > -1
                 && inputControlBox.SelectedIndex > -1
-               && pathBox.Text.Length > 0)
+                && pathBox.Text.Length > 0)
                 okButton.Enabled = true;
         }
 
@@ -70,20 +71,20 @@ namespace Piano
             inputControlBox.Items.AddRange(controls);
 
 
-            modeBox.Location = new System.Drawing.Point(10, 10);
-            modeBox.Size = new System.Drawing.Size(200, 60);
+            modeBox.Location = new Point(10, 10);
+            modeBox.Size = new Size(200, 60);
 
-            loadBox.Location = new System.Drawing.Point(10, 70);
-            loadBox.Size = new System.Drawing.Size(200, 60);
+            loadBox.Location = new Point(10, 70);
+            loadBox.Size = new Size(200, 60);
 
-            inputControlBox.Location = new System.Drawing.Point(10, 40);
-            inputControlBox.Size = new System.Drawing.Size(200, 60);
+            inputControlBox.Location = new Point(10, 40);
+            inputControlBox.Size = new Size(200, 60);
 
-            pathBox.Location = new System.Drawing.Point(10, 100);
-            pathBox.Size = new System.Drawing.Size(200, 60);
+            pathBox.Location = new Point(10, 100);
+            pathBox.Size = new Size(200, 60);
 
-            okButton.Location = new System.Drawing.Point(300, 50);
-            okButton.Size = new System.Drawing.Size(60, 30);
+            okButton.Location = new Point(300, 50);
+            okButton.Size = new Size(60, 30);
             okButton.Text = "OK";
             okButton.Enabled = false;
 
@@ -105,8 +106,8 @@ namespace Piano
             Controls.Add(inputControlBox);
             Controls.Add(pathBox);
 
-            Location = new System.Drawing.Point(0, 0);
-            ClientSize = new System.Drawing.Size(1000, 500);
+            Location = new Point(0, 0);
+            ClientSize = new Size(1000, 500);
             Name = "Game settings";
             ResumeLayout(false);
         }

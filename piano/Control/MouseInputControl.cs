@@ -9,8 +9,8 @@ namespace Piano
     [Description("Управление мышкой")]
     public class MouseInputControl : IInputControl
     {
-        private readonly IMouseInput input;
         private readonly IReadOnlyDictionary<(Point topLeft, Point bottomRight), int> controlLocations;
+        private readonly IMouseInput input;
 
         public MouseInputControl(VisualizationSettings settings, IMouseInput input)
         {
@@ -38,6 +38,7 @@ namespace Piano
                     continue;
                 return coords.Value;
             }
+
             return null;
         }
     }

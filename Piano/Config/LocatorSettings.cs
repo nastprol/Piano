@@ -5,7 +5,6 @@ namespace Piano
     public class LocatorSettings
     {
         private readonly Dictionary<string, IMelodyLocator> locators = new Dictionary<string, IMelodyLocator>();
-        public IMelodyLocator GetLocator() => locators[settings.MelodyLocator];
 
         private readonly GameSettings settings;
 
@@ -15,6 +14,11 @@ namespace Piano
 
             foreach (var l in locators)
                 this.locators[l.GetType().Name] = l;
+        }
+
+        public IMelodyLocator GetLocator()
+        {
+            return locators[settings.MelodyLocator];
         }
     }
 }

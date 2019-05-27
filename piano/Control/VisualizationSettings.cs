@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using Piano.Control;
 
 namespace Piano
 {
-    public class VisualizationSettings 
+    public class VisualizationSettings
     {
         private readonly Dictionary<(Point topLeft, Point bottomRight), int> controlLocations =
             new Dictionary<(Point topLeft, Point bottomRight), int>

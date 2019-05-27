@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Piano
 {
     public class InitialForm : Form
     {
-        private readonly Button startButton = new Button();
-        private readonly Button settingsButton = new Button();
-        private readonly GameForm gameForm;
         private readonly Controller controller;
+        private readonly GameForm gameForm;
+        private readonly Button settingsButton = new Button();
         private readonly SettingsForm settingsForm;
+        private readonly Button startButton = new Button();
 
         public InitialForm(GameForm form, Controller controller, SettingsForm settingsForm)
         {
@@ -38,12 +39,12 @@ namespace Piano
         {
             SuspendLayout();
 
-            startButton.Location = new System.Drawing.Point(300, 50);
-            startButton.Size = new System.Drawing.Size(80, 30);
+            startButton.Location = new Point(300, 50);
+            startButton.Size = new Size(80, 30);
             startButton.Text = "Start";
 
-            settingsButton.Location = new System.Drawing.Point(100, 50);
-            settingsButton.Size = new System.Drawing.Size(80, 30);
+            settingsButton.Location = new Point(100, 50);
+            settingsButton.Size = new Size(80, 30);
             settingsButton.Text = "Settings";
             Controls.Add(settingsButton);
             Controls.Add(startButton);
@@ -51,8 +52,8 @@ namespace Piano
             startButton.Click += ClickStart;
             settingsButton.Click += ClickSettings;
 
-            Location = new System.Drawing.Point(0, 0);
-            ClientSize = new System.Drawing.Size(1000, 500);
+            Location = new Point(0, 0);
+            ClientSize = new Size(1000, 500);
             Name = "Menu";
             ResumeLayout(false);
         }

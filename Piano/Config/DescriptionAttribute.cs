@@ -4,10 +4,11 @@ namespace Piano
 {
     public class DescriptionAttribute : Attribute
     {
-        public string Name { get; }
         public DescriptionAttribute(string description)
         {
             Name = description;
         }
+
+        public string Name { get; }
     }
 }

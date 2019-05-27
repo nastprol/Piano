@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Piano.Loader
 {
@@ -12,7 +10,7 @@ namespace Piano.Loader
 
         static NoteSettings()
         {
-            Notes = ((Note[])Enum.GetValues(typeof(Note))).ToDictionary(n => n.ToString());
+            Notes = ((Note[]) Enum.GetValues(typeof(Note))).ToDictionary(n => n.ToString());
         }
     }
 }

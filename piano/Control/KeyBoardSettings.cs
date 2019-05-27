@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
-using Piano.Control;
 
 namespace Piano
 {
-    public class KeyBoardSettings 
+    public class KeyBoardSettings
     {
         private readonly Dictionary<Keys, int> controlKeys = new Dictionary<Keys, int>
         {

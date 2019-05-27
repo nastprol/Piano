@@ -4,11 +4,10 @@ namespace Piano
 {
     public class Map
     {
+        private readonly PianoKey[,] keys;
         private readonly IMapChange mapChange;
         private readonly int melodyLength;
         private int index;
-        
-        public Melody Melody { get; }
 
         public Map(MapSettings settings, LoaderSettings gameSettings, IMapChange mapChange)
         {
@@ -20,15 +19,16 @@ namespace Piano
             melodyLength = melody.Count;
 
             keys = new PianoKey[Height, Width];
-            Melody = melody;           
+            Melody = melody;
             for (var i = 0; i < Height; i++)
                 MapUpdate();
         }
 
+        public Melody Melody { get; }
+
         public int Width { get; }
         public int Height { get; }
-        private readonly PianoKey[,] keys; 
-       
+
         public PianoKey this[int i, int j]
         {
             get => keys[i, j];
@@ -38,7 +38,8 @@ namespace Piano
         public void SetNextKeyLine(PianoKey[] keyLine)
         {
             if (keyLine.Length != Width)
-                throw new Exception();   //не используй чистый Exception пиши более конкретный(можешь свой создать) и пиши в нём сообщение об ошибке
+                throw
+                    new Exception(); //не используй чистый Exception пиши более конкретный(можешь свой создать) и пиши в нём сообщение об ошибке
             for (var i = 0; i < Height - 1; i++)
             for (var j = 0; j < Width; j++)
                 keys[i, j] = keys[i + 1, j];
@@ -65,7 +66,7 @@ namespace Piano
         public void MapUpdate()
         {
             index = index + 1 < melodyLength ? index + 1 : 0;
-            var nextNote = Melody[index]; 
+            var nextNote = Melody[index];
             SetNextKeyLine(mapChange.GetNextKeyLine(Width, nextNote));
         }
     }

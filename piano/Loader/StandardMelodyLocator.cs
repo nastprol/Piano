@@ -1,12 +1,13 @@
 ﻿namespace Piano
 {
+    [Description("Загрузить стандартную мелодию")]
     public class StandardMelodyLocator : IMelodyLocator
     {
         private readonly string index;
 
-        public StandardMelodyLocator(int index)
+        public StandardMelodyLocator(GameSettings settings)
         {
-            this.index = index.ToString();
+            this.index = settings.MelodyLocation;
         }
 
         public string GetLocation()

@@ -4,7 +4,7 @@ using Piano.Control;
 
 namespace Piano
 {
-    public class VisualizationSettings : ISettings<(Point topLeft, Point bottomRight)>
+    public class VisualizationSettings 
     {
         private readonly Dictionary<(Point topLeft, Point bottomRight), int> controlLocations =
             new Dictionary<(Point topLeft, Point bottomRight), int>

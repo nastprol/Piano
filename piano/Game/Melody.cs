@@ -20,7 +20,7 @@ namespace Piano
             if (!(obj is Melody))
                 return false;
             var other = (Melody) obj;
-            return GetHashCode() == other.GetHashCode() && notes.SequenceEqual(other.notes);
+            return GetHashCode() == other.GetHashCode() && notes.Equals(other.notes);
         }
 
         public override int GetHashCode()

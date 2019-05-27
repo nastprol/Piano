@@ -10,6 +10,8 @@ namespace Piano
         public readonly Dictionary<string, Type> Modes;
         public readonly Dictionary<string, Type> Loaders;
         public readonly Dictionary<string, Type> InputControls;
+        public readonly Dictionary<string, Type> Locators;
+
 
         public LoadConfig()
         {
@@ -25,6 +27,9 @@ namespace Piano
             InputControls = assembleyTypes
                .Where(t => t.GetInterfaces().Contains(typeof(IInputControl)))
                .ToDictionary(t => ((DescriptionAttribute)Attribute.GetCustomAttribute(t, typeof(DescriptionAttribute))).Name);
+            Locators = assembleyTypes
+              .Where(t => t.GetInterfaces().Contains(typeof(IMelodyLocator)))
+               .ToDictionary(t => ((DescriptionAttribute)Attribute.GetCustomAttribute(t, typeof(DescriptionAttribute))).Name);            
         }
     }
 }

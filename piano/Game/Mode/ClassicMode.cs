@@ -14,14 +14,12 @@ namespace Piano
         {
             this.map = map;
         }        
-
-        public long GetTime(long time) =>Limit - time;
         
 
-        public bool UpdateIsGameEnd(bool isPressNote, long time, bool isFirstMove)
+        public bool UpdateIsGameEnd(bool isPressNote, bool isFirstMove)
         {
             if (isFirstMove) return false;
-            return !isPressNote || time >= Limit;
+            return !isPressNote;
         }
         
 
@@ -30,7 +28,7 @@ namespace Piano
            map.MapUpdate();
         }
 
-        public int UpdatePoints(long time, int point) => point + 1;
+        public int UpdatePoints(int point) => point + 1;
 
         public void UpdateTimerTick(bool isFirstMove)
         {

@@ -8,7 +8,6 @@ namespace Piano
     public class GameState : IGame
     {
         private bool isFirstMove = true;
-        private readonly Stopwatch sw; 
         private readonly IGameMode mode;
         public int GetPoints { get; private set; }
         public bool IsGameEnd { get; private set; }
@@ -20,8 +19,6 @@ namespace Piano
             GetPoints = 0;
             this.mode = settings.GetMode();
             Map = map;
-
-            sw = new Stopwatch();
         }
 
         public Map Map { get; }
@@ -30,7 +27,6 @@ namespace Piano
         {
             if (isFirstMove)
             {
-                PrimaryPreparation();
                 isFirstMove = false;
             }
 
@@ -44,26 +40,16 @@ namespace Piano
 
         public void Update()
         {
-            IsGameEnd = mode.UpdateIsGameEnd(true, sw.ElapsedMilliseconds, isFirstMove);
+            IsGameEnd = mode.UpdateIsGameEnd(true, isFirstMove);
             mode.UpdateTimerTick(isFirstMove);
         }
-
-        private void PrimaryPreparation()
-        {
-            sw.Start();
-        }
-
-        public long GetTime => mode.GetTime(sw.ElapsedMilliseconds);
+        
         private void Update(bool isPressNote)
         {
-            IsGameEnd = mode.UpdateIsGameEnd(isPressNote, sw.ElapsedMilliseconds, isFirstMove);
-            if (IsGameEnd)
+            IsGameEnd = mode.UpdateIsGameEnd(isPressNote, isFirstMove);
+            if (!IsGameEnd)
             {
-                sw.Stop();
-            }
-            else
-            {
-                GetPoints = mode.UpdatePoints(sw.ElapsedMilliseconds, GetPoints);
+                GetPoints = mode.UpdatePoints(GetPoints);
                 mode.Update();
             }
         }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Piano.Properties {
+namespace Domain.Properties {
     using System;
     
     

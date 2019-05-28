@@ -2,9 +2,10 @@
 using System.Windows.Forms;
 using Ninject;
 using Ninject.Extensions.Conventions;
-using Piano.Control;
+using Domain.Control;
+using Domain;
 
-namespace Piano
+namespace App
 {
     internal class Program
     {
@@ -33,11 +34,11 @@ namespace Piano
             container.Bind<ILoaderChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
             container.Bind<ILocationChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
             container.Bind<IModeChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
-             
+
             container.Bind<MelodyFileLoader>().ToSelf().InSingletonScope();
             container.Bind<StandardMelodyLoader>().ToSelf().InSingletonScope();
             container.Bind(x =>
-                x.FromThisAssembly().SelectAllClasses().InheritedFrom<IMelodyLoader>().BindAllInterfaces());
+                x.From(System.Reflection.Assembly.GetAssembly(typeof(IMelodyLoader))).SelectAllClasses().InheritedFrom<IMelodyLoader>().BindAllInterfaces());
             container.Bind<LoaderSettings>()
                 .ToSelf()
                 .InSingletonScope()
@@ -45,28 +46,30 @@ namespace Piano
             container.Bind<Map>().ToSelf().InSingletonScope();
             container.Bind<ClassicMode>().ToSelf().InSingletonScope();
             container.Bind<ArcadeMode>().ToSelf().InSingletonScope();
-            container.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom<IGameMode>().BindAllInterfaces());
+            container.Bind(x => x.From(System.Reflection.Assembly.GetAssembly(typeof(IGameMode))).SelectAllClasses().InheritedFrom<IGameMode>().BindAllInterfaces());
             container.Bind<ModeSettings>()
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("modes", container.GetAll<IGameMode>().ToArray());
+
+           // container.Bind<GameFactory>().ToSelf().InSingletonScope();
             container.Bind<GameState>().ToSelf().InSingletonScope();
+
             container.Bind<SoundsBase>().ToSelf().InSingletonScope();
             container.Bind<GameForm>().ToSelf().InSingletonScope();
             container.Bind<IMouseInput>().ToMethod(c => c.Kernel.Get<GameForm>()).InSingletonScope();
             container.Bind<IKeyInput>().ToMethod(c => c.Kernel.Get<GameForm>()).InSingletonScope();
             container.Bind<VisualizationSettings>().ToSelf().InSingletonScope();
-            container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();          
+            container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
             container.Bind<KeyBoardInputControl>().ToSelf().InSingletonScope();
             container.Bind<MouseInputControl>().ToSelf().InSingletonScope();
             container.Bind(x =>
-                x.FromThisAssembly().SelectAllClasses().InheritedFrom<IInputControl>().BindAllInterfaces());
+                x.From(System.Reflection.Assembly.GetAssembly(typeof(IInputControl))).SelectAllClasses().InheritedFrom<IInputControl>().BindAllInterfaces());
             container.Bind<InputControlSettings>()
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("controls", container.GetAll<IInputControl>().ToArray());
             container.Bind<Controller>().ToSelf().InSingletonScope();
-            container.Bind<GameFactory>().ToSelf().InSingletonScope();
             container.Bind<InitialForm>().ToSelf().InSingletonScope();
         }
     }

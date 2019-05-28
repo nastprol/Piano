@@ -2,9 +2,10 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using Piano.Control;
+using Domain.Control;
+using Domain;
 
-namespace Piano
+namespace App
 {
     public sealed class GameForm : Form, IKeyInput, IMouseInput
     {
@@ -14,6 +15,7 @@ namespace Piano
         private readonly GameState state;
         private readonly Stopwatch sw;
         private readonly Timer timer;
+        //private readonly GameFactory factory;
 
         public GameForm(GameState state, SoundsBase sounds, KeySettings keySettings)
         {
@@ -31,6 +33,7 @@ namespace Piano
             sw = new Stopwatch();
             state.NoteClick += PlayNote;
             state.Start += Start;
+            //this.factory = factory;
         }
 
         private void Start()
@@ -53,6 +56,7 @@ namespace Piano
             timer.Stop();
             sw.Stop();
             sw.Reset();
+           // factory.EndGame();
             MessageBox.Show(@"Game over :(");
             Close();
         }

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E0C85D8B-6018-4CAC-8D3D-C35CFB2E9960}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Piano.Domain</RootNamespace>
+    <AssemblyName>Piano.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Piano\bin\Debug\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Changer\IInputControlChanger.cs" />
+    <Compile Include="Changer\ILoaderChanger.cs" />
+    <Compile Include="Changer\ILocationChanger.cs" />
+    <Compile Include="Changer\ILocatorChanger.cs" />
+    <Compile Include="Changer\IModeChanger.cs" />
+    <Compile Include="Config\DescriptionAttribute.cs" />
+    <Compile Include="Config\GameSettings.cs" />
+    <Compile Include="Config\InputControlSettings.cs" />
+    <Compile Include="Config\LoadConfig.cs" />
+    <Compile Include="Config\LoaderSettings.cs" />
+    <Compile Include="Config\ModeSettings.cs" />
+    <Compile Include="Control\Controller.cs" />
+    <Compile Include="Control\IInputControl.cs" />
+    <Compile Include="Control\IKeyInput.cs" />
+    <Compile Include="Control\IMouseInput.cs" />
+    <Compile Include="Control\KeyboardInputControl.cs" />
+    <Compile Include="Control\KeyBoardSettings.cs" />
+    <Compile Include="Control\MouseInputControl.cs" />
+    <Compile Include="Control\VisualizationSettings.cs" />
+    <Compile Include="Game\Change\IMapChange.cs" />
+    <Compile Include="Game\Change\OrderedMapChange.cs" />
+    <Compile Include="Game\Change\RandKeyMapChange.cs" />
+    <Compile Include="Game\GameFactory.cs" />
+    <Compile Include="Game\Map.cs" />
+    <Compile Include="Game\MapSettings.cs" />
+    <Compile Include="Infrastructure\Melody.cs" />
+    <Compile Include="Game\Mode\ArcadeMode.cs" />
+    <Compile Include="Game\Mode\ClassicMode.cs" />
+    <Compile Include="Game\Mode\IgameMode.cs" />
+    <Compile Include="Infrastructure\Note.cs" />
+    <Compile Include="Game\PianoKey.cs" />
+    <Compile Include="Game\State\GameState.cs" />
+    <Compile Include="Config\KeySettings.cs" />
+    <Compile Include="Infrastructure\Loader\IMelodyLoader.cs" />
+    <Compile Include="Infrastructure\Loader\MelodyFileLoader.cs" />
+    <Compile Include="Config\NoteSettings.cs" />
+    <Compile Include="Infrastructure\Loader\StandardMelodyLoader.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Piano
+namespace App
 {
     public class SettingsForm : Form, IInputControlChanger, ILoaderChanger, ILocationChanger, IModeChanger
     {

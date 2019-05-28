@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain
 {
@@ -31,7 +32,9 @@ namespace Domain
         }
 
         public Melody Load()
-        {             
+        {
+            if (!StandardMelodies.ContainsKey(location))
+                return StandardMelodyLoader.StandardMelodies.First().Value;
             return StandardMelodies[location];
         }
     }

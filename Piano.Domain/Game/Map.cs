@@ -6,7 +6,7 @@ namespace Domain
     {
         private readonly PianoKey[,] keys;
         private readonly IMapChange mapChange;
-        private int melodyLength => Melody.Count;
+        private int MelodyLength => Melody.Count;
         private int index;
         LoaderSettings gameSettings;
 
@@ -71,7 +71,7 @@ namespace Domain
 
         public void MapUpdate()
         {
-            index = index + 1 < melodyLength ? index + 1 : 0;
+            index = index + 1 < MelodyLength ? index + 1 : 0;
             var nextNote = Melody[index];
             SetNextKeyLine(mapChange.GetNextKeyLine(Width, nextNote));
         }

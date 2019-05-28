@@ -1,5 +1,5 @@
-﻿//using NUnit.Framework;
-//using Piano;
+﻿//using Domain;
+//using NUnit.Framework;
 
 //namespace Prime.UnitTests.Services
 //{
@@ -11,55 +11,57 @@
 //        {
 //            var melody = new Melody(new[] { Note.C, Note.A });
 //            var mapCh = new TestMapChange();
-//            var map = new Map(new MapSettings(), melody, mapCh);
-//            var game = new GameState(map, new GameSettings());
+//            var gameSettings = new GameSettings();
+//            var settingsForm = new SettingsForm(gameSettings, new LoadConfig());
+//            var keySettings = new KeySettings();
+//            var loaderSettings = new LoaderSettings(new[] { new StandardMelodyLoader(settingsForm, gameSettings) }, gameSettings);
+//            var map = new Map(new MapSettings(), loaderSettings, new TestMapChange(), settingsForm);
+//            var game = new GameState(map, new ModeSettings(new[] { new ArcadeMode(map) }, gameSettings),
+//                settingsForm, keySettings);
 //            game.MakeMove(0);
 //            Assert.IsFalse(game.IsGameEnd);
-//            Assert.AreEqual(game.GetPoints, 1);
-//            Assert.IsTrue(game.GetTime > 0);
-//        }
-
+//            Assert.AreEqual(1, game.GetPoints);
+//            Assert.AreEqual(keySettings.Height, game.MapShiftFromBottom);
 //        [Test]
-//        public void MakeMoreMoveClassicMode()
+//        public void MakeMoreMove()
 //        {
 //            var melody = new Melody(new[] { Note.C, Note.A });
 //            var mapCh = new TestMapChange();
-//            var map = new Map(new MapSettings(), melody, mapCh);
-//            var game = new GameState(new ClassicMode(map), map);
+//            var gameSettings = new GameSettings();
+
+
+//            var settingsForm = new SettingsForm(gameSettings, new LoadConfig());
+//            var keySettings = new KeySettings();
+//            var loaderSettings = new LoaderSettings(new[] { new StandardMelodyLoader(settingsForm, gameSettings) }, gameSettings);
+//            var map = new Map(new MapSettings(), loaderSettings, new TestMapChange(), settingsForm);
+//            var modeSettings = new ModeSettings(new[] { new ArcadeMode(map) }, gameSettings);
+
+//            var game = new GameState(map, modeSettings, settingsForm, keySettings);
 //            game.MakeMove(0);
 //            game.MakeMove(0);
 //            game.MakeMove(0);
 //            Assert.IsFalse(game.IsGameEnd);
-//            Assert.AreEqual(game.GetPoints, 3);
+//            Assert.AreEqual(3, game.GetPoints);
+//            Assert.AreEqual(keySettings.Height * 3, game.MapShiftFromBottom);
 //        }
-
 //        [Test]
 //        public void MakeEndMove()
 //        {
-//            var melody = new Melody(new Note[] { Note.C, Note.A });
+//            var melody = new Melody(new[] { Note.C, Note.A });
 //            var mapCh = new TestMapChange();
-//            var map = new Map(new MapSettings(), melody, mapCh);
-//            var game = new GameState(new ClassicMode(map, mapCh, melody), melody, map);
+//            var gameSettings = new GameSettings();
+//            var settingsForm = new SettingsForm(gameSettings, new LoadConfig());
+//            var keySettings = new KeySettings();
+//            var loaderSettings = new LoaderSettings(new[] { new StandardMelodyLoader(settingsForm, gameSettings) }, gameSettings);
+//            var map = new Map(new MapSettings(), loaderSettings, new TestMapChange(), settingsForm);
+//            var game = new GameState(map, new ModeSettings(new[] { new ArcadeMode(map) }, gameSettings),
+//                settingsForm, keySettings);
 //            game.MakeMove(0);
 //            game.MakeMove(0);
-//            Assert.Catch<Exception>(() => game.MakeMove(2));
+//            game.MakeMove(2);
 //            Assert.IsTrue(game.IsGameEnd);
-//            Assert.AreEqual(game.GetPoints, 2);
-//            Assert.IsTrue(game.GetTime > 0);
-//        }
-
-//        [Test]
-//        public void LimitEndClassicMode()
-//        {
-//            TimeSpan interval = new TimeSpan(0, 1, 0);
-//            var game = new GameState(new ClassicMode(), new TestMapChange(), new Melody(new Note[] { Note.C, Note.A }), 3, 4);
-//            game.MakeMove(0);
-//            Thread.Sleep(interval);
-//            Assert.Catch<Exception>(() => game.MakeMove(0));
-//            Assert.IsFalse(game.IsGameEnd);
-//            Assert.AreEqual(game.GetPoints, 3);
-
+//            Assert.AreEqual(2, game.GetPoints);
+//            Assert.AreEqual(keySettings.Height * 2, game.MapShiftFromBottom);
 //        }
 //    }
 //}
-

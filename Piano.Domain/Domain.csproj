@@ -65,9 +65,9 @@
     <Compile Include="Control\IKeyInput.cs" />
     <Compile Include="Control\IMouseInput.cs" />
     <Compile Include="Control\KeyboardInputControl.cs" />
-    <Compile Include="Control\KeyBoardSettings.cs" />
+    <Compile Include="Config\KeyBoardSettings.cs" />
     <Compile Include="Control\MouseInputControl.cs" />
-    <Compile Include="Control\VisualizationSettings.cs" />
+    <Compile Include="Config\VisualizationSettings.cs" />
     <Compile Include="Game\Change\IMapChange.cs" />
     <Compile Include="Game\Change\OrderedMapChange.cs" />
     <Compile Include="Game\Change\RandKeyMapChange.cs" />

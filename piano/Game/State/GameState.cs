@@ -4,16 +4,24 @@ namespace Piano
 {
     public class GameState
     {
-        private readonly IGameMode mode;
+        private IGameMode mode;
         private bool isFirstMove = true;
         private readonly int shift = 100;
+        private readonly ModeSettings settings;
 
-        public GameState(Map map, ModeSettings settings)
+        public GameState(Map map, ModeSettings settings, IModeChanger changer)
         {
+            this.settings = settings;
             IsGameEnd = false;
             GetPoints = 0;
+            changer.ModeChange += Update;
             mode = settings.GetMode();
             Map = map;
+        }
+
+        private void Update(object sender, EventArgs e)
+        {
+            mode = settings.GetMode();
         }
 
         public int GetPoints { get; private set; }

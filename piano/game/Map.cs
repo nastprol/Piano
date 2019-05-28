@@ -6,25 +6,31 @@ namespace Piano
     {
         private readonly PianoKey[,] keys;
         private readonly IMapChange mapChange;
-        private readonly int melodyLength;
+        private int melodyLength => Melody.Count;
         private int index;
+        LoaderSettings gameSettings;
 
-        public Map(MapSettings settings, LoaderSettings gameSettings, IMapChange mapChange)
+        public Map(MapSettings settings, LoaderSettings gameSettings, IMapChange mapChange, ILoaderChanger changer)
         {
-            var melody = gameSettings.GetLoader().Load();
+            this.gameSettings = gameSettings;
+            Melody = gameSettings.GetLoader().Load();
+            changer.LoaderChange += Update;
             Height = settings.Height;
             Width = settings.Width;
             index = -1;
             this.mapChange = mapChange;
-            melodyLength = melody.Count;
 
             keys = new PianoKey[Height, Width];
-            Melody = melody;
             for (var i = 0; i < Height; i++)
                 MapUpdate();
         }
 
-        public Melody Melody { get; }
+        private void Update(object sender, EventArgs e)
+        {
+            Melody = gameSettings.GetLoader().Load();
+        }
+
+        public Melody Melody { private set;  get; }
 
         public int Width { get; }
         public int Height { get; }

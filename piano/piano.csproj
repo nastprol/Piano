@@ -73,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\InputControlSettings.cs" />
-    <Compile Include="Config\LocatorSettings.cs" />
     <Compile Include="Config\ModeSettings.cs" />
     <Compile Include="Control\Controller.cs" />
     <Compile Include="Config\DescriptionAttribute.cs" />
@@ -91,6 +90,11 @@
     </Compile>
     <Compile Include="Config\LoadConfig.cs" />
     <Compile Include="Config\LoaderSettings.cs" />
+    <Compile Include="Changer\IInputControlChanger.cs" />
+    <Compile Include="Changer\ILoaderChanger.cs" />
+    <Compile Include="Changer\ILocationChanger.cs" />
+    <Compile Include="Changer\ILocatorChanger.cs" />
+    <Compile Include="Changer\IModeChanger.cs" />
     <Compile Include="Loader\NoteSettings.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -113,18 +117,15 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Control\IInputControl.cs" />
-    <Compile Include="Loader\FileLocator.cs" />
     <Compile Include="Loader\IMelodyLoader.cs" />
     <Compile Include="Control\KeyboardInputControl.cs" />
     <Compile Include="Game\Map.cs" />
     <Compile Include="Game\Melody.cs" />
-    <Compile Include="Loader\IMelodyLocator.cs" />
     <Compile Include="Tests\LoaderTest.cs" />
     <Compile Include="Loader\MelodyFileLoader.cs" />
     <Compile Include="Control\MouseInputControl.cs" />
     <Compile Include="Game\Note.cs" />
     <Compile Include="Game\PianoKey.cs" />
-    <Compile Include="Loader\StandardMelodyLocator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Loader\StandardMelodyLoader.cs" />

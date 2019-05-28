@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,24 +11,38 @@ namespace Piano
     public class MelodyFileLoader : IMelodyLoader
     {
         private static readonly Dictionary<string, Note> Notes = NoteSettings.Notes;
-        private readonly LocatorSettings settings;
+        private readonly GameSettings settings;
+        private string location;
 
-        public MelodyFileLoader(LocatorSettings settings)
+        public MelodyFileLoader(ILocationChanger locationChanger, GameSettings settings)
         {
             this.settings = settings;
+            location = settings.MelodyLocation;
+            locationChanger.LocationChange += UpdateLocation;
+        }
+
+        private void UpdateLocation(object sender, EventArgs e)
+        {
+            location = settings.MelodyLocation;
         }
 
         public Melody Load()
         {
-            string text;
-            var locator = settings.GetLocator();
-            using (var sr = new StreamReader(locator.GetLocation(), Encoding.Default))
+            try
             {
-                text = sr.ReadToEnd();
-            }
+                string text;
+                using (var sr = new StreamReader(location, Encoding.Default))
+                {
+                    text = sr.ReadToEnd();
+                }
 
-            var notes = ParseTextToNotes(text).ToArray();
-            return new Melody(notes);
+                var notes = ParseTextToNotes(text).ToArray();
+                return new Melody(notes);
+            }
+            catch
+            {
+                return StandardMelodyLoader.StandardMelodies.First().Value;
+            }
         }
 
         public IEnumerable<Note> ParseTextToNotes(string text)

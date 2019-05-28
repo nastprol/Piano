@@ -6,13 +6,12 @@ using System.Windows.Forms;
 
 namespace Piano
 {
-    public class SettingsForm : Form
+    public class SettingsForm : Form, IInputControlChanger, ILoaderChanger, ILocationChanger, IModeChanger
     {
         private readonly ComboBox inputControlBox = new ComboBox();
         private readonly IReadOnlyDictionary<string, Type> inputControls;
         private readonly ComboBox loadBox = new ComboBox();
         private readonly IReadOnlyDictionary<string, Type> loaders;
-        private readonly IReadOnlyDictionary<string, Type> locators;
         private readonly ComboBox modeBox = new ComboBox();
 
         private readonly IReadOnlyDictionary<string, Type> modes;
@@ -21,13 +20,17 @@ namespace Piano
 
         private readonly GameSettings settings;
 
+        public event EventHandler InputTypeChange;
+        public event EventHandler LoaderChange;
+        public event EventHandler LocationChange;
+        public event EventHandler ModeChange;
+
         public SettingsForm(GameSettings settings, LoadConfig config)
         {
             this.settings = settings;
             modes = config.Modes;
             loaders = config.Loaders;
             inputControls = config.InputControls;
-            locators = config.Locators;
 
             InitializeComponent(modes.Keys.ToArray(), loaders.Keys.ToArray(), inputControls.Keys.ToArray());
         }
@@ -44,17 +47,25 @@ namespace Piano
         private void ModeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             settings.ModeTypeName = modes[modeBox.SelectedItem.ToString()].Name;
+            ModeChange?.Invoke(sender, e);
         }
 
         private void LoadBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             settings.LoaderTypeName = loaders[loadBox.SelectedItem.ToString()].Name;
-            settings.MelodyLocator = locators[loadBox.SelectedItem.ToString()].Name;
+            LoaderChange?.Invoke(sender, e);
         }
 
         private void InputControlBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             settings.InputTypeName = inputControls[inputControlBox.SelectedItem.ToString()].Name;
+            InputTypeChange?.Invoke(sender, e);
+        }
+
+        private void pathBox_TextChanged(object sender, EventArgs e)
+        {
+            settings.MelodyLocation = pathBox.Text;
+            LocationChange?.Invoke(sender, e);
         }
 
         private void OkClick(object sender, EventArgs e)
@@ -110,11 +121,6 @@ namespace Piano
             ClientSize = new Size(1000, 500);
             Name = "Game settings";
             ResumeLayout(false);
-        }
-
-        private void pathBox_TextChanged(object sender, EventArgs e)
-        {
-            settings.MelodyLocation = pathBox.Text;
         }
     }
 }

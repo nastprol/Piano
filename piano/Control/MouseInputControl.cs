@@ -41,5 +41,10 @@ namespace Piano
 
             return null;
         }
+
+        public void Unsubscribe(Controller controller)
+        {
+            input.Click -= controller.MakeStep;
+        }
     }
 }

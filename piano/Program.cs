@@ -27,14 +27,12 @@ namespace Piano
             container.Bind<PianoKey>().ToSelf().InSingletonScope();
             container.Bind<MapSettings>().ToSelf().InSingletonScope();
             container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
-            container.Bind<FileLocator>().ToSelf().InSingletonScope();
-            container.Bind<StandardMelodyLocator>().ToSelf().InSingletonScope();
-            container.Bind(x =>
-                x.FromThisAssembly().SelectAllClasses().InheritedFrom<IMelodyLocator>().BindAllInterfaces());
-            container.Bind<LocatorSettings>()
-                .ToSelf()
-                .InSingletonScope()
-                .WithConstructorArgument("locators", container.GetAll<IMelodyLocator>().ToArray());
+            container.Bind<SettingsForm>().ToSelf().InSingletonScope();
+            container.Bind<IInputControlChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
+            container.Bind<ILoaderChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
+            container.Bind<ILocationChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
+            container.Bind<IModeChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
+             
             container.Bind<MelodyFileLoader>().ToSelf().InSingletonScope();
             container.Bind<StandardMelodyLoader>().ToSelf().InSingletonScope();
             container.Bind(x =>
@@ -52,12 +50,12 @@ namespace Piano
                 .InSingletonScope()
                 .WithConstructorArgument("modes", container.GetAll<IGameMode>().ToArray());
             container.Bind<GameState>().ToSelf().InSingletonScope();
-            container.Bind<VisualizationSettings>().ToSelf().InSingletonScope();
-            container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
-            container.Bind<SettingsForm>().ToSelf().InSingletonScope();
+            container.Bind<SoundsBase>().ToSelf().InSingletonScope();
             container.Bind<GameForm>().ToSelf().InSingletonScope();
             container.Bind<IMouseInput>().ToMethod(c => c.Kernel.Get<GameForm>()).InSingletonScope();
             container.Bind<IKeyInput>().ToMethod(c => c.Kernel.Get<GameForm>()).InSingletonScope();
+            container.Bind<VisualizationSettings>().ToSelf().InSingletonScope();
+            container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();          
             container.Bind<KeyBoardInputControl>().ToSelf().InSingletonScope();
             container.Bind<MouseInputControl>().ToSelf().InSingletonScope();
             container.Bind(x =>
@@ -66,7 +64,14 @@ namespace Piano
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("controls", container.GetAll<IInputControl>().ToArray());
+
+
             container.Bind<Controller>().ToSelf().InSingletonScope();
+
+  
+
+
+            container.Bind<GameFactory>().ToSelf().InSingletonScope();
             container.Bind<InitialForm>().ToSelf().InSingletonScope();
         }
     }

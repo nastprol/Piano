@@ -29,5 +29,10 @@ namespace Piano
                 return controlKeys[key];
             return null;
         }
+
+        public void Unsubscribe(Controller controller)
+        {
+            input.KeyDown -= controller.MakeStep;
+        }
     }
 }

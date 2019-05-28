@@ -10,10 +10,10 @@ namespace Domain
         private int index;
         LoaderSettings gameSettings;
 
-        public Map(MapSettings settings, LoaderSettings gameSettings, IMapChange mapChange, ILoaderChanger changer)
+        public Map(MapSettings settings, LoaderSettings loaderSettings, IMapChange mapChange, ILoaderChanger changer)
         {
-            this.gameSettings = gameSettings;
-            Melody = gameSettings.GetLoader().Load();
+            this.gameSettings = loaderSettings;
+            Melody = loaderSettings.GetLoader().Load();
             changer.LoaderChange += Update;
             Height = settings.Height;
             Width = settings.Width;

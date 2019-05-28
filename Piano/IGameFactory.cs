@@ -9,6 +9,8 @@ namespace Piano
     interface IGameFactory
     {
         GameState Loader();
-        GameState CreateGame(MapSettings mapSettings, LoaderSettings gameSettings, IMapChange mapChange, ModeSettings modeSettings, KeySettings keySettings);
+        GameState CreateGame(MapSettings mapSettings, LoaderSettings gameSettings,
+            IMapChange mapChange, ModeSettings modeSettings, ILoaderChanger loaderChanger,
+            IModeChanger modeChanger, KeySettings keySettings);
     }
 }

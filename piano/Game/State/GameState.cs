@@ -6,12 +6,13 @@ namespace Piano
     {
         private IGameMode mode;
         private bool isFirstMove = true;
-        private readonly int shift = 100;
+        private readonly int shift;
         private readonly ModeSettings settings;
 
-        public GameState(Map map, ModeSettings settings, IModeChanger changer)
+        public GameState(Map map, ModeSettings settings, IModeChanger changer, KeySettings keySettings)
         {
             this.settings = settings;
+            shift = keySettings.Height;
             IsGameEnd = false;
             GetPoints = 0;
             changer.ModeChange += Update;

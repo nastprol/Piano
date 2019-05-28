@@ -95,6 +95,8 @@
     <Compile Include="Changer\ILocationChanger.cs" />
     <Compile Include="Changer\ILocatorChanger.cs" />
     <Compile Include="Changer\IModeChanger.cs" />
+    <Compile Include="IGameFactory.cs" />
+    <Compile Include="KeySettings.cs" />
     <Compile Include="Loader\NoteSettings.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

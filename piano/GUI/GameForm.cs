@@ -8,20 +8,22 @@ namespace Piano
 {
     public sealed class GameForm : Form, IKeyInput, IMouseInput
     {
-        private const int ElementSizeHeight = 100;
-        private const int ElementSizeWidth = 50;
+        private readonly int elementSizeHeight;
+        private readonly int elementSizeWidth;
         private readonly SoundsBase sounds;
         private readonly GameState state;
         private readonly Stopwatch sw;
         private readonly Timer timer;
 
-        public GameForm(GameState state, SoundsBase sounds)
+        public GameForm(GameState state, SoundsBase sounds, KeySettings keySettings)
         {
+            elementSizeHeight = keySettings.Height;
+            elementSizeWidth = keySettings.Width;
             DoubleBuffered = true;
             this.state = state;
             this.sounds = sounds;
             var map = state.Map;
-            ClientSize = new Size(map.Width * ElementSizeWidth, map.Height * ElementSizeHeight);
+            ClientSize = new Size(map.Width * elementSizeWidth, map.Height * elementSizeHeight);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             timer = new Timer();
             timer.Tick += TimerTick;
@@ -64,9 +66,9 @@ namespace Piano
             for (var j = 0; j < map.Width; j++)
             {
                 var color = map[map.Height - i - 1, j].IsNote ? Color.Black : Color.White;
-                e.Graphics.FillRectangle(new SolidBrush(color), j * ElementSizeWidth,
-                    i * ElementSizeHeight,
-                    ElementSizeWidth, ElementSizeHeight);
+                e.Graphics.FillRectangle(new SolidBrush(color), j * elementSizeWidth,
+                    i * elementSizeHeight,
+                    elementSizeWidth, elementSizeHeight);
             }
 
             e.Graphics.ResetTransform();

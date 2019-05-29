@@ -17,8 +17,9 @@ namespace App
         {
             foreach (var note in (Note[]) Enum.GetValues(typeof(Note)))
             {
-                var stream = (Stream) Resources.ResourceManager.GetObject(note.ToString());
-                var player = new SoundPlayer(stream);
+                var player = new SoundPlayer();
+                player.Play();
+                player.Stream = (Stream)Resources.ResourceManager.GetObject(note.ToString());
                 player.LoadAsync();
                 notes[note] = player;
             }

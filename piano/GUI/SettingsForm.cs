@@ -82,6 +82,9 @@ namespace App
             loadBox.Items.AddRange(loaders);
             inputControlBox.Items.AddRange(controls);
 
+            modeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            loadBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            inputControlBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;        
 
             modeBox.Location = new Point(10, 10);
             modeBox.Size = new Size(200, 60);

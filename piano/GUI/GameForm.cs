@@ -12,10 +12,9 @@ namespace App
         private readonly int elementSizeHeight;
         private readonly int elementSizeWidth;
         private readonly SoundsBase sounds;
-        private readonly GameState state;
+        public readonly GameState state;
         private readonly Stopwatch sw;
         private readonly Timer timer;
-        //private readonly GameFactory factory;
 
         public GameForm(GameState state, SoundsBase sounds, KeySettings keySettings)
         {
@@ -33,7 +32,6 @@ namespace App
             sw = new Stopwatch();
             state.NoteClick += PlayNote;
             state.Start += Start;
-            //this.factory = factory;
         }
 
         private void Start()
@@ -56,7 +54,6 @@ namespace App
             timer.Stop();
             sw.Stop();
             sw.Reset();
-           // factory.EndGame();
             MessageBox.Show(@"Game over :(");
             Close();
         }
@@ -67,13 +64,13 @@ namespace App
             e.Graphics.TranslateTransform(0, -state.MapShiftFromBottom);
             var map = state.Map;
             for (var i = 0; i < map.Height; i++)
-            for (var j = 0; j < map.Width; j++)
-            {
-                var color = map[map.Height - i - 1, j].IsNote ? Color.Black : Color.White;
-                e.Graphics.FillRectangle(new SolidBrush(color), j * elementSizeWidth,
-                    i * elementSizeHeight,
-                    elementSizeWidth, elementSizeHeight);
-            }
+                for (var j = 0; j < map.Width; j++)
+                {
+                    var color = map[map.Height - i - 1, j].IsNote ? Color.Black : Color.White;
+                    e.Graphics.FillRectangle(new SolidBrush(color), j * elementSizeWidth,
+                        i * elementSizeHeight,
+                        elementSizeWidth, elementSizeHeight);
+                }
 
             e.Graphics.ResetTransform();
             e.Graphics.DrawString(state.GetPoints.ToString(), new Font("Arial", 16), Brushes.Green, 0, 0);

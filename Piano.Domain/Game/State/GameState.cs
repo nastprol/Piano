@@ -2,7 +2,7 @@
 
 namespace Domain
 {
-    public class GameState
+    public class GameState : IGameState
     {
         private IGameMode mode;
         private bool isFirstMove = true;

@@ -72,10 +72,11 @@
     <Compile Include="Game\Change\RandKeyMapChange.cs" />
     <Compile Include="Game\Map.cs" />
     <Compile Include="Game\MapSettings.cs" />
+    <Compile Include="Game\State\IGameState.cs" />
     <Compile Include="Infrastructure\Melody.cs" />
     <Compile Include="Game\Mode\ArcadeMode.cs" />
     <Compile Include="Game\Mode\ClassicMode.cs" />
-    <Compile Include="Game\Mode\IgameMode.cs" />
+    <Compile Include="Game\Mode\IGameMode.cs" />
     <Compile Include="Infrastructure\Note.cs" />
     <Compile Include="Game\PianoKey.cs" />
     <Compile Include="Game\State\GameState.cs" />

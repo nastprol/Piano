@@ -29,6 +29,8 @@ namespace App
             container.Bind<MapSettings>().ToSelf().InSingletonScope();
             container.Bind<KeySettings>().ToSelf().InSingletonScope();
             container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
+            container.Bind<IModeSettings>().To<ModeSettings>().InSingletonScope();
+            container.Bind<ILoaderSettings>().To<LoaderSettings>().InSingletonScope();
             container.Bind<SettingsForm>().ToSelf().InSingletonScope();
             container.Bind<IInputControlChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
             container.Bind<ILoaderChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();

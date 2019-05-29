@@ -8,9 +8,9 @@ namespace Domain
         private readonly IMapChange mapChange;
         private int MelodyLength => Melody.Count;
         private int index;
-        LoaderSettings gameSettings;
+        ILoaderSettings gameSettings;
 
-        public Map(MapSettings settings, LoaderSettings loaderSettings, IMapChange mapChange, ILoaderChanger changer)
+        public Map(MapSettings settings, ILoaderSettings loaderSettings, IMapChange mapChange, ILoaderChanger changer)
         {
             this.gameSettings = loaderSettings;
             Melody = loaderSettings.GetLoader().Load();

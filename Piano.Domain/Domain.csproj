@@ -55,6 +55,8 @@
     <Compile Include="Changer\IModeChanger.cs" />
     <Compile Include="Config\DescriptionAttribute.cs" />
     <Compile Include="Config\GameSettings.cs" />
+    <Compile Include="Config\ILoaderSettings.cs" />
+    <Compile Include="Config\IModeSettings.cs" />
     <Compile Include="Config\InputControlSettings.cs" />
     <Compile Include="Config\LoadConfig.cs" />
     <Compile Include="Config\LoaderSettings.cs" />

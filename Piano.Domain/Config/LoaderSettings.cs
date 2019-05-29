@@ -2,7 +2,7 @@
 
 namespace Domain
 {
-    public class LoaderSettings
+    public class LoaderSettings:ILoaderSettings
     {
         private readonly Dictionary<string, IMelodyLoader> loaders = new Dictionary<string, IMelodyLoader>();
         private readonly GameSettings settings;

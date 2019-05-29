@@ -9,7 +9,8 @@ namespace Domain
         private readonly int shift;
         private readonly ModeSettings settings;
 
-        public GameState(Map map, ModeSettings settings, IModeChanger changer, KeySettings keySettings)
+        public GameState(Map map, ModeSettings settings, IModeChanger 
+            changer, KeySettings keySettings)
         {
             this.settings = settings;
             shift = keySettings.Height;

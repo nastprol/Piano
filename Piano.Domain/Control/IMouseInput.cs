@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Control
+namespace Domain
 {
     public interface IMouseInput
     {

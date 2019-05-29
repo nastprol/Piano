@@ -8,11 +8,11 @@ namespace Domain
         private readonly IMapChange mapChange;
         private int MelodyLength => Melody.Count;
         private int index;
-        LoaderSettings gameSettings;
+        LoaderSettings loaderSettings;
 
         public Map(MapSettings settings, LoaderSettings loaderSettings, IMapChange mapChange, ILoaderChanger changer)
         {
-            this.gameSettings = loaderSettings;
+            this.loaderSettings = loaderSettings;
             Melody = loaderSettings.GetLoader().Load();
             changer.LoaderChange += Update;
             Height = settings.Height;
@@ -27,7 +27,7 @@ namespace Domain
 
         private void Update(object sender, EventArgs e)
         {
-            Melody = gameSettings.GetLoader().Load();
+            Melody = loaderSettings.GetLoader().Load();
         }
 
         public Melody Melody { private set;  get; }
@@ -44,8 +44,7 @@ namespace Domain
         public void SetNextKeyLine(PianoKey[] keyLine)
         {
             if (keyLine.Length != Width)
-                throw
-                    new Exception(); //не используй чистый Exception пиши более конкретный(можешь свой создать) и пиши в нём сообщение об ошибке
+                throw  new Exception("Wrong format of keyLine"); 
             for (var i = 0; i < Height - 1; i++)
             for (var j = 0; j < Width; j++)
                 keys[i, j] = keys[i + 1, j];

@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using Ninject;
 using Ninject.Extensions.Conventions;
-using Domain.Control;
 using Domain;
 
 namespace App

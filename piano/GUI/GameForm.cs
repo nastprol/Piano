@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using Domain.Control;
 using Domain;
 
 namespace App
@@ -12,11 +11,11 @@ namespace App
         private readonly int elementSizeHeight;
         private readonly int elementSizeWidth;
         private readonly SoundsBase sounds;
-        public readonly GameState state;
+        public readonly IGameState state;
         private readonly Stopwatch sw;
         private readonly Timer timer;
 
-        public GameForm(GameState state, SoundsBase sounds, KeySettings keySettings)
+        public GameForm(IGameState state, SoundsBase sounds, KeySettings keySettings)
         {
             elementSizeHeight = keySettings.Height;
             elementSizeWidth = keySettings.Width;

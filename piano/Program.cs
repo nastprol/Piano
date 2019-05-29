@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using Ninject;
 using Ninject.Extensions.Conventions;
-using Domain.Control;
 using Domain;
 
 namespace App
@@ -23,9 +22,6 @@ namespace App
         {
             container.Bind<GameSettings>().ToSelf().InSingletonScope();
             container.Bind<LoadConfig>().ToSelf().InSingletonScope();
-            container.Bind<Note>().ToSelf().InSingletonScope();
-            container.Bind<Melody>().ToSelf().InSingletonScope();
-            container.Bind<PianoKey>().ToSelf().InSingletonScope();
             container.Bind<MapSettings>().ToSelf().InSingletonScope();
             container.Bind<KeySettings>().ToSelf().InSingletonScope();
             container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
@@ -53,10 +49,7 @@ namespace App
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("modes", container.GetAll<IGameMode>().ToArray());
-
-           // container.Bind<GameFactory>().ToSelf().InSingletonScope();
-            container.Bind<GameState>().ToSelf().InSingletonScope();
-
+            container.Bind<IGameState>().To<GameState>().InSingletonScope();
             container.Bind<SoundsBase>().ToSelf().InSingletonScope();
             container.Bind<GameForm>().ToSelf().InSingletonScope();
             container.Bind<IMouseInput>().ToMethod(c => c.Kernel.Get<GameForm>()).InSingletonScope();

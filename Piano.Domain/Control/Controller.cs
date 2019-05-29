@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Domain;
+using System;
 
 namespace Domain
 {
     public class Controller
     {
         private IInputControl controlType;
-        private readonly GameState game;
+        private readonly IGameState game;
         private readonly InputControlSettings settings;
 
-        public Controller(GameState game, InputControlSettings settings, IInputControlChanger changer)
+        public Controller(IGameState game, InputControlSettings settings, IInputControlChanger changer)
         {
             this.settings = settings;
             controlType = settings.GetInputControlClass();

@@ -72,6 +72,7 @@
     <Compile Include="Game\Change\IMapChange.cs" />
     <Compile Include="Game\Change\OrderedMapChange.cs" />
     <Compile Include="Game\Change\RandKeyMapChange.cs" />
+    <Compile Include="Game\IGameState.cs" />
     <Compile Include="Game\Map.cs" />
     <Compile Include="Game\MapSettings.cs" />
     <Compile Include="Infrastructure\Melody.cs" />

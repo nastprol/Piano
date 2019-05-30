@@ -49,7 +49,7 @@ namespace App
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("modes", container.GetAll<IGameMode>().ToArray());
-            container.Bind<IGameState>().To<GameState>().InSingletonScope();
+            container.Bind<GameState>().ToSelf().InSingletonScope();
             container.Bind<SoundsBase>().ToSelf().InSingletonScope();
             container.Bind<GameForm>().ToSelf().InSingletonScope();
             container.Bind<IMouseInput>().ToMethod(c => c.Kernel.Get<GameForm>()).InSingletonScope();

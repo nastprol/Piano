@@ -11,11 +11,11 @@ namespace App
         private readonly int elementSizeHeight;
         private readonly int elementSizeWidth;
         private readonly SoundsBase sounds;
-        public readonly IGameState state;
+        public readonly GameState state;
         private readonly Stopwatch sw;
         private readonly Timer timer;
 
-        public GameForm(IGameState state, SoundsBase sounds, KeySettings keySettings)
+        public GameForm(GameState state, SoundsBase sounds, KeySettings keySettings)
         {
             elementSizeHeight = keySettings.Height;
             elementSizeWidth = keySettings.Width;

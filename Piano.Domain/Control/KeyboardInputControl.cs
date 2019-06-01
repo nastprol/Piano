@@ -16,7 +16,6 @@ namespace Domain
         {
             this.input = input;
             controlKeys = settings.ControlTools;
-            input.KeyDown += MakeInput;
         }
 
         public void MakeInput(object sender, KeyEventArgs e)
@@ -24,6 +23,16 @@ namespace Domain
             var key = e.KeyCode;
             if (controlKeys.ContainsKey(key))
                 Input.Invoke(this, new InputEventArgs(controlKeys[key]));
+        }
+
+        public void Subscribe()
+        {
+            input.KeyDown += MakeInput;
+        }
+
+        public void Unsubscribe()
+        {
+            input.KeyDown -= MakeInput;
         }
     }
 }

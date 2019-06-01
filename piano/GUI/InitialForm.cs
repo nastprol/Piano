@@ -7,7 +7,6 @@ namespace App
 {
     public class InitialForm : Form
     {
-        private readonly Controller controller;
         private readonly GameForm gameForm;
         private readonly Button settingsButton = new Button();
         private readonly SettingsForm settingsForm;
@@ -17,7 +16,6 @@ namespace App
         {
             this.settingsForm = settingsForm;
             gameForm = form;
-            this.controller = controller;
             InitializeComponent();
         }
 
@@ -34,7 +32,6 @@ namespace App
             settingsForm.ShowDialog();
             Show();
         }
-
 
         private void InitializeComponent()
         {

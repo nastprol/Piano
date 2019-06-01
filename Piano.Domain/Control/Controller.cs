@@ -15,21 +15,21 @@ namespace Domain
             controlType = settings.GetInputControlClass();
             changer.InputTypeChange += Update;
             this.game = game;
-            controlType.Subscribe(this);
+
+            controlType.Input += MakeStep;
         }
 
-        public void MakeStep(object sender, EventArgs e)
+        public void MakeStep(object sender, InputEventArgs e)
         {
-            var inputKey = controlType.MakeInput(e);
-            if (inputKey != null)
-                game.MakeMove(inputKey.Value);
+            var inputKey = e.KeyNumber;
+            game.MakeMove(inputKey);
         }
 
         private void Update(object sender, EventArgs e)
         {
-            controlType.Unsubscribe(this);
+            controlType.Input -= MakeStep;
             controlType = settings.GetInputControlClass();
-            controlType.Subscribe(this);
+            controlType.Input += MakeStep;
         }
     }
 }

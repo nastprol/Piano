@@ -4,13 +4,13 @@ namespace Domain
 {
     public interface IGameState
     {
-        Map Map { get; }
-        event Action<Note> NoteClick;
-        event Action Start;
-        int MapShiftFromBottom { get; }
+        void MakeMove(int keyNumber);
         int GetPoints { get; }
         bool IsGameEnd { get; }
+        Map Map { get; }
+        int MapShiftFromBottom { get; }
+        event Action<Note> NoteClick;
+        event Action Start;
         void Update();
-        void MakeMove(int keyNumber);
     }
 }

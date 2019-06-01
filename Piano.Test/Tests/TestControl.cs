@@ -8,6 +8,12 @@ namespace Prime.UnitTests.Services
     [TestFixture]
     public class TestControl
     {
+        private int Input;
+
+        public void TestInput(object sender, InputEventArgs e)
+        {
+            Input = e.KeyNumber;
+        }
 
         [Test]
         public void ClickRightLocation()
@@ -15,7 +21,10 @@ namespace Prime.UnitTests.Services
             Mock<IMouseInput> mouseInput = new Mock<IMouseInput>();
             var visual = new VisualizationSettings(new KeySettings());
             var control = new MouseInputControl(visual, mouseInput.Object);
-            Assert.AreEqual(control.MakeInput(new MouseEventArgs(MouseButtons.Right,1,1,1,1)), null);
+            Input = -1;
+            control.Input += TestInput;
+            control.MakeInput(null, new MouseEventArgs(MouseButtons.Left, 1, 0, 300, 1));
+            Assert.AreEqual(Input, 0);
         }
 
         [Test]
@@ -24,7 +33,10 @@ namespace Prime.UnitTests.Services
             Mock<IMouseInput> mouseInput = new Mock<IMouseInput>();
             var visual = new VisualizationSettings(new KeySettings());
             var control = new MouseInputControl(visual, mouseInput.Object);
-            Assert.AreEqual(control.MakeInput(new MouseEventArgs(MouseButtons.Left, 1, 5, 5, 0)), null);
+            Input = -1;
+            control.Input += TestInput;
+            control.MakeInput(null, new MouseEventArgs(MouseButtons.Left, 1, 5, 5, 0));
+            Assert.AreEqual(Input, -1);
         }
 
         [Test]
@@ -32,8 +44,10 @@ namespace Prime.UnitTests.Services
         {
             Mock<IKeyInput> keyInput = new Mock<IKeyInput>();
             var control = new KeyBoardInputControl(new KeyBoardSettings(), keyInput.Object);
+            control.Input += TestInput;
             var args = new KeyEventArgs(Keys.Q);
-            Assert.AreEqual(control.MakeInput(args), 0);
+            control.MakeInput(null, args);
+            Assert.AreEqual(Input, 0);
         }
 
         [Test]
@@ -41,8 +55,11 @@ namespace Prime.UnitTests.Services
         {
             Mock<IKeyInput> keyInput = new Mock<IKeyInput>();
             var control = new KeyBoardInputControl(new KeyBoardSettings(), keyInput.Object);
+            control.Input += TestInput;
+            Input = -1;
             var args = new KeyEventArgs(Keys.A);
-            Assert.AreEqual(control.MakeInput(args), null);
+            control.MakeInput(null, args);
+            Assert.AreEqual(Input, -1);
         }
     }
 }

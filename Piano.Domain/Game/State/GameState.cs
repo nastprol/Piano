@@ -7,9 +7,9 @@ namespace Domain
         private IGameMode mode;
         private bool isFirstMove = true;
         private readonly int shift;
-        private readonly ModeSettings settings;
+        private readonly IModeSettings settings;
 
-        public GameState(Map map, ModeSettings settings, IModeChanger changer, KeySettings keySettings)
+        public GameState(Map map, IModeSettings settings, IModeChanger changer, KeySettings keySettings)
         {
             this.settings = settings;
             shift = keySettings.Height;

@@ -55,6 +55,8 @@
     <Compile Include="Changer\IModeChanger.cs" />
     <Compile Include="Config\DescriptionAttribute.cs" />
     <Compile Include="Config\GameSettings.cs" />
+    <Compile Include="Config\ILoaderSettings.cs" />
+    <Compile Include="Config\IModeSettings.cs" />
     <Compile Include="Config\InputControlSettings.cs" />
     <Compile Include="Config\LoadConfig.cs" />
     <Compile Include="Config\LoaderSettings.cs" />
@@ -70,8 +72,10 @@
     <Compile Include="Game\Change\IMapChange.cs" />
     <Compile Include="Game\Change\OrderedMapChange.cs" />
     <Compile Include="Game\Change\RandKeyMapChange.cs" />
+    <Compile Include="Game\State\IGameState.cs" />
     <Compile Include="Game\Map.cs" />
     <Compile Include="Game\MapSettings.cs" />
+    <Compile Include="Infrastructure\InputEventArgs.cs" />
     <Compile Include="Infrastructure\Melody.cs" />
     <Compile Include="Game\Mode\ArcadeMode.cs" />
     <Compile Include="Game\Mode\ClassicMode.cs" />

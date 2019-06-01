@@ -20,7 +20,7 @@ namespace App
                 var player = new SoundPlayer();
                 player.Play();
                 player.Stream = (Stream)Resources.ResourceManager.GetObject(note.ToString());
-                player.LoadAsync();
+                player.Load();
                 notes[note] = player;
             }
         }
@@ -35,7 +35,7 @@ namespace App
         public void PlayGameOverSound()
         {
             currentPlayer?.Stop();
-            var duration = TimeSpan.FromMilliseconds(200);
+            var duration = TimeSpan.FromMilliseconds(300);
             PlayNoteWithDuration(Note.DSharp, duration);
             PlayNoteWithDuration(Note.D, duration);
             PlayNoteWithDuration(Note.CSharp, duration);

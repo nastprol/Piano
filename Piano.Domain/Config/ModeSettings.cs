@@ -2,7 +2,7 @@
 
 namespace Domain
 {
-    public class ModeSettings
+    public class ModeSettings:IModeSettings
     {
         private readonly Dictionary<string, IGameMode> modes = new Dictionary<string, IGameMode>();
 

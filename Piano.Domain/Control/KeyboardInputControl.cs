@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Domain.Control;
 
 namespace Domain
 {
@@ -11,28 +10,20 @@ namespace Domain
         private readonly IReadOnlyDictionary<Keys, int> controlKeys;
         private readonly IKeyInput input;
 
+        public event EventHandler<InputEventArgs> Input;
+
         public KeyBoardInputControl(KeyBoardSettings settings, IKeyInput input)
         {
             this.input = input;
             controlKeys = settings.ControlTools;
+            input.KeyDown += MakeInput;
         }
 
-        public void Subscribe(Controller controller)
+        public void MakeInput(object sender, KeyEventArgs e)
         {
-            input.KeyDown += controller.MakeStep;
-        }
-
-        public int? MakeInput(EventArgs e)
-        {
-            var key = ((KeyEventArgs) e).KeyCode;
+            var key = e.KeyCode;
             if (controlKeys.ContainsKey(key))
-                return controlKeys[key];
-            return null;
-        }
-
-        public void Unsubscribe(Controller controller)
-        {
-            input.KeyDown -= controller.MakeStep;
+                Input.Invoke(this, new InputEventArgs(controlKeys[key]));
         }
     }
 }

@@ -32,7 +32,6 @@ namespace App
             container.Bind<ILoaderChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
             container.Bind<ILocationChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
             container.Bind<IModeChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
-
             container.Bind<MelodyFileLoader>().ToSelf().InSingletonScope();
             container.Bind<StandardMelodyLoader>().ToSelf().InSingletonScope();
             container.Bind(x =>

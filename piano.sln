@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Piano\Application.csproj", "{FCEA55A9-6F0D-493F-934D-2BF77E5F2475}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piano.Test", "Piano.Test\Piano.Test.csproj", "{CA216F3C-D6B7-4619-BA4E-D1B31C798DFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Piano.Domain\Domain.csproj", "{E0C85D8B-6018-4CAC-8D3D-C35CFB2E9960}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piano.Domain", "Piano.Domain\Piano.Domain.csproj", "{E0C85D8B-6018-4CAC-8D3D-C35CFB2E9960}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Piano.App", "Piano.App\Piano.App.csproj", "{727CA89C-2B97-49B0-A8CE-DB520A038308}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +55,18 @@ Global
 		{E0C85D8B-6018-4CAC-8D3D-C35CFB2E9960}.Release|x64.Build.0 = Release|Any CPU
 		{E0C85D8B-6018-4CAC-8D3D-C35CFB2E9960}.Release|x86.ActiveCfg = Release|Any CPU
 		{E0C85D8B-6018-4CAC-8D3D-C35CFB2E9960}.Release|x86.Build.0 = Release|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Debug|x64.Build.0 = Debug|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Debug|x86.Build.0 = Debug|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Release|Any CPU.Build.0 = Release|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Release|x64.ActiveCfg = Release|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Release|x64.Build.0 = Release|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Release|x86.ActiveCfg = Release|Any CPU
+		{727CA89C-2B97-49B0-A8CE-DB520A038308}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

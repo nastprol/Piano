@@ -8,27 +8,21 @@ namespace Prime.UnitTests.Services
     [TestFixture]
     public class GameStateTest
     {
-        private Mock<ILoaderChanger> loaderChanger;
-        private Mock<IModeChanger> modeChanger;
-        private Mock<IMelodyLoader> melodyChanger;
-        private Mock<ILoaderSettings> loaderSettings;
-        private KeySettings keySettings;
-        private Map map;
-        private Mock<IModeSettings> modeSettings;
         private GameState game;
+        private KeySettings keySettings;
 
         [SetUp]
         public void SetUp()
         {
-            loaderChanger = new Mock<ILoaderChanger>();
-            modeChanger = new Mock<IModeChanger>();
-            melodyChanger = new Mock<IMelodyLoader>();
+            var loaderChanger = new Mock<ILoaderChanger>();
+            var modeChanger = new Mock<IModeChanger>();
+            var melodyChanger = new Mock<IMelodyLoader>();
             melodyChanger.Setup(r => r.Load()).Returns(new Melody(new[] {Note.C}));
-            loaderSettings = new Mock<ILoaderSettings>();
+            var loaderSettings = new Mock<ILoaderSettings>();
             loaderSettings.Setup(r => r.GetLoader()).Returns(melodyChanger.Object);
             keySettings = new KeySettings();
-            map = new Map(new MapSettings(), loaderSettings.Object, new TestMapChange(), loaderChanger.Object);
-            modeSettings = new Mock<IModeSettings>();
+            var map = new Map(new MapSettings(), loaderSettings.Object, new TestMapChange(), loaderChanger.Object);
+            var modeSettings = new Mock<IModeSettings>();
             modeSettings.Setup(r => r.GetMode()).Returns(new ArcadeMode(map));
             game = new GameState(map, modeSettings.Object, modeChanger.Object, keySettings);
         }

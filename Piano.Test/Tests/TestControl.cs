@@ -8,58 +8,45 @@ namespace Prime.UnitTests.Services
     [TestFixture]
     public class TestControl
     {
-        private int Input;
+        private int Input = -1;
+        private MouseInputControl mouseControl;
+        private KeyBoardInputControl keyControl;
 
         public void TestInput(object sender, InputEventArgs e)
         {
             Input = e.KeyNumber;
         }
 
-        [Test]
-        public void ClickRightLocation()
+        [SetUp]
+        public void SetUp()
         {
-            Mock<IMouseInput> mouseInput = new Mock<IMouseInput>();
+            var mouseInput = new Mock<IMouseInput>();
             var visual = new VisualizationSettings(new KeySettings());
-            var control = new MouseInputControl(visual, mouseInput.Object);
-            Input = -1;
-            control.Input += TestInput;
-            control.MakeInput(null, new MouseEventArgs(MouseButtons.Left, 1, 0, 300, 1));
-            Assert.AreEqual(Input, 0);
+            mouseControl = new MouseInputControl(visual, mouseInput.Object);
+            var keyInput = new Mock<IKeyInput>();
+            keyControl = new KeyBoardInputControl(new KeyBoardSettings(), keyInput.Object);
+            keyControl.Input += TestInput;
+            mouseControl.Input += TestInput;
         }
 
-        [Test]
-        public void ClickWrongLocation()
+        [TestCase(1, 5, 5, 0, -1)]
+        [TestCase(1, 0, 300, 1, 0)]
+        public void ClickLocation(int clicks, int x, int y, int delta, int keyNumber)
         {
-            Mock<IMouseInput> mouseInput = new Mock<IMouseInput>();
-            var visual = new VisualizationSettings(new KeySettings());
-            var control = new MouseInputControl(visual, mouseInput.Object);
+            var args = new MouseEventArgs(MouseButtons.Left, clicks, x, y, delta);
+            mouseControl.MakeInput(null, args);
+            Assert.AreEqual(Input, keyNumber);
             Input = -1;
-            control.Input += TestInput;
-            control.MakeInput(null, new MouseEventArgs(MouseButtons.Left, 1, 5, 5, 0));
-            Assert.AreEqual(Input, -1);
         }
 
-        [Test]
-        public void PressRightKey()
+        [TestCase(Keys.Q, 0)]
+        [TestCase(Keys.A, -1)]
+        public void PressKey(Keys key, int keyNumber)
         {
-            Mock<IKeyInput> keyInput = new Mock<IKeyInput>();
-            var control = new KeyBoardInputControl(new KeyBoardSettings(), keyInput.Object);
-            control.Input += TestInput;
-            var args = new KeyEventArgs(Keys.Q);
-            control.MakeInput(null, args);
-            Assert.AreEqual(Input, 0);
-        }
-
-        [Test]
-        public void PressWrongKey()
-        {
-            Mock<IKeyInput> keyInput = new Mock<IKeyInput>();
-            var control = new KeyBoardInputControl(new KeyBoardSettings(), keyInput.Object);
-            control.Input += TestInput;
+            var args = new KeyEventArgs(key);
+            keyControl.MakeInput(null, args);
+            Assert.AreEqual(Input, keyNumber);
             Input = -1;
-            var args = new KeyEventArgs(Keys.A);
-            control.MakeInput(null, args);
-            Assert.AreEqual(Input, -1);
         }
     }
 }

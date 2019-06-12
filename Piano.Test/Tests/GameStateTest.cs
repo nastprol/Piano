@@ -1,9 +1,9 @@
 ﻿using Domain;
 using NUnit.Framework;
 using Moq;
+using Domain.Infrastructure;
 
-
-namespace Prime.UnitTests.Services
+namespace Piano.Test
 {
     [TestFixture]
     public class GameStateTest

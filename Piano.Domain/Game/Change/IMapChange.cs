@@ -1,4 +1,6 @@
-﻿namespace Domain
+﻿using Domain.Infrastructure;
+
+namespace Domain
 {
     public interface IMapChange
     {

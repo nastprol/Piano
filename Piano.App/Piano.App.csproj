@@ -89,7 +89,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SoundsBase.cs" />
+    <Compile Include="GUI\SoundsBase.cs" />
     <Compile Include="GUI\GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

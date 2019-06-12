@@ -2,11 +2,12 @@
 using Domain;
 using Moq;
 using System.Windows.Forms;
+using Domain.Infrastructure;
 
-namespace Prime.UnitTests.Services
+namespace Piano.Test
 {
     [TestFixture]
-    public class TestControl
+    public class ControlTest
     {
         private int Input = -1;
         private MouseInputControl mouseControl;
@@ -31,9 +32,13 @@ namespace Prime.UnitTests.Services
 
         [TestCase(1, 5, 5, 0, -1)]
         [TestCase(1, 0, 300, 1, 0)]
-        public void ClickLocation(int clicks, int x, int y, int delta, int keyNumber)
+        [TestCase(1, 0, 0, 0, -1)]
+        [TestCase(1, 5, 5, 0, -1, MouseButtons.Right)]
+        [TestCase(1, 0, 300, 1, -1, MouseButtons.Right)]
+        [TestCase(1, 0, 0, 0, -1, MouseButtons.Right)]
+        public void ClickLocation(int clicks, int x, int y, int delta, int keyNumber, MouseButtons button=MouseButtons.Left)
         {
-            var args = new MouseEventArgs(MouseButtons.Left, clicks, x, y, delta);
+            var args = new MouseEventArgs(button, clicks, x, y, delta);
             mouseControl.MakeInput(null, args);
             Assert.AreEqual(Input, keyNumber);
             Input = -1;

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Domain;
 
-namespace Domain
+namespace Domain.Infrastructure
 {
     [Description("Загрузить мелодию из файла")]
     public class MelodyFileLoader : IMelodyLoader
@@ -13,6 +12,7 @@ namespace Domain
         private static readonly Dictionary<string, Note> Notes = NoteSettings.Notes;
         private readonly GameSettings settings;
         private string location;
+        private Melody melody = null;
 
         public MelodyFileLoader(ILocationChanger locationChanger, GameSettings settings)
         {
@@ -37,7 +37,8 @@ namespace Domain
                 }
 
                 var notes = ParseTextToNotes(text).ToArray();
-                return new Melody(notes);
+                melody = new Melody(notes);
+                return melody;
             }
             catch
             {
@@ -49,5 +50,7 @@ namespace Domain
         {
             return text.Split().Select(n => Notes[n]);
         }
+
+        public IEnumerable<Melody> Melodies => new Melody[1] { melody };
     }
 }

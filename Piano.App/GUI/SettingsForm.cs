@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -63,7 +64,7 @@ namespace App
             InputTypeChange?.Invoke(sender, e);
         }
 
-        private void pathBox_TextChanged(object sender, EventArgs e)
+        private void PathBox_TextChanged(object sender, EventArgs e)
         {
             settings.MelodyLocation = pathBox.Text;
             LocationChange?.Invoke(sender, e);
@@ -82,9 +83,9 @@ namespace App
             loadBox.Items.AddRange(loaders);
             inputControlBox.Items.AddRange(controls);
 
-            modeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            loadBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            inputControlBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;        
+            modeBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            loadBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            inputControlBox.DropDownStyle = ComboBoxStyle.DropDownList;        
 
             modeBox.Location = new Point(10, 10);
             modeBox.Size = new Size(200, 60);
@@ -110,10 +111,13 @@ namespace App
             inputControlBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
             inputControlBox.SelectedIndexChanged += InputControlBox_SelectedIndexChanged;
             okButton.Click += OkClick;
-            pathBox.TextChanged += pathBox_TextChanged;
+            pathBox.TextChanged += PathBox_TextChanged;
             pathBox.TextChanged += ComboBox_SelectedIndexChanged;
             inputControlBox.TextChanged += ComboBox_SelectedIndexChanged;
 
+            loadBox.SelectedIndex = 1;
+            modeBox.SelectedIndex = 1;
+            inputControlBox.SelectedIndex = 1;
 
             Controls.Add(loadBox);
             Controls.Add(modeBox);

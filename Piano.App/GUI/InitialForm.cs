@@ -12,9 +12,10 @@ namespace App
         private readonly SettingsForm settingsForm;
         private readonly Button startButton = new Button();
 
-        public InitialForm(GameForm form, Controller controller, SettingsForm settingsForm)
+        public InitialForm(GameForm form, SettingsForm settingsForm, Controller controller)
         {
             this.settingsForm = settingsForm;
+            this.settingsForm.Size = new Size(500, 200);
             gameForm = form;
             InitializeComponent();
         }

@@ -1,9 +1,8 @@
-﻿using Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Domain
+namespace Domain.Infrastructure
 {
     [Description("Загрузить стандартную мелодию")]
     public class StandardMelodyLoader : IMelodyLoader
@@ -38,5 +37,7 @@ namespace Domain
                 return StandardMelodies.First().Value;
             return StandardMelodies[location];
         }
+
+        public IEnumerable<Melody> Melodies => StandardMelodies.Values;
     }
 }

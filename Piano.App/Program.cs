@@ -3,6 +3,9 @@ using System.Windows.Forms;
 using Ninject;
 using Ninject.Extensions.Conventions;
 using Domain;
+using Domain.Infrastructure;
+using System.Drawing;
+using System;
 
 namespace App
 {
@@ -14,8 +17,9 @@ namespace App
             Application.SetCompatibleTextRenderingDefault(false);
             var container = new StandardKernel();
             ContainerBinding(container);
-
-            Application.Run(container.Get<InitialForm>());
+            var initialForm = container.Get<InitialForm>();
+            initialForm.Size = new Size(500, 200);
+            Application.Run(initialForm);
         }
 
         public static void ContainerBinding(StandardKernel container)
@@ -27,19 +31,23 @@ namespace App
             container.Bind<IMapChange>().To<RandKeyMapChange>().InSingletonScope();
             container.Bind<IModeSettings>().To<ModeSettings>().InSingletonScope();
             container.Bind<ILoaderSettings>().To<LoaderSettings>().InSingletonScope();
-            container.Bind<SettingsForm>().ToSelf().InSingletonScope();
-            container.Bind<IInputControlChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
-            container.Bind<ILoaderChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
-            container.Bind<ILocationChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
-            container.Bind<IModeChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
+
+            container.Bind<SettingsForm>().ToSelf().InSingletonScope()
+                .WithConstructorArgument("loadersInstaces", container.GetAll<IMelodyLoader>().ToArray());
+            
             container.Bind<MelodyFileLoader>().ToSelf().InSingletonScope();
             container.Bind<StandardMelodyLoader>().ToSelf().InSingletonScope();
             container.Bind(x =>
                 x.From(System.Reflection.Assembly.GetAssembly(typeof(IMelodyLoader))).SelectAllClasses().InheritedFrom<IMelodyLoader>().BindAllInterfaces());
+            container.Bind<IInputControlChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
+            container.Bind<ILoaderChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
+            container.Bind<ILocationChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
+            container.Bind<IModeChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
             container.Bind<LoaderSettings>()
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("loaders", container.GetAll<IMelodyLoader>().ToArray());
+            
             container.Bind<Map>().ToSelf().InSingletonScope();
             container.Bind<ClassicMode>().ToSelf().InSingletonScope();
             container.Bind<ArcadeMode>().ToSelf().InSingletonScope();

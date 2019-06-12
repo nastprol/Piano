@@ -18,7 +18,11 @@ namespace App
 
         private readonly IReadOnlyDictionary<string, Type> modes;
         private readonly Button okButton = new Button();
+
         private readonly TextBox pathBox = new TextBox();
+        private readonly OpenFileDialog fileDialog = new OpenFileDialog();
+        private readonly ComboBox standardMelodiesBox = new ComboBox();
+        private readonly Label label = new Label();
 
         private readonly GameSettings settings;
 
@@ -34,16 +38,9 @@ namespace App
             loaders = config.Loaders;
             inputControls = config.InputControls;
 
-            InitializeComponent(modes.Keys.ToArray(), loaders.Keys.ToArray(), inputControls.Keys.ToArray());
-        }
+            Name = "Game settings";
 
-        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (modeBox.SelectedIndex > -1
-                && loadBox.SelectedIndex > -1
-                && inputControlBox.SelectedIndex > -1
-                && pathBox.Text.Length > 0)
-                okButton.Enabled = true;
+            InitializeComponent(modes.Keys.ToArray(), loaders.Keys.ToArray(), inputControls.Keys.ToArray());
         }
 
         private void ModeBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,8 +51,19 @@ namespace App
 
         private void LoadBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            settings.LoaderTypeName = loaders[loadBox.SelectedItem.ToString()].Name;
+            var loader = loaders[loadBox.SelectedItem.ToString()];
+            settings.LoaderTypeName = loader.Name;
             LoaderChange?.Invoke(sender, e);
+
+            pathBox.Hide();
+            standardMelodiesBox.Hide();
+
+            if (loader == typeof(MelodyFileLoader))            
+                fileDialog.ShowDialog();            
+            else if (loader == typeof(StandardMelodyLoader))
+                standardMelodiesBox.Show();
+            else
+                pathBox.Show();            
         }
 
         private void InputControlBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -70,6 +78,23 @@ namespace App
             LocationChange?.Invoke(sender, e);
         }
 
+        private void StandardMelodiesBox_TextChanged(object sender, EventArgs e)
+        {
+            settings.MelodyLocation = standardMelodiesBox.Text.Split()[1];
+            LocationChange?.Invoke(sender, e);
+        }
+
+        private void FileDialog_PathChanged(object sender, EventArgs e)
+        {
+            settings.MelodyLocation = fileDialog.FileName;
+            LocationChange?.Invoke(sender, e);
+            
+            label.Text = fileDialog.SafeFileName;
+            label.Location = new Point(10, 100);
+            label.Size = new Size(200, 60);
+            label.Show();
+        }
+
         private void OkClick(object sender, EventArgs e)
         {
             Close();
@@ -82,10 +107,13 @@ namespace App
             modeBox.Items.AddRange(modes);
             loadBox.Items.AddRange(loaders);
             inputControlBox.Items.AddRange(controls);
+            standardMelodiesBox.Items.AddRange(StandardMelodyLoader.StandardMelodies
+                .Keys.Select(s => "Melody " + s).ToArray());
 
             modeBox.DropDownStyle = ComboBoxStyle.DropDownList;
             loadBox.DropDownStyle = ComboBoxStyle.DropDownList;
             inputControlBox.DropDownStyle = ComboBoxStyle.DropDownList;        
+            standardMelodiesBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
             modeBox.Location = new Point(10, 10);
             modeBox.Size = new Size(200, 60);
@@ -98,37 +126,49 @@ namespace App
 
             pathBox.Location = new Point(10, 100);
             pathBox.Size = new Size(200, 60);
+            standardMelodiesBox.Location = new Point(10, 100);
+            standardMelodiesBox.Size = new Size(200, 60);
 
             okButton.Location = new Point(300, 50);
             okButton.Size = new Size(60, 30);
             okButton.Text = "OK";
-            okButton.Enabled = false;
 
-            modeBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
             modeBox.SelectedIndexChanged += ModeBox_SelectedIndexChanged;
-            loadBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
             loadBox.SelectedIndexChanged += LoadBox_SelectedIndexChanged;
-            inputControlBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
             inputControlBox.SelectedIndexChanged += InputControlBox_SelectedIndexChanged;
             okButton.Click += OkClick;
-            pathBox.TextChanged += PathBox_TextChanged;
-            pathBox.TextChanged += ComboBox_SelectedIndexChanged;
-            inputControlBox.TextChanged += ComboBox_SelectedIndexChanged;
 
+            pathBox.TextChanged += PathBox_TextChanged;
+            standardMelodiesBox.TextChanged += StandardMelodiesBox_TextChanged;
+            fileDialog.FileOk += FileDialog_PathChanged;
+
+            SelectDefaultValues();
+
+            pathBox.Hide();
+            standardMelodiesBox.Show();
+
+            AddToControls();
+           
+            ResumeLayout(false);
+        }
+
+        private void SelectDefaultValues()
+        {
             loadBox.SelectedIndex = 1;
             modeBox.SelectedIndex = 1;
             inputControlBox.SelectedIndex = 1;
+            standardMelodiesBox.SelectedIndex = 0;
+        }
 
+        private void AddToControls()
+        {
             Controls.Add(loadBox);
             Controls.Add(modeBox);
             Controls.Add(okButton);
             Controls.Add(inputControlBox);
             Controls.Add(pathBox);
-
-            Location = new Point(0, 0);
-            ClientSize = new Size(1000, 500);
-            Name = "Game settings";
-            ResumeLayout(false);
+            Controls.Add(standardMelodiesBox);
+            Controls.Add(label);
         }
     }
 }

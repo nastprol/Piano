@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using Domain;
 using Moq;
-using System.Windows.Forms;
 using Domain.Infrastructure;
 using System;
+using System.Linq;
 
 namespace Piano.Test
 {
@@ -21,11 +21,21 @@ namespace Piano.Test
         }
 
         [Test]
-        public void LoadFromFile()
+        public void LoadFromRightFile()
         {
             settings.MelodyLocation = Environment.CurrentDirectory + @"\Piano.Test\Tests\1.txt";
             var loader = new MelodyFileLoader(changer, settings);
             var expected = new Melody(new Note[7] { Note.C, Note.D, Note.E, Note.F, Note.A, Note.B, Note.G });
+            var melody = loader.Load();
+            Assert.AreEqual(expected, melody);
+        }
+
+        [Test]
+        public void LoadFromWrongFile()
+        {
+            settings.MelodyLocation = "";
+            var loader = new MelodyFileLoader(changer, settings);
+            var expected = StandardMelodyLoader.StandardMelodies.First().Value;
             var melody = loader.Load();
             Assert.AreEqual(expected, melody);
         }

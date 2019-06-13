@@ -38,7 +38,7 @@ namespace App
 
         private void InitializeComponent()
         {
-            SuspendLayout();            
+            SuspendLayout();
 
             startButton.Location = new Point(300, 50);
             startButton.Size = new Size(80, 30);

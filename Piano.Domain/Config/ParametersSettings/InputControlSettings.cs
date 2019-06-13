@@ -2,7 +2,7 @@
 
 namespace Domain
 {
-    public class InputControlSettings
+    public class InputControlSettings : IInputControlSettings
     {
         private readonly Dictionary<string, IInputControl> controls = new Dictionary<string, IInputControl>();
 

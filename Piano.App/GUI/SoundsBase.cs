@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Media;
 using System.Threading;
-using App.Properties;
 using Domain.Infrastructure;
+using Piano.Properties;
 
 namespace App
 {

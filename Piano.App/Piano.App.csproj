@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constructor.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="GUI\InitialForm.cs">
       <SubType>Form</SubType>
@@ -109,6 +110,7 @@
     <Content Include="Resources\ASharp.wav" />
     <Content Include="Resources\A.wav" />
     <Content Include="Resources\B.wav" />
+    <Content Include="Resources\C2.wav" />
     <Content Include="Resources\CSharp.wav" />
     <Content Include="Resources\C.wav" />
     <Content Include="Resources\DSharp.wav" />
@@ -147,6 +149,9 @@
       <Project>{e0c85d8b-6018-4cac-8d3d-c35cfb2e9960}</Project>
       <Name>Piano.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

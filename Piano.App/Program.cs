@@ -6,6 +6,7 @@ using Domain;
 using Domain.Infrastructure;
 using System.Drawing;
 using System;
+using System.Reflection;
 
 namespace App
 {
@@ -33,8 +34,11 @@ namespace App
 
             container.Bind<SettingsForm>().ToSelf().InSingletonScope();
 
-            container.Bind(x =>
-                x.From(System.Reflection.Assembly.GetAssembly(typeof(IMelodyLoader))).SelectAllClasses().InheritedFrom<IMelodyLoader>().BindAllInterfaces());
+            container.Bind(config =>
+                config.From(Assembly.GetAssembly(typeof(IMelodyLoader))).SelectAllClasses()
+                    .InheritedFrom<IMelodyLoader>()
+                    .BindAllInterfaces());
+
             container.Bind<IInputControlChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
             container.Bind<ILoaderChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();
             container.Bind<ILocationChanger>().ToMethod(c => c.Kernel.Get<SettingsForm>()).InSingletonScope();

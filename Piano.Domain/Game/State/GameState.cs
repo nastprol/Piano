@@ -10,10 +10,10 @@ namespace Domain
         private readonly int shift;
         private readonly IModeSettings settings;
 
-        public GameState(Map map, IModeSettings settings, IModeChanger changer, KeySettings keySettings)
+        public GameState(Map map, IModeSettings settings, IModeChanger changer, int shift)
         {
             this.settings = settings;
-            shift = keySettings.Height;
+            this.shift = shift;
             IsGameEnd = false;
             GetPoints = 0;
             changer.ModeChange += Update;

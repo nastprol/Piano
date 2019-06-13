@@ -4,6 +4,7 @@ using Moq;
 using Domain.Infrastructure;
 using System;
 using System.Linq;
+using System.IO;
 
 namespace Piano.Test
 {
@@ -23,9 +24,10 @@ namespace Piano.Test
         [Test]
         public void LoadFromRightFile()
         {
-            settings.MelodyLocation = Environment.CurrentDirectory + @"\Piano.Test\Tests\1.txt";
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+            settings.MelodyLocation = Environment.CurrentDirectory + @"\Tests\1.txt";
             var loader = new MelodyFileLoader(changer, settings);
-            var expected = new Melody(new Note[7] { Note.C, Note.D, Note.E, Note.F, Note.A, Note.B, Note.G });
+            var expected = new Melody(new[] { Note.C, Note.D, Note.E, Note.F, Note.A, Note.B, Note.G });
             var melody = loader.Load();
             Assert.AreEqual(expected, melody);
         }
@@ -40,7 +42,6 @@ namespace Piano.Test
             Assert.AreEqual(expected, melody);
         }
 
-        [TestCase("2")]
         [TestCase("1")]
         public void LoadStandardMelody(string location)
         {

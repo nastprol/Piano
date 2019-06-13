@@ -16,7 +16,6 @@ namespace Domain
         {
             this.input = input;
             controlLocations = settings.ControlTools;
-            input.Click += MakeInput;
         }
 
         public event EventHandler<InputEventArgs> Input;
@@ -39,6 +38,16 @@ namespace Domain
                     }
                 }
             }
+        }
+
+        public void Subscribe()
+        {
+            input.Click += MakeInput;
+        }
+
+        public void Unsubscribe()
+        {
+            input.Click -= MakeInput;
         }
     }
 }

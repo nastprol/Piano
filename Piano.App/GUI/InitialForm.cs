@@ -15,9 +15,7 @@ namespace App
         public InitialForm(SettingsForm settingsForm, Factory factory)
         {
             this.settingsForm = settingsForm;
-            this.settingsForm.Size = new Size(500, 200);
             this.factory = factory;
-
             InitializeComponent();
         }
 
@@ -54,7 +52,7 @@ namespace App
             settingsButton.Click += ClickSettings;
 
             Location = new Point(0, 0);
-            ClientSize = new Size(1000, 500);
+            ClientSize = new Size(500, 200);
             Name = "Menu";
             ResumeLayout(false);
         }

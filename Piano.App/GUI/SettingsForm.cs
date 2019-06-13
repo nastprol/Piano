@@ -18,7 +18,7 @@ namespace App
 
         private readonly IReadOnlyDictionary<string, Type> modes;
         private readonly Button okButton = new Button();
-
+        
         private readonly TextBox pathBox = new TextBox();
         private readonly OpenFileDialog fileDialog = new OpenFileDialog();
         private readonly ComboBox standardMelodiesBox = new ComboBox();
@@ -33,6 +33,8 @@ namespace App
 
         public SettingsForm(GameSettings settings, LoadConfig config)
         {
+            Location = new Point(0, 0);
+            ClientSize = new Size(500, 200);
             this.settings = settings;
             modes = config.Modes;
             loaders = config.Loaders;
@@ -106,7 +108,7 @@ namespace App
 
             modeBox.Items.AddRange(modes);
             loadBox.Items.AddRange(loaders);
-            inputControlBox.Items.AddRange(controls);
+            inputControlBox.Items.AddRange(controls);          
             standardMelodiesBox.Items.AddRange(StandardMelodyLoader.StandardMelodies
                 .Keys.Select(s => "Мелодия " + s).ToArray());
 
@@ -126,13 +128,14 @@ namespace App
 
             pathBox.Location = new Point(10, 100);
             pathBox.Size = new Size(200, 60);
+
             standardMelodiesBox.Location = new Point(10, 100);
             standardMelodiesBox.Size = new Size(200, 60);
 
             okButton.Location = new Point(300, 50);
             okButton.Size = new Size(60, 30);
             okButton.Text = "OK";
-
+            
             modeBox.SelectedIndexChanged += ModeBox_SelectedIndexChanged;
             loadBox.SelectedIndexChanged += LoadBox_SelectedIndexChanged;
             inputControlBox.SelectedIndexChanged += InputControlBox_SelectedIndexChanged;

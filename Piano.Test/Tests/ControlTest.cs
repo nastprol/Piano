@@ -1,8 +1,9 @@
 ﻿using NUnit.Framework;
-using Domain;
 using Moq;
 using System.Windows.Forms;
 using Domain.Infrastructure;
+using App;
+using Domain;
 
 namespace Piano.Test
 {

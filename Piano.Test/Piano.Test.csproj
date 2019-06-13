@@ -80,6 +80,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Piano.App\Piano.App.csproj">
+      <Project>{727ca89c-2b97-49b0-a8ce-db520a038308}</Project>
+      <Name>Piano.App</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Piano.Domain\Piano.Domain.csproj">
       <Project>{e0c85d8b-6018-4cac-8d3d-c35cfb2e9960}</Project>
       <Name>Piano.Domain</Name>

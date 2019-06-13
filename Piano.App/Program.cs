@@ -19,7 +19,6 @@ namespace App
             var container = new StandardKernel();
             ContainerBinding(container);
             var initialForm = container.Get<InitialForm>();
-            initialForm.Size = new Size(500, 200);
             Application.Run(initialForm);
         }
 

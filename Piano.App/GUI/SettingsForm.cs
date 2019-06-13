@@ -33,6 +33,8 @@ namespace App
 
         public SettingsForm(GameSettings settings, LoadConfig config)
         {
+            Location = new Point(0, 0);
+            ClientSize = new Size(500, 200);
             this.settings = settings;
             modes = config.Modes;
             loaders = config.Loaders;

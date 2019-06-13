@@ -24,12 +24,16 @@ namespace App
 
             container.Bind<Map>().ToSelf().InSingletonScope();
 
-            container.Bind(x => x.From(Assembly.GetAssembly(typeof(IGameMode))).SelectAllClasses().InheritedFrom<IGameMode>().BindAllInterfaces());
+            container.Bind(x =>
+                x.From(Assembly.GetAssembly(typeof(IGameMode))).SelectAllClasses().InheritedFrom<IGameMode>()
+                    .BindAllInterfaces());
+
             container.Bind<ModeSettings>()
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("modes", container.GetAll<IGameMode>().ToArray());
-            container.Bind<GameState>().ToSelf().InSingletonScope().WithConstructorArgument("shift", container.Get<KeySettings>().Height);
+            container.Bind<GameState>().ToSelf().InSingletonScope()
+                .WithConstructorArgument("shift", container.Get<KeySettings>().Height);
 
             container.Bind<GameForm>().ToSelf().InSingletonScope();
             container.Bind<IMouseInput>().ToMethod(c => c.Kernel.Get<GameForm>()).InSingletonScope();
@@ -37,7 +41,8 @@ namespace App
             container.Bind<VisualizationSettings>().ToSelf().InSingletonScope();
             container.Bind<KeyBoardSettings>().ToSelf().InSingletonScope();
             container.Bind(x =>
-                x.From(Assembly.GetAssembly(typeof(IInputControl))).SelectAllClasses().InheritedFrom<IInputControl>().BindAllInterfaces());
+                x.From(Assembly.GetAssembly(typeof(IInputControl))).SelectAllClasses().InheritedFrom<IInputControl>()
+                    .BindAllInterfaces());
 
             container.Bind<IInputControlSettings>().To<InputControlSettings>().InSingletonScope();
             container.Bind<InputControlSettings>()

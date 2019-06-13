@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace App.Properties {
+namespace Piano.Properties {
     using System;
     
     
@@ -93,6 +93,15 @@ namespace App.Properties {
         internal static System.IO.UnmanagedMemoryStream C {
             get {
                 return ResourceManager.GetStream("C", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream C2 {
+            get {
+                return ResourceManager.GetStream("C2", resourceCulture);
             }
         }
         

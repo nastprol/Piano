@@ -50,7 +50,5 @@ namespace Domain.Infrastructure
         {
             return text.Split().Select(n => Notes[n]);
         }
-
-        public IEnumerable<Melody> Melodies => new Melody[1] { melody };
     }
 }

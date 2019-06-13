@@ -35,7 +35,7 @@ namespace App
         public void PlayGameOverSound()
         {
             currentPlayer?.Stop();
-            var duration = TimeSpan.FromMilliseconds(300);
+            var duration = TimeSpan.FromMilliseconds(420);
             PlayNoteWithDuration(Note.DSharp, duration);
             PlayNoteWithDuration(Note.D, duration);
             PlayNoteWithDuration(Note.CSharp, duration);

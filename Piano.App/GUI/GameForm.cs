@@ -50,7 +50,7 @@ namespace App
             timer.Stop();
             sw.Stop();
             sw.Reset();
-            MessageBox.Show(@"Game over :(");
+            MessageBox.Show("Game over :(\nYour score " + state.GetPoints);
             Close();
         }
 

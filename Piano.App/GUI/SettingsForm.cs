@@ -78,9 +78,9 @@ namespace App
             LocationChange?.Invoke(sender, e);
         }
 
-        private void StandardMelodiesBox_TextChanged(object sender, EventArgs e)
+        private void StandardMelodiesBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            settings.MelodyLocation = standardMelodiesBox.Text.Split()[1];
+            settings.MelodyLocation = String.Join(" ", standardMelodiesBox.Text.Split().Skip(1));
             LocationChange?.Invoke(sender, e);
         }
 
@@ -108,7 +108,7 @@ namespace App
             loadBox.Items.AddRange(loaders);
             inputControlBox.Items.AddRange(controls);
             standardMelodiesBox.Items.AddRange(StandardMelodyLoader.StandardMelodies
-                .Keys.Select(s => "Melody " + s).ToArray());
+                .Keys.Select(s => "Мелодия " + s).ToArray());
 
             modeBox.DropDownStyle = ComboBoxStyle.DropDownList;
             loadBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -139,7 +139,7 @@ namespace App
             okButton.Click += OkClick;
 
             pathBox.TextChanged += PathBox_TextChanged;
-            standardMelodiesBox.TextChanged += StandardMelodiesBox_TextChanged;
+            standardMelodiesBox.SelectedIndexChanged += StandardMelodiesBox_SelectedIndexChanged;
             fileDialog.FileOk += FileDialog_PathChanged;
 
             SelectDefaultValues();

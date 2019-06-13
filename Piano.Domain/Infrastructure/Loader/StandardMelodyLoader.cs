@@ -16,13 +16,14 @@ namespace Domain.Infrastructure
         {
             StandardMelodies = new Dictionary<string, Melody>{
                 { "1", new Melody(new[] {Note.C, Note.D, Note.E, Note.F, Note.B}) },
-                { "2", new Melody(new[] { Note.ASharp, Note.D, Note.E, Note.G, Note.CSharp, Note.ASharp, Note.A, Note.C, Note.F, Note.FSharp }) },
+                { "Seven Nation Army", new Melody(new[] { Note.F, Note.F, Note.GSharp, Note.F, Note.DSharp, Note.CSharp, Note.C,Note.F, Note.F, Note.GSharp, Note.F, Note.DSharp, Note.CSharp, Note.DSharp, Note.CSharp, Note.C }) },
                 { "Елочка", new Melody(new[] { Note.C, Note.A, Note.A, Note.G, Note.A, Note.F, Note.C, Note.C,
-                    Note.C, Note.A, Note.A, Note.B, Note.C, Note.B,
-                    Note.C, Note.D, Note.D, Note.B, Note.B, Note.A, Note.G, Note.F,
-                    Note.C, Note.A, Note.A, Note.G, Note.A, Note.F }) },
+                    Note.C, Note.A, Note.A, Note.A, Note.D, Note.C,
+                    Note.C, Note.A, Note.A, Note.F, Note.F, Note.E, Note.D, Note.C,
+                    Note.G, Note.E, Note.E, Note.D, Note.E, Note.C }) },
                 { "Собачий вальс", new Melody(new[] { Note.DSharp, Note.CSharp, Note.FSharp, Note.ASharp, Note.ASharp, Note.DSharp, Note.CSharp, Note.FSharp, Note.ASharp, Note.ASharp,
-                    Note.DSharp, Note.CSharp, Note.FSharp, Note.ASharp, Note.DSharp, Note.ASharp, Note.CSharp, Note.E, Note.E }) }
+                    Note.DSharp, Note.CSharp, Note.FSharp, Note.ASharp, Note.DSharp, Note.ASharp, Note.CSharp, Note.F, Note.F,  Note.DSharp, Note.CSharp, Note.CSharp , Note.F, Note.F, Note.DSharp, Note.CSharp, Note.CSharp , Note.F, Note.F,  Note.DSharp, Note.CSharp, Note.CSharp , Note.F, Note.DSharp, Note.F, Note.FSharp, Note.FSharp, Note.FSharp}) },
+                {"Угадай мелодию", new Melody(new[]{Note.D, Note.G, Note.C2, Note.ASharp, Note.ASharp, Note.D, Note.G, Note.C2, Note.ASharp, Note.ASharp, Note.C, Note.G, Note.ASharp, Note.A, Note.A, Note.C, Note.G, Note.ASharp, Note.A, Note.A}) }
             };
         }
 

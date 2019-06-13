@@ -110,6 +110,7 @@
     <Content Include="Resources\ASharp.wav" />
     <Content Include="Resources\A.wav" />
     <Content Include="Resources\B.wav" />
+    <Content Include="Resources\C2.wav" />
     <Content Include="Resources\CSharp.wav" />
     <Content Include="Resources\C.wav" />
     <Content Include="Resources\DSharp.wav" />

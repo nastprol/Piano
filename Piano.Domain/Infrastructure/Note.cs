@@ -13,6 +13,7 @@
         DSharp,
         FSharp,
         GSharp,
-        ASharp
+        ASharp,
+        C2
     }
 }

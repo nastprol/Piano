@@ -21,5 +21,8 @@
 		Cтандартные мелодии
 		Из файла
 		
-Точка сборки зависимостей https://github.com/nastprol/Piano/blob/master/Piano.App/Program.cs
+Точки сборки зависимостей 
+
+https://github.com/nastprol/Piano/blob/master/Piano.App/Program.cs
+https://github.com/nastprol/Piano/blob/master/Piano.App/Factory.cs
 

@@ -17,6 +17,7 @@ namespace Domain
             this.game = game;
 
             controlType.Input += MakeStep;
+            controlType.Subscribe();
         }
 
         public void MakeStep(object sender, InputEventArgs e)
@@ -27,9 +28,11 @@ namespace Domain
 
         private void Update(object sender, EventArgs e)
         {
+            controlType.Unsubscribe();
             controlType.Input -= MakeStep;
             controlType = settings.GetInputControlClass();
             controlType.Input += MakeStep;
+            controlType.Subscribe();
         }
     }
 }

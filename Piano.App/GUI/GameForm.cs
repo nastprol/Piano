@@ -44,7 +44,7 @@ namespace App
         {
             sounds.PlayNote(note);
         }
-
+        
         private void GameOver()
         {
             timer.Stop();

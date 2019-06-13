@@ -18,8 +18,7 @@ namespace App
             Application.SetCompatibleTextRenderingDefault(false);
             var container = new StandardKernel();
             ContainerBinding(container);
-            var initialForm = container.Get<InitialForm>();
-            Application.Run(initialForm);
+            Application.Run(container.Get<InitialForm>());
         }
 
         public static void ContainerBinding(StandardKernel container)
@@ -44,7 +43,6 @@ namespace App
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("loaders", container.GetAll<IMelodyLoader>().ToArray());
-
             container.Bind<Factory>().ToSelf().InSingletonScope().WithConstructorArgument("parentContainer", container);
             container.Bind<InitialForm>().ToSelf().InSingletonScope();
         }        

@@ -16,7 +16,6 @@ namespace App
         {
             this.settingsForm = settingsForm;
             this.factory = factory;
-
             InitializeComponent();
         }
 

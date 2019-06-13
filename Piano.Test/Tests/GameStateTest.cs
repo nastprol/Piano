@@ -16,12 +16,14 @@ namespace Piano.Test
         {
             var loaderChanger = new Mock<ILoaderChanger>();
             var modeChanger = new Mock<IModeChanger>();
+            var locationChanger = new Mock<ILocationChanger>();
             var melodyChanger = new Mock<IMelodyLoader>();
             melodyChanger.Setup(r => r.Load()).Returns(new Melody(new[] {Note.C}));
             var loaderSettings = new Mock<ILoaderSettings>();
             loaderSettings.Setup(r => r.GetLoader()).Returns(melodyChanger.Object);
             keySettings = new KeySettings();
-            var map = new Map(new MapSettings(), loaderSettings.Object, new TestMapChange(), loaderChanger.Object);
+            var map = new Map(new MapSettings(), loaderSettings.Object, 
+                new TestMapChange(), loaderChanger.Object, locationChanger.Object);
             var modeSettings = new Mock<IModeSettings>();
             modeSettings.Setup(r => r.GetMode()).Returns(new ArcadeMode(map));
             game = new GameState(map, modeSettings.Object, modeChanger.Object, keySettings);

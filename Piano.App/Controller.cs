@@ -8,9 +8,9 @@ namespace App
     {
         private IInputControl controlType;
         private readonly GameState game;
-        private readonly InputControlSettings settings;
+        private readonly IInputControlSettings settings;
 
-        public Controller(GameState game, InputControlSettings settings, IInputControlChanger changer)
+        public Controller(GameState game, IInputControlSettings settings, IInputControlChanger changer)
         {
             this.settings = settings;
             controlType = settings.GetInputControlClass();

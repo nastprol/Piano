@@ -20,7 +20,6 @@ namespace App
         {
             var container = new ChildKernel(parentContainer);
 
-
             container.Bind<IModeSettings>().To<ModeSettings>().InSingletonScope();
 
             container.Bind<Map>().ToSelf().InSingletonScope();
@@ -40,12 +39,11 @@ namespace App
             container.Bind(x =>
                 x.From(Assembly.GetAssembly(typeof(IInputControl))).SelectAllClasses().InheritedFrom<IInputControl>().BindAllInterfaces());
 
-
+            container.Bind<IInputControlSettings>().To<InputControlSettings>().InSingletonScope();
             container.Bind<InputControlSettings>()
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("controls", container.GetAll<IInputControl>().ToArray());
-
 
             container.Bind<Controller>().ToSelf().InSingletonScope();
 

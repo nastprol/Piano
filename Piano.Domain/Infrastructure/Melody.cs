@@ -1,4 +1,6 @@
-﻿namespace Domain
+﻿using System.Linq;
+
+namespace Domain.Infrastructure
 {
     public class Melody
     {
@@ -19,7 +21,7 @@
             if (!(obj is Melody))
                 return false;
             var other = (Melody) obj;
-            return GetHashCode() == other.GetHashCode() && notes.Equals(other.notes);
+            return GetHashCode() == other.GetHashCode() && Enumerable.SequenceEqual(notes, other.notes);
         }
 
         public override int GetHashCode()

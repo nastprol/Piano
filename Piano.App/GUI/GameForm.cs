@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using Domain;
+using Domain.Infrastructure;
 
 namespace App
 {
@@ -43,17 +44,13 @@ namespace App
         {
             sounds.PlayNote(note);
         }
-
-        protected override void OnLoad(EventArgs e)
-        {
-        }
-
+        
         private void GameOver()
         {
             timer.Stop();
             sw.Stop();
             sw.Reset();
-            MessageBox.Show(@"Game over :(");
+            MessageBox.Show("Game over :(\nYour score " + state.GetPoints);
             Close();
         }
 

@@ -1,6 +1,6 @@
-﻿using Domain;
+﻿using System.Collections.Generic;
 
-namespace Domain
+namespace Domain.Infrastructure
 {
     public interface IMelodyLoader
     {

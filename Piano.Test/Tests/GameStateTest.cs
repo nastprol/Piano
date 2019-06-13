@@ -1,30 +1,37 @@
 ﻿using Domain;
 using NUnit.Framework;
 using Moq;
+using Domain.Infrastructure;
 
-
-namespace Prime.UnitTests.Services
+namespace Piano.Test
 {
     [TestFixture]
     public class GameStateTest
     {
+        private GameState game;
+        private KeySettings keySettings;
+
+        [SetUp]
+        public void SetUp()
+        {
+            var loaderChanger = new Mock<ILoaderChanger>();
+            var modeChanger = new Mock<IModeChanger>();
+            var locationChanger = new Mock<ILocationChanger>();
+            var melodyChanger = new Mock<IMelodyLoader>();
+            melodyChanger.Setup(r => r.Load()).Returns(new Melody(new[] {Note.C}));
+            var loaderSettings = new Mock<ILoaderSettings>();
+            loaderSettings.Setup(r => r.GetLoader()).Returns(melodyChanger.Object);
+            keySettings = new KeySettings();
+            var map = new Map(new MapSettings(), loaderSettings.Object, 
+                new TestMapChange(), loaderChanger.Object, locationChanger.Object);
+            var modeSettings = new Mock<IModeSettings>();
+            modeSettings.Setup(r => r.GetMode()).Returns(new ArcadeMode(map));
+            game = new GameState(map, modeSettings.Object, modeChanger.Object, keySettings);
+        }
+
         [Test]
         public void MakeFirstMove()
         {
-            var mapCh = new TestMapChange();
-            Mock<ILoaderChanger> loaderChenger = new Mock<ILoaderChanger>();
-            Mock<IModeChanger> modeChenger = new Mock<IModeChanger>();
-            Mock<IMelodyLoader> melodyChenger = new Mock<IMelodyLoader>();
-            melodyChenger.Setup(r => r.Load()).Returns(new Melody(new[] { Note.C }));
-            Mock<ILoaderSettings> loaderSettings = new Mock<ILoaderSettings>();
-            loaderSettings.Setup(r => r.GetLoader()).Returns(melodyChenger.Object);            
-            var keySettings = new KeySettings();
-
-            var map = new Map(new MapSettings(), loaderSettings.Object, new TestMapChange(), loaderChenger.Object);
-            Mock<IModeSettings> modeSettings = new Mock<IModeSettings>();
-            modeSettings.Setup(r => r.GetMode()).Returns(new ArcadeMode(map));
-
-            var game = new GameState(map, modeSettings.Object,modeChenger.Object, keySettings);
             game.MakeMove(0);
             Assert.IsFalse(game.IsGameEnd);
             Assert.AreEqual(1, game.GetPoints);
@@ -34,20 +41,6 @@ namespace Prime.UnitTests.Services
         [Test]
         public void MakeMoreMove()
         {
-            var mapCh = new TestMapChange();
-            Mock<ILoaderChanger> loaderChenger = new Mock<ILoaderChanger>();
-            Mock<IModeChanger> modeChenger = new Mock<IModeChanger>();
-            Mock<IMelodyLoader> melodyChenger = new Mock<IMelodyLoader>();
-            melodyChenger.Setup(r => r.Load()).Returns(new Melody(new[] { Note.C }));
-            Mock<ILoaderSettings> loaderSettings = new Mock<ILoaderSettings>();
-            loaderSettings.Setup(r => r.GetLoader()).Returns(melodyChenger.Object);
-            var keySettings = new KeySettings();
-
-            var map = new Map(new MapSettings(), loaderSettings.Object, new TestMapChange(), loaderChenger.Object);
-            Mock<IModeSettings> modeSettings = new Mock<IModeSettings>();
-            modeSettings.Setup(r => r.GetMode()).Returns(new ArcadeMode(map));
-
-            var game = new GameState(map, modeSettings.Object, modeChenger.Object, keySettings);
             game.MakeMove(0);
             game.MakeMove(0);
             game.MakeMove(0);
@@ -55,23 +48,10 @@ namespace Prime.UnitTests.Services
             Assert.AreEqual(3, game.GetPoints);
             Assert.AreEqual(keySettings.Height * 3, game.MapShiftFromBottom);
         }
+
         [Test]
         public void MakeEndMove()
         {
-            var mapCh = new TestMapChange();
-            Mock<ILoaderChanger> loaderChenger = new Mock<ILoaderChanger>();
-            Mock<IModeChanger> modeChenger = new Mock<IModeChanger>();
-            Mock<IMelodyLoader> melodyChenger = new Mock<IMelodyLoader>();
-            melodyChenger.Setup(r => r.Load()).Returns(new Melody(new[] { Note.C }));
-            Mock<ILoaderSettings> loaderSettings = new Mock<ILoaderSettings>();
-            loaderSettings.Setup(r => r.GetLoader()).Returns(melodyChenger.Object);
-            var keySettings = new KeySettings();
-
-            var map = new Map(new MapSettings(), loaderSettings.Object, new TestMapChange(), loaderChenger.Object);
-            Mock<IModeSettings> modeSettings = new Mock<IModeSettings>();
-            modeSettings.Setup(r => r.GetMode()).Returns(new ArcadeMode(map));
-
-            var game = new GameState(map, modeSettings.Object, modeChenger.Object, keySettings);
             game.MakeMove(0);
             game.MakeMove(0);
             game.MakeMove(2);

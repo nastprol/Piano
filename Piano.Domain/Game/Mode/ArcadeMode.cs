@@ -1,4 +1,6 @@
-﻿namespace Domain
+﻿using Domain.Infrastructure;
+
+namespace Domain
 {
     [Description("Аркада")]
     public class ArcadeMode : IGameMode

@@ -7,23 +7,24 @@ namespace App
 {
     public class InitialForm : Form
     {
-        private readonly GameForm gameForm;
+        private readonly Factory factory;
         private readonly Button settingsButton = new Button();
         private readonly SettingsForm settingsForm;
         private readonly Button startButton = new Button();
 
-        public InitialForm(GameForm form, Controller controller, SettingsForm settingsForm)
+        public InitialForm(SettingsForm settingsForm, Factory factory)
         {
             this.settingsForm = settingsForm;
-            gameForm = form;
+            this.factory = factory;
             InitializeComponent();
         }
 
         private void ClickStart(object sender, EventArgs e) 
         {
             Hide();
+            var gameForm = factory.GetNew().GameForm;
             gameForm.ShowDialog();
-            Close();
+            Show();
         }
 
         private void ClickSettings(object sender, EventArgs e)
@@ -51,7 +52,7 @@ namespace App
             settingsButton.Click += ClickSettings;
 
             Location = new Point(0, 0);
-            ClientSize = new Size(1000, 500);
+            ClientSize = new Size(500, 200);
             Name = "Menu";
             ResumeLayout(false);
         }

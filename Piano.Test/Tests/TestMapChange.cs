@@ -1,4 +1,7 @@
-﻿namespace Domain
+﻿using Domain;
+using Domain.Infrastructure;
+
+namespace Piano.Test
 {
     internal class TestMapChange : IMapChange
     {

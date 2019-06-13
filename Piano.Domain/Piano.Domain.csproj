@@ -53,7 +53,7 @@
     <Compile Include="Changer\ILocationChanger.cs" />
     <Compile Include="Changer\ILocatorChanger.cs" />
     <Compile Include="Changer\IModeChanger.cs" />
-    <Compile Include="Config\DescriptionAttribute.cs" />
+    <Compile Include="Infrastructure\DescriptionAttribute.cs" />
     <Compile Include="Config\GameSettings.cs" />
     <Compile Include="Config\ILoaderSettings.cs" />
     <Compile Include="Config\IModeSettings.cs" />
@@ -79,15 +79,15 @@
     <Compile Include="Infrastructure\Melody.cs" />
     <Compile Include="Game\Mode\ArcadeMode.cs" />
     <Compile Include="Game\Mode\ClassicMode.cs" />
-    <Compile Include="Game\Mode\IgameMode.cs" />
+    <Compile Include="Game\Mode\IGameMode.cs" />
     <Compile Include="Infrastructure\Note.cs" />
     <Compile Include="Game\PianoKey.cs" />
     <Compile Include="Game\State\GameState.cs" />
     <Compile Include="Config\KeySettings.cs" />
-    <Compile Include="Loader\IMelodyLoader.cs" />
-    <Compile Include="Loader\MelodyFileLoader.cs" />
-    <Compile Include="Config\NoteSettings.cs" />
-    <Compile Include="Loader\StandardMelodyLoader.cs" />
+    <Compile Include="Infrastructure\Loader\IMelodyLoader.cs" />
+    <Compile Include="Infrastructure\Loader\MelodyFileLoader.cs" />
+    <Compile Include="Infrastructure\NoteSettings.cs" />
+    <Compile Include="Infrastructure\Loader\StandardMelodyLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

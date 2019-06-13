@@ -42,7 +42,6 @@ namespace Piano.Test
             Assert.AreEqual(expected, melody);
         }
 
-        [TestCase("2")]
         [TestCase("1")]
         public void LoadStandardMelody(string location)
         {

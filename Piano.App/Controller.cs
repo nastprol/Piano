@@ -1,7 +1,8 @@
-﻿using Domain.Infrastructure;
+﻿using Domain;
+using Domain.Infrastructure;
 using System;
 
-namespace Domain
+namespace App
 {
     public class Controller
     {

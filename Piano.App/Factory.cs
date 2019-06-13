@@ -26,7 +26,7 @@ namespace App
                 .ToSelf()
                 .InSingletonScope()
                 .WithConstructorArgument("modes", container.GetAll<IGameMode>().ToArray());
-            container.Bind<GameState>().ToSelf().InSingletonScope();
+            container.Bind<GameState>().ToSelf().InSingletonScope().WithConstructorArgument("shift", container.Get<KeySettings>().Height);
 
             container.Bind<GameForm>().ToSelf().InSingletonScope();
             container.Bind<IMouseInput>().ToMethod(c => c.Kernel.Get<GameForm>()).InSingletonScope();
